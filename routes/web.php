@@ -34,3 +34,5 @@ Route::get('project/tag/{tag}', 'ProjectController@indexTag');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/cheZoubir', 'HomeController@index');
