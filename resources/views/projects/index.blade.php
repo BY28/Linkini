@@ -11,7 +11,7 @@ Demandes
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span>
                 <h3 class="panel-title">
-                    Demandes</h3>
+                    Projets</h3>
                 <span class="label label-info">
                     ...</span>
             </div>

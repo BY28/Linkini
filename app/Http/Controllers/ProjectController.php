@@ -46,7 +46,7 @@ class ProjectController extends Controller
             $tagRepository->attach($project, $inputs['tag']);
         }
 
-        return redirect('project')->withOk("La projecte " . $project->title . " a été créée.");
+        return redirect('project')->withOk("Le project " . $project->title . " a été créé.");
     }
 
     public function show($id)
@@ -68,7 +68,7 @@ class ProjectController extends Controller
 
         $this->projectRepository->update($id, $request->all());
         
-        return redirect('project')->withOk("La projecte " . $request->input('title') . " a été modifiée.");
+        return redirect('project')->withOk("Le project " . $request->input('title') . " a été modifié.");
     }
 
     public function destroy($id)
