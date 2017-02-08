@@ -25,11 +25,11 @@ Route::resource('user', 'UserController');
 
 Route::resource('entreprise', 'EntrepriseController');
 
-Route::resource('demand', 'DemandController');
+Route::resource('project', 'ProjectController');
 
 Route::resource('tag', 'TagController', ['only' => ['create', 'store']]);
 
-Route::get('demand/tag/{tag}', 'DemandController@indexTag');
+Route::get('project/tag/{tag}', 'ProjectController@indexTag');
 
 Auth::routes();
 

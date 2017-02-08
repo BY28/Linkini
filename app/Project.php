@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Demand extends Model
+class Project extends Model
 {
      protected $fillable = [
         'user_id', 'title', 'content'

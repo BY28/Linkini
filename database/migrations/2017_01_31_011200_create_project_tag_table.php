@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDemandTagTable extends Migration
+class CreateProjectTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDemandTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('demand_tag', function(Blueprint $table) {
+        Schema::create('project_tag', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('demand_id')->unsigned();
+            $table->integer('project_id')->unsigned();
             $table->integer('tag_id')->unsigned();
-            $table->foreign('demand_id')->references('id')->on('demands')
+            $table->foreign('project_id')->references('id')->on('projects')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
 
@@ -34,11 +34,11 @@ class CreateDemandTagTable extends Migration
      */
     public function down()
     {
-        Schema::table('demand_tag', function(Blueprint $table) {
-            $table->dropForeign('demand_tag_demand_id_foreign');
-            $table->dropForeign('demand_tag_tag_id_foreign');
+        Schema::table('project_tag', function(Blueprint $table) {
+            $table->dropForeign('project_tag_project_id_foreign');
+            $table->dropForeign('project_tag_tag_id_foreign');
         });
 
-        Schema::dropIfExists('demand_tag');
+        Schema::dropIfExists('project_tag');
     }
 }

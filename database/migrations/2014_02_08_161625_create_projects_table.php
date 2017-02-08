@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDemandsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDemandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('demands', function(Blueprint $table) {
+        Schema::create('projects', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('title', 80);
@@ -34,9 +34,9 @@ class CreateDemandsTable extends Migration
      */
     public function down()
     {
-         Schema::table('demands', function(Blueprint $table){
-            $table->dropForeign('demands_user_id_foreign');
+         Schema::table('projects', function(Blueprint $table){
+            $table->dropForeign('projects_user_id_foreign');
         });
-        Schema::dropIfExists('demands');
+        Schema::dropIfExists('projects');
     }
 }

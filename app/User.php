@@ -37,8 +37,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Entreprise');
     }
 
-    public function deamands()
+    public function projects()
     {
-        return $this->hasMany('App\Demand');
+        return $this->hasMany('App\Project');
     }
 }

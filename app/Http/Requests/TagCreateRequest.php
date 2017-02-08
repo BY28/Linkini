@@ -24,7 +24,7 @@ class TagCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag' => 'required|max:50|regex:/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/'
+            'tag' => 'required|max:50|regex:/^[A-Za-z0-9-éèàùçê]{1,50}?(,[A-Za-z0-9-éèàùçê]{1,50})*$/'
         ];
     }
 }

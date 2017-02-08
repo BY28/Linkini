@@ -2,22 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Demand;
+use App\Project;
 
-class DemandRepository extends ResourceRepository
+class ProjectRepository extends ResourceRepository
 {
 
-    protected $demand;
+    protected $project;
 
-    public function __construct(Demand $demand)
+    public function __construct(Project $project)
 	{
-		$this->model = $demand;
+		$this->model = $project;
 	}
 
 	private function queryWithUserAndTags()
 	{
 		return $this->model->with('user', 'tags')
-		->orderBy('demands.created_at', 'desc');		
+		->orderBy('projects.created_at', 'desc');		
 	}
 
 	public function getPaginate($n)
@@ -36,9 +36,9 @@ class DemandRepository extends ResourceRepository
 
 	public function destroy($id)
 	{
-		$demand = $this->model->findOrFail($id);
-		$demand->tags()->detach();
-		$demand->delete();
+		$project = $this->model->findOrFail($id);
+		$project->tags()->detach();
+		$project->delete();
 	}
 	/*
 		*
@@ -46,7 +46,7 @@ class DemandRepository extends ResourceRepository
 		*
 	public function store(Array $inputs)
 	{
-		$imgName = $this->moveImage($inputs['image'], config('imageDemand.path'));
+		$imgName = $this->moveImage($inputs['image'], config('imageProject.path'));
 
 		if($imgName != '')
 		{

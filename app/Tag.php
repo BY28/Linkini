@@ -10,9 +10,9 @@ class Tag extends Model
     	'tag', 'tag_url'
     ];
 
-	public function demands()
+	public function projects()
 	{
-		return $this->belongsToMany('App\Demand');
+		return $this->belongsToMany('App\Project');
 	}
 
 	public function entreprises()

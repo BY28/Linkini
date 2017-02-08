@@ -4,10 +4,10 @@
     <div class="col-sm-offset-4 col-sm-4">
     	<br>
 		<div class="panel panel-primary">	
-			<div class="panel-heading">Modification d'une demande</div>
+			<div class="panel-heading">Modification d'une projecte</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::model($demand, ['route' => ['demand.update', $demand->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+					{!! Form::model($project, ['route' => ['project.update', $project->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
 					  	{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
 					  	{!! $errors->first('title', '<small class="help-block">:message</small>') !!}

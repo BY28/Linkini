@@ -14,7 +14,7 @@ Entreprises
       
       <div class="col-md-3">
         <div class="thumbnail">
-          <img src="http://localhost/Somatelec/trade/public/uploads/business/{{$entreprise->image}}" class="img-responsive" alt="...">
+          <img src="{{ URL::to('uploads/business')}}/{{$entreprise->image}}" class="img-responsive" alt="...">
           <div class="caption">
             <h3>{{ $entreprise->name }}</h3>
             <p class="description">{{ $entreprise->description }}</p>
