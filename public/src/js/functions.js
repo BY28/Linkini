@@ -24,5 +24,3 @@ jQuery(document).on('click', '.dropdown', function(e) {
     );
 });
 */
-
-
