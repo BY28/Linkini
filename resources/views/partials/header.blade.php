@@ -167,8 +167,6 @@
       </form>
       
         @if (Auth::guest())
-           <li><a href="{{ url('/login') }}">Login</a></li>
-           <li><a href="{{ url('/register') }}">Register</a></li>
            
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CONNEXION</b> <span class="caret"></span></a>
@@ -176,23 +174,44 @@
                 <li>
                      <div class="row">
                             <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                             <label class="sr-only" for="exampleInputEmail2">Adresse Email</label>
-                                             <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Adresse Email" required>
+                                 <form class="form" role="form" method="POST" action="{{ url('/login') }}" accept-charset="UTF-8" id="login-nav">
+                                        {{ csrf_field() }}
+
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label class="sr-only" for="email">E-Mail Address</label>
+
+                                            <div>
+                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-Mail" required autofocus>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                             <label class="sr-only" for="exampleInputPassword2">Mot de passe</label>
-                                             <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Mot de passe" required>
-                                             <div class="help-block text-right"><a href="">Mot de passe oublié ?</a></div>
+
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label class="sr-only" for="password">Password</label>
+
+                                            <div>
+                                                <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
+
                                         <div class="form-group">
                                              <button type="submit" class="btn btn-primary btn-block">Connexion</button>
                                         </div>
                                  </form>
                             </div>
                             <div class="bottom text-center">
-                                Vous n'êtes pas inscrit ? <a href="#"><b>Rejoignez nous</b></a>
+                                Vous n'êtes pas inscrit ? <a href="{{ url('/register') }}"><b>Rejoignez nous</b></a>
                             </div>
                      </div>
                 </li>
