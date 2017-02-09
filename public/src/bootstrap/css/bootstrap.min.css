@@ -1095,7 +1095,7 @@ textarea {
     line-height: inherit
 }
 a {
-    color: #337ab7;
+    color: #ea5817;
     text-decoration: none
 }
 a:focus,
@@ -3204,8 +3204,8 @@ fieldset[disabled] .btn-default:hover {
 }
 .btn-primary {
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4
+    background-color: #0c2444;
+    border-color: #0c2444
 }
 .btn-primary.focus,
 .btn-primary:focus {
@@ -3261,19 +3261,19 @@ fieldset[disabled] .btn-primary:hover {
 }
 .btn-success {
     color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c
+    background-color: #0c2444;
+    border-color: #0c2444
 }
 .btn-success.focus,
 .btn-success:focus {
     color: #fff;
-    background-color: #449d44;
-    border-color: #255625
+    background-color: #ea5817;
+    border-color: #ea5817
 }
 .btn-success:hover {
     color: #fff;
-    background-color: #449d44;
-    border-color: #398439
+    background-color: #ea5817;
+    border-color: #ea5817
 }
 .btn-success.active,
 .btn-success:active,
@@ -4698,7 +4698,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 }
 .navbar-inverse .navbar-nav>li>a:focus,
 .navbar-inverse .navbar-nav>li>a:hover {
-    color: #0c2444;
+    color: #fff;
     background-color: transparent
 }
 .navbar-inverse .navbar-nav>.active>a,
