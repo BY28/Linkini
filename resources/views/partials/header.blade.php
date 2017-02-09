@@ -163,6 +163,12 @@
            <li><a href="{{ url('/register') }}">Register</a></li>
         @else
         <!-- ajout de mon code --> 
+         <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Recherche">
+        </div>
+        <button type="submit" class="btn btn-default">Recherche</button>
+      </form>
         <li class="dropdown">
           <a href="#" class="fa fa-envelope" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
