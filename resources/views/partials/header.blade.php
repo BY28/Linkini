@@ -169,6 +169,37 @@
         @if (Auth::guest())
            <li><a href="{{ url('/login') }}">Login</a></li>
            <li><a href="{{ url('/register') }}">Register</a></li>
+
+            <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CONNEXION</b> <span class="caret"></span></a>
+            <ul id="login-dp" class="dropdown-menu">
+                <li>
+                     <div class="row">
+                            <div class="col-md-12">
+                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                        <div class="form-group">
+                                             <label class="sr-only" for="exampleInputEmail2">Adresse Email</label>
+                                             <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Adresse Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="sr-only" for="exampleInputPassword2">Mot de passe</label>
+                                             <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Mot de passe" required>
+                                             <div class="help-block text-right"><a href="">Mot de passe oublié ?</a></div>
+                                        </div>
+                                        <div class="form-group">
+                                             <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+                                        </div>
+                                 </form>
+                            </div>
+                            <div class="bottom text-center">
+                                Vous n'êtes pas inscrit ? <a href="#"><b>Rejoignez nous</b></a>
+                            </div>
+                     </div>
+                </li>
+            </ul>
+        </li>
+     
         @else
         <!-- ajout de mon code --> 
         <li class="dropdown">
