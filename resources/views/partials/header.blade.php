@@ -162,6 +162,49 @@
            <li><a href="{{ url('/login') }}">Login</a></li>
            <li><a href="{{ url('/register') }}">Register</a></li>
         @else
+        <!-- ajout de mon code --> 
+        <li class="dropdown">
+          <a href="#" class="fa fa-envelope" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">Nouveau Message</a></li>
+              <li><a href="#">Message reçus</a></li>
+              <li><a href="#">Message envoyés</a></li>
+               <li><a href="#">Corbeille</a></li>
+            </ul>
+        </li>
+      <li class="dropdown">
+          <a href="#" class="fa fa-bell" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">Notifications</a></li>
+              
+            </ul>
+        </li>
+         <li class="dropdown">
+          <a href="#" class="fa fa-user" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">Mes Projets</a></li>
+              <li><a href="#">Mes Entreprises</a></li>
+              <li><a href="#">Mes Favoris</a></li>
+              <li><a href="#">Mes Statistiques</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Paramètres</a>
+              </li>
+            </ul>
+        </li>
+           <li class="dropdown">
+          <a href="#"  class="dropdown-toggle" data-toggle="dropdown"> Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">Créer un appel d'offre</a></li>
+              <li><a href="#">Créer une entreprise</a></li>
+              
+            </ul>
+        </li>
+         <li class="dropdown">
+          <a href="#" class="fa fa-sign-out"></a> </li>
+     </ul>
+
+     <!-- fin -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
