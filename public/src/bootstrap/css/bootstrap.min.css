@@ -4698,7 +4698,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 }
 .navbar-inverse .navbar-nav>li>a:focus,
 .navbar-inverse .navbar-nav>li>a:hover {
-    color: #fff;
+    color: #ea5817;
     background-color: transparent
 }
 .navbar-inverse .navbar-nav>.active>a,
