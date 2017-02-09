@@ -201,8 +201,8 @@
             </ul>
         </li>
          <li class="dropdown">
-          <a href="#" class="fa fa-sign-out"></a> </li>
-     </ul>
+          <a href="#" class="fa fa-sign-out"></a> 
+          </li>
 
      <!-- fin -->
         <li class="dropdown">
