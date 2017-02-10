@@ -159,12 +159,14 @@
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <!-- recherche -->
-        <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Recherche">
-        </div>
-        <button type="submit" class="btn btn-default">Recherche</button>
-      </form>
+
+          <form class="navbar-form navbar-left" role="search" id="custom-search-input">
+            <div class="form-group">
+              <input type="text" class="form-control search-query" placeholder="Recherche">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          </form>
+
       
         @if (Auth::guest())
            
