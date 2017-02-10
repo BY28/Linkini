@@ -222,6 +222,7 @@
      
         @else
         <!-- ajout de mon code --> 
+
         <li class="dropdown">
           <a href="#" class="fa fa-envelope" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -231,6 +232,7 @@
                <li><a href="#">Corbeille</a></li>
             </ul>
         </li>
+
       <li class="dropdown">
           <a href="#" class="fa fa-bell" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -238,7 +240,17 @@
               
             </ul>
         </li>
-         <li class="dropdown">
+         
+           <li class="dropdown">
+          <a href="#"  class=" fa fa-plus dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">Créer un appel d'offre</a></li>
+              <li><a href="#">Créer une entreprise</a></li>
+              
+            </ul>
+        </li>
+
+        <li class="dropdown">
           <a href="#" class="fa fa-user" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li><a href="#">Mes Projets</a></li>
@@ -251,38 +263,21 @@
               </li>
             </ul>
         </li>
-           <li class="dropdown">
-          <a href="#"  class="dropdown-toggle" data-toggle="dropdown"> Plus<span class="caret"></span></a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="#">Créer un appel d'offre</a></li>
-              <li><a href="#">Créer une entreprise</a></li>
-              
-            </ul>
-        </li>
-         <li class="dropdown">
-          <a href="#" class="fa fa-sign-out"></a> 
-          </li>
 
-     <!-- fin -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li role="separator" class="divider"></li>
-            <li>
-              <a href="{{ url('/logout') }}"
+         <li class="dropdown">
+           <a class="fa fa-sign-out" href="{{ url('/logout') }}"
                   onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                  Logout
+                  
               </a>
 
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
-              
-            </li>
-           
-          </ul>
-        </li>
+          </li>
+
+     <!-- fin -->
+      
         @endif
       </ul>
   </div><!-- /.nav-collapse -->

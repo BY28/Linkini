@@ -132,6 +132,8 @@
             </div>
         </div>
         <div id="carousel-example" class="carousel slide" data-interval="false">
+        <!-- CONTAINER -->
+        <div class="container">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
@@ -378,6 +380,9 @@
                 </div>
             </div>
         </div>
+        <!-- -->
+        </div>
+        <!-- -->
     </div>
     <div class="row">
         <div class="row">
@@ -395,6 +400,8 @@
             </div>
         </div>
         <div id="carousel-example-generic" class="carousel slide" data-interval="false">
+<!-- CONTAINER -->
+        <div class="container">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
@@ -581,6 +588,9 @@
                 </div>
             </div>
         </div>
+        <!-- -->
+        </div>
+        <!-- -->
     </div>
 
 @endsection
