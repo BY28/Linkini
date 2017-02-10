@@ -232,3 +232,10 @@ body { padding:0px; background: #f6f6f6;}
     .search-query:focus + button {
         z-index: 3;   
     }
+    /*SHADOW
+
+    .shadow-box{
+      box-shadow: 0 0 10px #222;
+    }
+
+*/
