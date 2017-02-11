@@ -239,3 +239,28 @@ body { padding:0px; background: #f6f6f6;}
     }
 
 */
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg)  */
+
+.banner {
+    height: 300px;
+    background: url('https://p.w3layouts.com/demos/duhoot/web/images/banner.jpg') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+}
+
+/* Customize the text color and shadow color and to optimize text legibility. */
+
+.tagline {
+    text-shadow: 0 0 10px #000;
+    color: #fff;
+}
+
+/*--content--*/
+.content_top{
+    background:#fff;
+    padding:13px 0 5px;
+    border-bottom: 2px solid #E6E5E5;
+}

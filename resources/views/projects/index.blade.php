@@ -1,7 +1,71 @@
 @extends('layouts.master')
 
 @section('title')
-Demandes
+Projects
+@endsection
+
+@section('styles')
+
+<style type="text/css">
+.navbar{
+  margin-bottom: 0em;
+}
+
+button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
+.content_top span{
+    color: #fff;
+    background-color: #ea5817;
+}
+
+</style>
+
+@endsection
+
+@section('banner')
+
+<header class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline">Find your projects with Linkini</h1>
+            </div>
+        </div>
+</header>
+
+  <div class="content_top">
+      <div class="container">
+         <div class="row">    
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+   </div>
+   
 @endsection
 
 @section('content')
@@ -19,7 +83,6 @@ Demandes
                 <ul class="list-group">
 
 @foreach($projects as $project)
-
       
                     <li class="list-group-item">
                         <div class="row">

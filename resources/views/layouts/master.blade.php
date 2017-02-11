@@ -12,6 +12,8 @@
 <body>
 @include('partials.header')
 
+@yield('banner')
+
 <div class="container">
 	@yield('content')
 </div>
