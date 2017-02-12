@@ -264,3 +264,14 @@ body { padding:0px; background: #f6f6f6;}
     padding:13px 0 5px;
     border-bottom: 2px solid #E6E5E5;
 }
+
+/* SEARCH RESULTS */
+
+hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
+
+.search-result{ margin-top: 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+.search-result .thumbnail { border-radius: 0 !important;}
+.search-result .result { border-right: 1px dotted #ccc; min-height: 140px; border-left: 1px dotted #ccc; min-height: 140px;}
+.search-result ul { padding-left: 0; list-style: none;  }
+.search-result ul li { line-height: 30px; }
+.search-result h3 { margin-top: 0 !important; margin-bottom: 10px !important; }
