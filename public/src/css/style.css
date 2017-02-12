@@ -243,7 +243,9 @@ body { padding:0px; background: #f6f6f6;}
 
 .banner {
     height: 300px;
-    background: url('https://p.w3layouts.com/demos/duhoot/web/images/banner.jpg') center center no-repeat scroll;
+    /* background: url('https://p.w3layouts.com/demos/duhoot/web/images/banner.jpg') center center no-repeat scroll; */
+    background: url('../../images/banners/banner.PNG') center center no-repeat scroll;
+    
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
