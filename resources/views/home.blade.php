@@ -31,6 +31,60 @@
                     </div>
 
                     <!-- Service Tabs -->
+        <div class="col-md-6 bhoechie-tab-container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  <h4 class="glyphicon glyphicon-link"></h4><br/>Linki
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-time"></h4><br/>Timi
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-export"></h4><br/>Partagi
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-saved"></h4><br/>Assuri
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                      <h1 class="glyphicon glyphicon-link" style="font-size:14em;color:#a9a9a9"></h1>
+                      <h2 style="margin-top: 0;color:#a9a9a9">Créez des liens!</h2>
+                      <p style="margin-top: 0;color:#a9a9a9">Linkini vous donne la possibilité de créer des liens avec plusieurs entreprises afin de réaliser vos projets</p>
+                    </center>
+                </div>
+                <!-- train section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                      <h1 class="glyphicon glyphicon-time" style="font-size:12em;color:#a9a9a9"></h1>
+                      <h2 style="margin-top: 0;color:#a9a9a9">Gagnez du temps!</h2>
+                      <p style="margin-top: 0;color:#a9a9a9">Retrouvez rapidement, efficacement et en un clic l'entreprise ou le projet que vous cherchez</p>
+                    </center>
+                </div>
+    
+                <!-- hotel search -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                      <h1 class="glyphicon glyphicon-export" style="font-size:12em;color:#a9a9a9"></h1>
+                      <h2 style="margin-top: 0;color:#a9a9a9">Soyez visible!</h2>
+                      <p style="margin-top: 0;color:#a9a9a9">Ajoutez de la visibilité à votre projet ou votre entreprise en partageant sur les réseaux sociaux et en vous créant une page personnalisé</p>
+                    </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <center>
+                      <h1 class="glyphicon glyphicon-saved" style="font-size:12em;color:#a9a9a9"></h1>
+                      <h2 style="margin-top: 0;color:#a9a9a9">Echangez en sécurité!</h2>
+                      <p style="margin-top: 0;color:#a9a9a9">En vous connectant sur linkini vous êtes assuré d'avoir un échange professionnel avec des entreprises certifiés pour plus de fiabilité</p>
+                    </center>
+                </div>
+                
+            </div>
+        </div>
+                    <!--
             <div class="col-lg-6">
 
                 <ul id="myTab" class="nav nav-tabs nav-justified">
@@ -113,7 +167,7 @@
                     </div>
                 </div>
 
-            </div> 
+            </div> -->
 
      </div>
      <div class="row">
@@ -593,4 +647,21 @@
         <!-- -->
     </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+
+    
+$(document).ready(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+});
+</script>
 @endsection
