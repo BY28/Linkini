@@ -287,6 +287,7 @@ div.bhoechie-tab-container{
   border-radius: 4px;
   -moz-border-radius: 4px;
   border:1px solid #ddd;
+  background-clip: padding-box;
   opacity: 0.97;
   filter: alpha(opacity=97);
   height: 26.4em;
@@ -302,9 +303,7 @@ div.bhoechie-tab-menu div.list-group{
 }
 div.bhoechie-tab-menu div.list-group>a{
   margin-bottom: 0;
-}
-.list-group>a{
-    height: 6.6em;
+  height: 6.6em;
 }
 div.bhoechie-tab-menu div.list-group>a .glyphicon,
 div.bhoechie-tab-menu div.list-group>a .fa {
@@ -346,4 +345,66 @@ div.bhoechie-tab-content{
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   display: none;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 1.33;
+  border-radius: 35px;
+  float:left;
+  margin: 1.4em  1em 1em 1em; 
+  background-color: #ea5817;
+  color: #fff;
+  border: #fff solid 5px;
+}
+
+.btn-circle.btn-xl:hover {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 1.33;
+  border-radius: 35px;
+  float:left;
+  margin: 1.4em  1em 1em 1em; 
+  background-color: #ea5817;
+  color: #fff;
+  border: #ea5817 solid 5px;
+}
+
+.profil-action{
+  background-color: #fff;
+  border: none;
+  position: center;
+  color: #a9a9a9;
+  border-bottom: #fff solid 3px;
+  position: relative;
+}
+
+.profil-action:hover{
+  background-color: #fff;
+  border: none;
+  color: #a9a9a9;
+  border-bottom: #ea5817 solid 3px;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }

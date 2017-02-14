@@ -8,8 +8,8 @@
             <img class="img-responsive img-circle" alt="140x140" src="http://lorempixel.com/140/140/" />
         </div>
         <div class="col-md-5">
-            <h2>User Name</h2>
-    	    <p>{{$user->email}}</p>
+            <h2>user_name</h2>
+    	    <p>e_mail@mail.com</p>
    		</div>
         <div class="col-md-5">
                        
