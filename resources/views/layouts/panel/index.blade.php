@@ -16,8 +16,21 @@
 
 <div class="container">
 	<div class="row">
-		@include('partials.sidebar')
-		@yield('content')
+
+		<div class="col-md-3">
+			
+			@include('partials.sidebar')
+
+		</div>
+	
+		<div class="col-md-9">
+	
+			@include('partials.profileHeader')
+			@yield('headerButtons')
+			@yield('content')
+	
+		</div>
+
 	</div>
 </div>
 

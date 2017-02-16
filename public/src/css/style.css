@@ -364,7 +364,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   line-height: 1.33;
   border-radius: 35px;
   float:left;
-  margin: 1.4em  1em 1em 1em; 
+  margin-top: 1.4em;
+  margin-bottom: 1em;  
   background-color: #ea5817;
   color: #fff;
   border: #fff solid 5px;
@@ -378,7 +379,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   line-height: 1.33;
   border-radius: 35px;
   float:left;
-  margin: 1.4em  1em 1em 1em; 
+  margin-top: 1.4em;
+  margin-bottom: 1em;  
   background-color: #ea5817;
   color: #fff;
   border: #ea5817 solid 5px;
@@ -407,4 +409,12 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+.header-btn{
+  border-bottom: transparent solid 3px;
+}
+
+.header-btn:hover{
+  border-bottom: #ea5817 solid 3px;
 }

@@ -254,7 +254,7 @@
           <a href="#" class="fa fa-user" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li class="dropdown-submenu">
-                <a tabindex="-1" href="{{route('user.show',Auth::user()->id)}}">Mon Profil</a>
+                <a tabindex="-1" href="{{route('profile.index')}}">Mon Profil</a>
               </li>
               <li class="divider"></li>
               <li><a href="#">Mes Projets</a></li>
