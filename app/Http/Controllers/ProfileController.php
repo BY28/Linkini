@@ -130,7 +130,7 @@ class ProfileController extends Controller
 
         return view('profiles.messages.inboox',  compact('user'));
     }
-     public function getMessagesSent)
+     public function getMessagesSent()
     {
         $user = $this->profileRepository->getById(Auth::user()->id);
 
