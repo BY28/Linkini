@@ -50,7 +50,9 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	});
 
 	Route::group(['prefix' => 'settings'], function(){
-		Route::get('account', ['uses' => 'ProfileController@getAccount', 'as' => 'settings.account']);
+		Route::get('account', ['uses' => 'ProfileController@getSettingsAccount', 'as' => 'settings.account']);
+		Route::get('entreprise', ['uses' => 'ProfileController@getSettingsEntreprise', 'as' => 'settings.entreprise']);
+		Route::get('notifications', ['uses' => 'ProfileController@getSettingsNotifications', 'as' => 'settings.notifications']);
 	});
 	
 });

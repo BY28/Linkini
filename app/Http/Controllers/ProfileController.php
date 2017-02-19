@@ -98,6 +98,80 @@ class ProfileController extends Controller
         //
     }
 
+
+    /* PROJECTS */
+    public function getProjects()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.projects.projects',  compact('user'));
+    }
+    /* END PROJECTS*/
+
+     /* ENTREPRISE */
+    public function getEntreprise()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.entreprise.entreprise',  compact('user'));
+    }
+    /* END ENTREPRISE*/
+
+     /* MESSAGES */
+    public function getMessages()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.messages.messages',  compact('user'));
+    }
+    public function getMessagesInbox()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.messages.inboox',  compact('user'));
+    }
+     public function getMessagesSent)
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.messages.sent',  compact('user'));
+    }
+     public function getMessagesTrash()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.messages.trash',  compact('user'));
+    }
+    /* END MESSAGES*/
+
+     /* NOTIFICATIONS */
+    public function getNotifications()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.notifications.notifications',  compact('user'));
+    }
+    /* END NOTIFICATIONS*/
+
+     /* STATISTICS */
+    public function getStatistics()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.statistics.statistics',  compact('user'));
+    }
+    /* END STATISTICS*/
+
+     /* FAVORITES */
+    public function getFavorites()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.favorites.favorites',  compact('user'));
+    }
+    /* END FAVORITES*/
+
+    /* SETTINGS */
     public function getSettings()
     {
         $user = $this->profileRepository->getById(Auth::user()->id);
@@ -105,10 +179,26 @@ class ProfileController extends Controller
         return view('profiles.settings.settings',  compact('user'));
     }
 
-    public function getAccount()
+    public function getSettingsAccount()
     {
         $user = $this->profileRepository->getById(Auth::user()->id);
 
         return view('profiles.settings.account',  compact('user'));
     }
+
+     public function getSettingsEntreprise()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.settings.entreprise',  compact('user'));
+    }
+
+     public function getSettingsNotifications()
+    {
+        $user = $this->profileRepository->getById(Auth::user()->id);
+
+        return view('profiles.settings.notifications',  compact('user'));
+    }
+    /* END SETTINGS */
+
 }
