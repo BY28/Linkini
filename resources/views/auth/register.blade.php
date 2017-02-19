@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<!-- <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -58,16 +58,16 @@
             </div>
         </div>
     </div>
-</div> -->
+</div> 
 
-
+<!-- 
 <form class="form-horizontal">
 <fieldset>
 
-<!-- Form Name -->
+
 <legend>Formulaire d'inscription</legend>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="fn">Nom</label>  
   <div class="col-md-4">
@@ -76,7 +76,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="ln">Prénom</label>  
   <div class="col-md-4">
@@ -85,7 +85,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="cmpny">Nom de l'entreprise</label>  
   <div class="col-md-4">
@@ -94,7 +94,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email</label>  
   <div class="col-md-4">
@@ -103,7 +103,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="add2">Adresse </label>  
   <div class="col-md-4">
@@ -112,7 +112,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="city">Ville</label>  
   <div class="col-md-4">
@@ -121,7 +121,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="zip">Code Postal</label>  
   <div class="col-md-4">
@@ -131,7 +131,7 @@
 </div>
 
 
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="phone">Téléphone</label>  
   <div class="col-md-4">
@@ -140,7 +140,7 @@
   </div>
 </div>
 
-<!-- Button -->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
@@ -150,4 +150,6 @@
 
 </fieldset>
 </form>
+-->
+
 @endsection
