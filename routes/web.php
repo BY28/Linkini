@@ -15,11 +15,15 @@ Route::get('/', function () {
     return view('home');
 });
 
+/* NEWSLETTER */
+
 Route::get('newsletter', 'EmailController@getForm');
 Route::post('newsletter', [
 		'uses' => 'EmailController@postForm',
 		'as' => 'storeEmail'
 	]);
+
+/* PROFILE */
 
 Route::group(['prefix' => 'profile'], function(){
 
@@ -43,6 +47,14 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 	Route::group(['prefix' => 'messages'], function(){
 		
+		Route::get('notifications', [ 'uses' => 'MessageController@getNotifications', 'as' => 'messages.notifications']);
+
+		Route::get('/', ['uses' => 'MessageController@getMessages', 'as' => 'messages.inbox']);
+		Route::get('message/{id}', ['uses' => 'MessageController@getMessage', 'as' => 'messages.message']);
+		Route::get('sent', ['uses' => 'MessageController@getMessageSent', 'as' => 'messages.sent']);
+		Route::get('send', ['uses' => 'MessageController@getSendMessage', 'as' => 'messages.create']);
+		Route::post('send', ['uses' => 'MessageController@sendMessage', 'as' => 'messages.send']);
+
 	});
 
 	Route::group(['prefix' => 'statistics'], function(){
