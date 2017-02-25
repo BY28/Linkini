@@ -69,9 +69,28 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	
 });
 
+/* ENTREPRISE */
+
+Route::group(['prefix' => 'entreprise'], function(){
+
+	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprise.getorder']);
+	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprise.postorder']);
+
+	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprise.create']);
+		
+});
+
+/* ADMIN */
+
+Route::group(['prefix' => 'admin'], function(){
+
+
+		
+});
+
 Route::resource('user', 'UserController');
 
-Route::resource('entreprise', 'EntrepriseController');
+//Route::resource('entreprise', 'EntrepriseController');
 
 Route::resource('project', 'ProjectController');
 
@@ -82,3 +101,18 @@ Route::get('project/tag/{tag}', 'ProjectController@indexTag');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+/* 
+	ADD ADMIN ACCEPT ENTREPRISE
+	
+	User send order
+	Table entreprise order default accepted 0
+	Admin accepts order
+	If not payed entreprise 0 else entreprise 1
+	Free months => entreprise 1
+
+	PENDING ACCEPTED PAYED
+
+	ADMIN/ENTREPRISES
+
+ */

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EntrepriseCreateRequest;
 use App\Http\Requests\EntrepriseUpdateRequest;
+use App\Http\Requests\EntrepriseOrderRequest;
 
 use App\Repositories\EntrepriseRepository;
+use App\Repositories\EntrepriseOrderRepository;
 
 use Illuminate\Http\Request;
 
@@ -15,12 +17,14 @@ class EntrepriseController extends Controller
 
     protected $nbrPerPage = 9;
 
-    public function __construct(EntrepriseRepository $entrepriseRepository)
+    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
-        $this->middleware('admin', ['except' => 'index']);
+        $this->middleware('entreprise', ['except' => ['index', 'getEntrepriseOrder', 'postEntrepriseOrder']]);
+        //$this->middleware('admin', ['except' => 'index']);
 
         $this->entrepriseRepository = $entrepriseRepository;
+        $this->entrepriseOrderRepository = $entrepriseOrderRepository;
     }
       public function index()
     {
@@ -71,5 +75,19 @@ class EntrepriseController extends Controller
         $this->entrepriseRepository->destroy($id);
 
         return back();
+    }
+
+    public function getEntrepriseOrder()
+    {
+        return view('entreprises.order');
+    }
+
+    public function postEntrepriseOrder(EntrepriseOrderRequest $request)
+    {
+        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        
+        $entreprise = $this->entrepriseOrderRepository->store($inputs);
+
+        return redirect()->route('entreprise.getorder')->withOk("La commande pour l'entreprise : " . $entreprise->name . " a été envoyée.");
     }
 }
