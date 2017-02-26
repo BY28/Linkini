@@ -13,4 +13,10 @@ class EntrepriseOrderRepository extends ResourceRepository
 	{
 		$this->model = $entrepriseOrder;
 	}
+
+	public function getPendingEntreprises()
+	{
+		return $this->model->where('accepted', 0)
+		->orderBy('entreprise_orders.created_at', 'desc')->get();		
+	}
 }

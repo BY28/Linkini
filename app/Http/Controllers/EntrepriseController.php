@@ -14,14 +14,15 @@ use Illuminate\Http\Request;
 class EntrepriseController extends Controller
 {
     protected $entrepriseRepository;
+    protected $entrepriseOrderRepository;
 
     protected $nbrPerPage = 9;
 
     public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
-        $this->middleware('entreprise', ['except' => ['index', 'getEntrepriseOrder', 'postEntrepriseOrder']]);
-        //$this->middleware('admin', ['except' => 'index']);
+        $this->middleware('entreprise', ['only' => ['edit', 'update']]);
+        $this->middleware('admin', ['only' => 'getPendingEntreprises']);
 
         $this->entrepriseRepository = $entrepriseRepository;
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
@@ -89,5 +90,18 @@ class EntrepriseController extends Controller
         $entreprise = $this->entrepriseOrderRepository->store($inputs);
 
         return redirect()->route('entreprise.getorder')->withOk("La commande pour l'entreprise : " . $entreprise->name . " a été envoyée.");
+    }
+
+    public function getPendingEntreprises(Request $request)
+    {
+        $entreprises = $this->entrepriseOrderRepository->getPendingEntreprises();
+        $user = $request->user();
+
+        return view('admins.entreprises.pending', compact('entreprises', 'user'));
+    }
+
+    public function accept(Request $request)
+    {
+        return response()->json(['message' => 'SUCCESS']);
     }
 }

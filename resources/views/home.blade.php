@@ -16,13 +16,13 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                             </div>
 
@@ -195,7 +195,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -225,7 +225,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -252,7 +252,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -282,7 +282,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -316,7 +316,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -346,7 +346,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -373,7 +373,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -403,7 +403,7 @@
                         <div class="col-sm-3">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -463,7 +463,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -493,7 +493,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -520,7 +520,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -554,7 +554,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -584,7 +584,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -611,7 +611,7 @@
                         <div class="col-sm-4">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    <img src="http://lorempixel.com/750/500/" class="img-responsive" alt="a" />
                                 </div>
                                 <div class="info">
                                     <div class="row">

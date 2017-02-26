@@ -84,7 +84,9 @@ Route::group(['prefix' => 'entreprise'], function(){
 
 Route::group(['prefix' => 'admin'], function(){
 
+	Route::get('entreprises', ['uses' => 'EntrepriseController@getPendingEntreprises', 'as' => 'entreprise.getpending']);
 
+	Route::post('entreprises', ['uses' => 'EntrepriseController@accept', 'as' => 'entreprise.accept']);
 		
 });
 
