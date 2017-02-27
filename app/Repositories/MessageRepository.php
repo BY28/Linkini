@@ -61,4 +61,21 @@ class MessageRepository extends ResourceRepository
 
     	$this->store($inputs);
 	}
+
+	public function reply($request, $id)
+	{
+		$message = $this->getById($id);
+		$receiver = $message->sender;
+		$subject = 'RE: '. $message->subject;
+
+    	$inputs = [
+    		'sender_id' => $request->user()->id,
+    		'receiver_id' => $receiver->id,
+    		'subject'=> $subject,
+    		'message' => $request->input('message'),
+    		'read' => 0
+    	];
+
+    	$this->store($inputs);
+	}
 }

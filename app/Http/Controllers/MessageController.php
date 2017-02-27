@@ -69,4 +69,11 @@ class MessageController extends Controller
 
     	return redirect()->route('messages.sent');
     }
+
+    public function replyMessage(Request $request, $id)
+    {
+        $message = $this->messageRepository->reply($request, $id);
+
+        return redirect()->route('messages.sent');
+    }
 }

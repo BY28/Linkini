@@ -54,6 +54,7 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 		Route::get('sent', ['uses' => 'MessageController@getMessageSent', 'as' => 'messages.sent']);
 		Route::get('send', ['uses' => 'MessageController@getSendMessage', 'as' => 'messages.create']);
 		Route::post('send', ['uses' => 'MessageController@sendMessage', 'as' => 'messages.send']);
+		Route::post('send/{message}', ['uses' => 'MessageController@replyMessage', 'as' => 'messages.reply']);
 
 	});
 
