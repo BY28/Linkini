@@ -23,8 +23,8 @@
 	     		<td>{{$entreprise->description}}</td>
 	     		<td>{{$entreprise->created_at}}</td>
 	     		<td>
-	     			<a href="#" class="btn btn-warning btn-xs accept">Accept</a>
-	     			<a href="#" class="btn btn-warning btn-xs refuse">refuse</a>
+	     			<a href="#" class="btn btn-primary btn-xs accept"><span class="glyphicon glyphicon-ok"></span></a>
+	     			<a href="#" class="btn btn-primary btn-xs refuse"><span class="glyphicon glyphicon-remove"></span></a>
 	     		</td>
 	    	</tr>
 	    
@@ -44,8 +44,8 @@ $('.accept').click(function(event)
 {
     event.preventDefault();
     
-    var token = '{{ Session::token() }}';
-    var urlAccept = '{{ route('entreprise.accept') }}';
+    var token = '{{Session::token()}}';
+    var urlAccept = '{{route('entreprise.accept')}}';
 
     var entrepriseId = event.target.parentNode.parentNode.dataset['entrepriseid'];
 

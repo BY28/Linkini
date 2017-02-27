@@ -22,7 +22,7 @@ class EntrepriseController extends Controller
     {
         $this->middleware('auth', ['except' => 'index']);
         $this->middleware('entreprise', ['only' => ['edit', 'update']]);
-        $this->middleware('admin', ['only' => 'getPendingEntreprises']);
+        $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
 
         $this->entrepriseRepository = $entrepriseRepository;
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
@@ -100,8 +100,16 @@ class EntrepriseController extends Controller
         return view('admins.entreprises.pending', compact('entreprises', 'user'));
     }
 
+    public function getAcceptedEntreprises(Request $request)
+    {
+        $entreprises = $this->entrepriseOrderRepository->getAcceptedEntreprises();
+        $user = $request->user();
+
+        return view('admins.entreprises.accepted', compact('entreprises', 'user'));
+    }
+
     public function accept(Request $request)
     {
-        return response()->json(['message' => 'SUCCESS']);
+        $this->entrepriseOrderRepository->accept($request->all());
     }
 }

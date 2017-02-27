@@ -19,4 +19,19 @@ class EntrepriseOrderRepository extends ResourceRepository
 		return $this->model->where('accepted', 0)
 		->orderBy('entreprise_orders.created_at', 'desc')->get();		
 	}
+
+	public function getAcceptedEntreprises()
+	{
+		return $this->model->where('accepted', 1)
+		->orderBy('entreprise_orders.created_at', 'desc')->get();		
+	}
+
+	public function accept($inputs)
+	{
+		$entrepriseOrder = $this->getById($inputs['entrepriseId']);
+
+		$entrepriseOrder->accepted = true;
+
+		$entrepriseOrder->save();
+	}
 }
