@@ -12,12 +12,12 @@
         <h2>{{$message->subject}}</h2>
         <div class="header">
 
-          <img class="avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
+          <img class="avatar" src="http://lorempixel.com/140/140">
 
 
           <div class="from">
-            <span>{{$message->sender->email}}</span>
-            <a class="" href="#">Name</a>
+            <span>User Name</span>
+            <a class="" href="#">{{$message->sender->email}}</a>
           </div>
           <div class="date"><span class="fa fa-paper-clip"></span>{{$message->created_at}}</div>
 

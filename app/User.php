@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Project');
     }
+
+    public function entrepriseOrder()
+    {
+        return $this->hasOne('App\EntrepriseOrder');
+    }
 }

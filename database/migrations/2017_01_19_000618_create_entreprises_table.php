@@ -15,11 +15,12 @@ class CreateEntreprisesTable extends Migration
     {
         Schema::create('entreprises', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('name', 80);
-            $table->text('description');
-            $table->string('image');
+            $table->string('description')->default('Entreprise sérieuse et fiable, en partenariat avec Linkini. Description attente...');
+            $table->string('image')->default('entreprise.png');
+            $table->boolean('checked')->default(false);
             $table->integer('user_id')->unsigned();
+            $table->timestamps();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')

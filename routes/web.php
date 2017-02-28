@@ -89,12 +89,11 @@ Route::group(['prefix' => 'admin'], function(){
 	
 	Route::get('/', ['uses' => 'EntrepriseController@getPendingEntreprises', 'as' => 'entreprise.getpending']);
 	Route::get('accepted', ['uses' => 'EntrepriseController@getAcceptedEntreprises', 'as' => 'entreprise.getaccepted']);
+	Route::get('checked', ['uses' => 'EntrepriseController@getCheckedEntreprises', 'as' => 'entreprise.getchecked']);
 
 	Route::post('accept', ['uses' => 'EntrepriseController@accept', 'as' => 'entreprise.accept']);
-		
 	});
-	
-		
+	Route::post('check', ['uses' => 'EntrepriseController@check', 'as' => 'entreprise.check']);		
 });
 
 
@@ -111,18 +110,3 @@ Route::get('project/tag/{tag}', 'ProjectController@indexTag');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-/* 
-	ADD ADMIN ACCEPT ENTREPRISE
-	
-	User send order
-	Table entreprise order default accepted 0
-	Admin accepts order
-	If not payed entreprise 0 else entreprise 1
-	Free months => entreprise 1
-
-	PENDING ACCEPTED PAYED
-
-	ADMIN/ENTREPRISES
-
- */

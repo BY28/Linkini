@@ -108,8 +108,21 @@ class EntrepriseController extends Controller
         return view('admins.entreprises.accepted', compact('entreprises', 'user'));
     }
 
+    public function getCheckedEntreprises(Request $request)
+    {
+        $entreprises = $this->entrepriseOrderRepository->getCheckedEntreprises();
+        $user = $request->user();
+
+        return view('admins.entreprises.checked', compact('entreprises', 'user'));
+    }
+
     public function accept(Request $request)
     {
         $this->entrepriseOrderRepository->accept($request->all());
+    }
+
+    public function check(Request $request)
+    {
+        $this->entrepriseOrderRepository->check($request->all());
     }
 }

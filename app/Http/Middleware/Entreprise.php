@@ -16,7 +16,7 @@ class Entreprise
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->entreprise)
+        if($request->user()->entreprise->checked)
         {
             return $next($request);
         }
