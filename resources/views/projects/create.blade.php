@@ -7,14 +7,14 @@
 			<div class="panel-heading">Création d'un project</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::open(['route' => 'project.store', 'files'=>true,'class' => 'form-horizontal panel']) !!}
+					{!! Form::open(['route' => 'projects.store', 'files'=>true,'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
 						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
 						{!! $errors->first('title', '<small class="help-block">:message</small>') !!}
 					</div>
-					<div class="form-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
-						{!! Form::text('tag', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
-						{!! $errors->first('tag', '<small class="help-block">:message</small>') !!}
+					<div class="form-group {!! $errors->has('tags') ? 'has-error' : '' !!}">
+						{!! Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
+						{!! $errors->first('tags', '<small class="help-block">:message</small>') !!}
 					</div>
 					<!-- PAS D'IMAGE POUR LE MOMENT
 					<div class="form-group {!! $errors->has('image') ? 'has-error' : '' !!}">

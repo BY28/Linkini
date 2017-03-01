@@ -89,12 +89,12 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
 
                     <div class="action">
 
-                                    <a href="{{route('entreprise.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                    
                                     <button type="button" class="btn btn-success btn-xs" title="Approved">
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </button>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entreprise.destroy', $entreprise->id]]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                     
@@ -103,7 +103,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                 <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i> Tags
                     <ul class="meta-search">
                         @foreach($entreprise->tags as $tag)
-                            {!! link_to('entreprise/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
+                            {!! link_to('entreprises/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
                         @endforeach
                     </ul>
                 </div>
@@ -140,7 +140,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
   -->
     @if(Auth::check() and Auth::user()->admin)
 
-      {!! link_to_route('entreprise.create', 'Ajouter une entreprise', [], ['class' => 'btn btn-info pull-right']) !!}
+      {!! link_to_route('entreprises.create', 'Ajouter une entreprise', [], ['class' => 'btn btn-info pull-right']) !!}
     
     @endif
 

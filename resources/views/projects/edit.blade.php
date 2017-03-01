@@ -7,7 +7,7 @@
 			<div class="panel-heading">Modification d'un project</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::model($project, ['route' => ['project.update', $project->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+					{!! Form::model($project, ['route' => ['projects.update', $project->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
 					  	{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
 					  	{!! $errors->first('title', '<small class="help-block">:message</small>') !!}

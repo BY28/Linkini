@@ -18,7 +18,7 @@ class TagRepository extends ResourceRepository
 
 	public function store(Array $inputs)
 	{
-		$tags = explode(',', $inputs['tag']);
+		$tags = explode(',', $inputs['tags']);
 
 		foreach ($tags as $tag) {
 

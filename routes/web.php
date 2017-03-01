@@ -70,16 +70,20 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	
 });
 
-/* ENTREPRISE */
+/* ENTREPRISES */
 
-Route::group(['prefix' => 'entreprise'], function(){
+Route::group(['prefix' => 'entreprises'], function(){
 
+	Route::get('/', ['uses' => 'EntrepriseController@index', 'as' => 'entreprise.index']);
 	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprise.getorder']);
 	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprise.postorder']);
 
 	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprise.create']);
+	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprise.edit']);
+	Route::post('destroy', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprise.destroy']);
 		
 });
+
 
 /* ADMIN */
 
@@ -99,11 +103,11 @@ Route::group(['prefix' => 'admin'], function(){
 
 Route::resource('user', 'UserController');
 
-//Route::resource('entreprise', 'EntrepriseController');
+Route::resource('entreprises', 'EntrepriseController');
 
-Route::resource('project', 'ProjectController');
+Route::resource('projects', 'ProjectController');
 
-Route::resource('tag', 'TagController', ['only' => ['create', 'store']]);
+Route::resource('tags', 'TagController', ['only' => ['create', 'store']]);
 
 Route::get('project/tag/{tag}', 'ProjectController@indexTag');
 

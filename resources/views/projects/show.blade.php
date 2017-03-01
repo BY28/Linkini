@@ -6,8 +6,8 @@
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Détails du project</div>
 			<div class="panel-body">
-				<p>Title : {{ $entreprise->title }}</p>
-				<p>Content : {{ $entreprise->content }}</p>
+				<p>Title : {{ $project->title }}</p>
+				<p>Content : {{ $project->content }}</p>
 			</div>
 		</div>				
 		<a href="javascript:history.back()" class="btn btn-primary">

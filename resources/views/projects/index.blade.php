@@ -93,12 +93,12 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
 
                     <div class="action">
 
-                                    <a href="{{route('project.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                    
                                     <button type="button" class="btn btn-success btn-xs" title="Approved">
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </button>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['project.destroy', $project->id]]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                     
@@ -119,7 +119,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     </section>
     @if(Auth::check() and Auth::user()->admin)
 
-      {!! link_to_route('project.create', 'Ajouter un project', [], ['class' => 'btn btn-info pull-right']) !!}
+      {!! link_to_route('projects.create', 'Ajouter un project', [], ['class' => 'btn btn-info pull-right']) !!}
     
     @endif
 
@@ -162,12 +162,12 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                                 </div>
                                 <div class="action">
 
-                                    <a href="{{route('project.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                    
                                     <button type="button" class="btn btn-success btn-xs" title="Approved">
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </button>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['project.destroy', $project->id]]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                 </div>
@@ -184,7 +184,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     </div>
     @if(Auth::check() and Auth::user()->admin)
 
-      {!! link_to_route('project.create', 'Ajouter une projecte', [], ['class' => 'btn btn-info pull-right']) !!}
+      {!! link_to_route('projects.create', 'Ajouter une projecte', [], ['class' => 'btn btn-info pull-right']) !!}
     
     @endif
 

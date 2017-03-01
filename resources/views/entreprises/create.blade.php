@@ -7,7 +7,7 @@
 			<div class="panel-heading">Création d'une entreprise</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::open(['route' => 'entreprise.store', 'files'=>true,'class' => 'form-horizontal panel']) !!}
+					{!! Form::open(['route' => 'entreprises.store', 'files'=>true,'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
 						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) !!}
 						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}

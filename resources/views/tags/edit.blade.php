@@ -7,10 +7,10 @@
 			<div class="panel-heading">Modification d'un tag</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::model($tag, ['route' => ['tag.update', $tag->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
-					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
-						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+					{!! Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+					<div class="form-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
+						{!! Form::text('tag', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
+						{!! $errors->first('tag', '<small class="help-block">:message</small>') !!}
 					</div>
 						{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}

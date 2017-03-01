@@ -7,7 +7,7 @@
 			<div class="panel-heading">Modification d'une entreprise</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::model($entreprise, ['route' => ['entreprise.update', $entreprise->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+					{!! Form::model($entreprise, ['route' => ['entreprises.update', $entreprises->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
 					  	{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
 					  	{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
