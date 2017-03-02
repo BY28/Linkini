@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Project');
     }
 
-    public function entrepriseOrder()
+    public function order()
     {
         return $this->hasOne('App\EntrepriseOrder');
     }

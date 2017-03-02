@@ -21,9 +21,9 @@ class EntrepriseController extends Controller
     public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
-        $this->middleware('entreprise', ['only' => ['edit', 'update']]);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
-
+        $this->middleware('order', ['only' => ['getEntrepriseInfo']]);
+        $this->middleware('entreprise', ['only' => ['edit', 'update', 'getEntrepriseInfo']]);
         $this->entrepriseRepository = $entrepriseRepository;
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
     }
@@ -78,9 +78,22 @@ class EntrepriseController extends Controller
         return back();
     }
 
-    public function getEntrepriseOrder()
+    public function getEntrepriseInfo(Request $request)
     {
-        return view('entreprises.order');
+        $user = $request->user();
+        return view('profiles.entreprise.informations', compact('user'));
+    }
+
+    public function getEntrepriseWaiting(Request $request)
+    {
+        $user = $request->user();
+        return view('profiles.entreprise.waiting', compact('user'));
+    }
+
+    public function getEntrepriseOrder(Request $request)
+    {
+        $user = $request->user();
+        return view('entreprises.order', compact('user'));
     }
 
     public function postEntrepriseOrder(EntrepriseOrderRequest $request)
@@ -89,7 +102,7 @@ class EntrepriseController extends Controller
         
         $entreprise = $this->entrepriseOrderRepository->store($inputs);
 
-        return redirect()->route('entreprise.getorder')->withOk("La commande pour l'entreprise : " . $entreprise->name . " a été envoyée.");
+        return redirect()->route('entreprises.info');
     }
 
     public function getPendingEntreprises(Request $request)

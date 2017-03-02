@@ -38,10 +38,17 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 
 	Route::group(['prefix' => 'projects'], function(){
-		
+		Route::get('/', ['uses' => 'ProjectController@getPending', 'as' => 'projects.pending']);
+		Route::get('launched', ['uses' => 'ProjectController@getLaunched', 'as' => 'projects.launched']);
+		Route::get('create', ['uses' => 'ProjectController@create', 'as' => 'projects.create']);
+		Route::get('project', ['uses' => 'ProjectController@create', 'as' => 'projects.project']);
+
+		Route::post('launch', ['uses' => 'ProjectController@launch', 'as' => 'projects.launch']);
 	});
 
 	Route::group(['prefix' => 'entreprise'], function(){
+		Route::get('/', ['uses' => 'EntrepriseController@getEntrepriseInfo', 'as' => 'entreprises.info']);
+		Route::get('/waiting', ['uses' => 'EntrepriseController@getEntrepriseWaiting', 'as' => 'entreprises.waiting']);
 		
 	});
 
@@ -74,13 +81,13 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 Route::group(['prefix' => 'entreprises'], function(){
 
-	Route::get('/', ['uses' => 'EntrepriseController@index', 'as' => 'entreprise.index']);
-	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprise.getorder']);
-	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprise.postorder']);
+	Route::get('/', ['uses' => 'EntrepriseController@index', 'as' => 'entreprises.index']);
+	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprises.getorder']);
+	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprises.postorder']);
 
-	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprise.create']);
-	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprise.edit']);
-	Route::post('destroy', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprise.destroy']);
+	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprises.create']);
+	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.edit']);
+	Route::post('destroy', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.destroy']);
 		
 });
 
@@ -91,13 +98,13 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::group(['prefix' => 'entreprises'], function(){
 	
-	Route::get('/', ['uses' => 'EntrepriseController@getPendingEntreprises', 'as' => 'entreprise.getpending']);
-	Route::get('accepted', ['uses' => 'EntrepriseController@getAcceptedEntreprises', 'as' => 'entreprise.getaccepted']);
-	Route::get('checked', ['uses' => 'EntrepriseController@getCheckedEntreprises', 'as' => 'entreprise.getchecked']);
+	Route::get('/', ['uses' => 'EntrepriseController@getPendingEntreprises', 'as' => 'entreprises.getpending']);
+	Route::get('accepted', ['uses' => 'EntrepriseController@getAcceptedEntreprises', 'as' => 'entreprises.getaccepted']);
+	Route::get('checked', ['uses' => 'EntrepriseController@getCheckedEntreprises', 'as' => 'entreprises.getchecked']);
 
-	Route::post('accept', ['uses' => 'EntrepriseController@accept', 'as' => 'entreprise.accept']);
+	Route::post('accept', ['uses' => 'EntrepriseController@accept', 'as' => 'entreprises.accept']);
 	});
-	Route::post('check', ['uses' => 'EntrepriseController@check', 'as' => 'entreprise.check']);		
+	Route::post('check', ['uses' => 'EntrepriseController@check', 'as' => 'entreprises.check']);		
 });
 
 
@@ -105,11 +112,11 @@ Route::resource('user', 'UserController');
 
 Route::resource('entreprises', 'EntrepriseController');
 
-Route::resource('projects', 'ProjectController');
+Route::resource('projects', 'ProjectController', ['except' => ['create']]);
 
 Route::resource('tags', 'TagController', ['only' => ['create', 'store']]);
 
-Route::get('project/tag/{tag}', 'ProjectController@indexTag');
+Route::get('projects/tag/{tag}', 'ProjectController@indexTag');
 
 Auth::routes();
 

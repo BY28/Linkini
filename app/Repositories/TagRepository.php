@@ -57,7 +57,7 @@ class TagRepository extends ResourceRepository
 			if(is_null($tag_ref)) 
 			{
 				//continue;
-				$tag_ref = new $this->tag([
+				$tag_ref = new $this->model([
 					'tag' => $tag,
 					'tag_url' => $tag_url
 				]);	

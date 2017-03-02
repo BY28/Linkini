@@ -13,14 +13,16 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     protected $projectRepository;
+    protected $tagRepository;
 
     protected $nbrPerPage = 9;
 
-    public function __construct(ProjectRepository $projectRepository)
+    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
 
         $this->projectRepository = $projectRepository;
+        $this->tagRepository = $tagRepository;
     }
       public function index()
     {
@@ -30,9 +32,10 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects', 'links'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('projects.create');
+        $user = $request->user();
+        return view('profiles.projects.create', compact('user'));
     }
 
     public function store(ProjectCreateRequest $request, TagRepository $tagRepository)
@@ -41,12 +44,12 @@ class ProjectController extends Controller
         
         $project = $this->projectRepository->store($inputs);
 
-        if(isset($inputs['tag']))
+        if(isset($inputs['tags']))
         {
-            $tagRepository->attach($project, $inputs['tag']);
+            $tagRepository->attach($project, $inputs['tags']);
         }
 
-        return redirect('project')->withOk("Le project " . $project->title . " a été créé.");
+        return redirect('projects')->withOk("Le project " . $project->title . " a été créé.");
     }
 
     public function show($id)
@@ -68,7 +71,7 @@ class ProjectController extends Controller
 
         $this->projectRepository->update($id, $request->all());
         
-        return redirect('project')->withOk("Le project " . $request->input('title') . " a été modifié.");
+        return redirect('projects')->withOk("Le project " . $request->input('title') . " a été modifié.");
     }
 
     public function destroy($id)
@@ -85,5 +88,26 @@ class ProjectController extends Controller
 
         return view('projects.liste', compact('projects', 'links'))
         ->with('info', 'Résultats pour la recherche du mot-clé : ' . $tag);
+    }
+
+     public function getPending(Request $request)
+    {
+        $projects = $this->projectRepository->getPending();
+        $user = $request->user();
+
+        return view('profiles.projects.pending', compact('projects', 'user'));
+    }
+
+    public function getLaunched(Request $request)
+    {
+        $projects = $this->projectRepository->getLaunched();
+        $user = $request->user();
+
+        return view('profiles.projects.launched', compact('projects', 'user'));
+    }
+
+    public function launch(Request $request)
+    {
+        $this->projectRepository->launch($request->all());
     }
 }

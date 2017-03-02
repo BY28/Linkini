@@ -2,8 +2,8 @@
             
                 <div class="list-group">
                     <a href="{{route('profile.index')}}" class="list-group-item">Mon Profil</a>
-                    <a href="#" class="list-group-item">Projets</a>
-                    <a href="#" class="list-group-item">Entreprise</a>
+                    <a href="{{route('projects.pending')}}" class="list-group-item">Projets</a>
+                    <a href="{{route('entreprises.info')}}" class="list-group-item">Entreprise</a>
                     <a href="{{route('messages.inbox')}}" class="list-group-item">Messages</a>
                     <a href="#" class="list-group-item">Notifications</a>
                     <a href="#" class="list-group-item">Favoris</a>

@@ -45,7 +45,7 @@ $('.accept').click(function(event)
     event.preventDefault();
     
     var token = '{{ Session::token() }}';
-    var urlAccept = '{{ route('entreprise.accept') }}';
+    var urlAccept = '{{ route('entreprises.accept') }}';
 
     var entrepriseId = event.target.parentNode.parentNode.dataset['entrepriseid'];
 

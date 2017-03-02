@@ -40,6 +40,27 @@ class ProjectRepository extends ResourceRepository
 		$project->tags()->detach();
 		$project->delete();
 	}
+
+	public function getPending()
+	{
+		return $this->model->where('launched', 0)->orderBy('created_at', 'desc')->get();		
+	}
+
+	public function getLaunched()
+	{
+		return $this->model->where('launched', 1)->orderBy('created_at', 'desc')->get();
+	}
+
+	public function launch($inputs)
+	{
+		$project = $this->getById($inputs['projectId']);
+
+		$project->launched = true;
+
+		$project->save();
+
+	}
+
 	/*
 		*
 		* PAS DE SURCHARGE POUR LE MOMENT
