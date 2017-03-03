@@ -67,7 +67,6 @@ class EntrepriseOrderRepository extends ResourceRepository
 		$entreprise->checked = true;
 
 		$entreprise->save();
-
 	}
 
 }

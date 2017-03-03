@@ -10,6 +10,7 @@ return array(
     'CreateEntrepriseOrdersTable' => $baseDir . '/database/migrations/2017_02_25_011745_create_entreprise_orders_table.php',
     'CreateEntrepriseTagTable' => $baseDir . '/database/migrations/2017_01_31_011336_create_entreprise_tag_table.php',
     'CreateEntreprisesTable' => $baseDir . '/database/migrations/2017_01_19_000618_create_entreprises_table.php',
+    'CreateLinksTable' => $baseDir . '/database/migrations/2017_03_02_193518_create_links_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2017_02_21_145357_create_messages_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateProjectTagTable' => $baseDir . '/database/migrations/2017_01_31_011200_create_project_tag_table.php',

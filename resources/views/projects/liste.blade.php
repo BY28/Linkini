@@ -85,7 +85,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                 <div class="col-xs-12 col-sm-12 col-md-3">
                     <ul class="meta-search pull-left">
                         <li><i class="glyphicon glyphicon-calendar"></i> <span>{!! $project->created_at->format('d/m/Y') !!}</span></li>
-                        <li><i class="glyphicon glyphicon-time"></i> <span>{!! $project->created_at->format('HH:mm') !!}</span></li>
+                        <li><i class="glyphicon glyphicon-time"></i> <span>{!! $project->created_at->format('H:m') !!}</span></li>
                         <li><i class="glyphicon glyphicon-user"></i> <span>{!! $project->user->email !!}</span></li>
                     </ul>
                 </div>
@@ -109,7 +109,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                 <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i> Tags
                     <ul class="meta-search">
                         @foreach($project->tags as $tag)
-                            {!! link_to('project/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
+                            {!! link_to('projects/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
                         @endforeach
                     </ul>
                 </div>
@@ -151,7 +151,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                                     <a href="#">{{ $project->title }}</a>
                                     <div class="pull-right">
                                         @foreach($project->tags as $tag)
-                                            {!! link_to('project/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
+                                            {!! link_to('projects/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
                                         @endforeach
                                     </div>
                                     <div class="mic-info">

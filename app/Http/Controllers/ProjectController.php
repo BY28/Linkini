@@ -24,7 +24,7 @@ class ProjectController extends Controller
         $this->projectRepository = $projectRepository;
         $this->tagRepository = $tagRepository;
     }
-      public function index()
+    public function index(Request $request)
     {
         $projects = $this->projectRepository->getPaginate($this->nbrPerPage);
         $links = $projects->render();

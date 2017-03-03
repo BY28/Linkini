@@ -92,6 +92,8 @@ Route::group(['prefix' => 'entreprises'], function(){
 });
 
 
+Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+
 /* ADMIN */
 
 Route::group(['prefix' => 'admin'], function(){
