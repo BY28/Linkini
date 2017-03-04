@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/msg.css') }}">
 
 	@yield('styles')
 </head>

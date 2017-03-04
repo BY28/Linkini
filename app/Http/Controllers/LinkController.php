@@ -15,6 +15,14 @@ class LinkController extends Controller
         $this->linkRepository = $linkRepository;
     }
 
+    public function getNotifications(Request $request)
+    {
+        $user = $request->user();
+        $notifications = $this->linkRepository->notifications($user);
+
+        return view('profiles.notifications.notifications', compact('user', 'notifications'));        
+    }
+
     public function getLinks(Request $request)
     {
         $links = $this->LinkRepository->getLinks($request->user());
@@ -25,7 +33,7 @@ class LinkController extends Controller
     
     public function projectLink(Request $request)
     {
-        $inputs = array_merge($request->all(), ['user' => $request->user()]);
+        $inputs = array_merge($request->all(), ['entreprise' => $request->user()->entreprise]);
         $this->linkRepository->projectLink($inputs);
     }
 

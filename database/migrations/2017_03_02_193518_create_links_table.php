@@ -20,7 +20,6 @@ class CreateLinksTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->boolean('accepted')->default(false);
             $table->boolean('refused')->default(false);
-            $table->boolean('seen')->default(false);
             $table->timestamps();
             $table->foreign('project_id')->references('id')->on('projects')
                         ->onDelete('restrict')
@@ -45,6 +44,7 @@ class CreateLinksTable extends Migration
         Schema::table('links', function(Blueprint $table){
             $table->dropForeign('links_project_id_foreign');
             $table->dropForeign('links_entreprise_id_foreign');
+            $table->dropForeign('links_user_id_foreign');
         });
         Schema::dropIfExists('links');
     }

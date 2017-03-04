@@ -153,7 +153,16 @@ $('.links').click(function(event)
 
     })
     .done(function(){
-        alert('done');
+
+         if(event.target.innerText == 'Link')
+         {
+            event.target.innerText = 'Linked';
+         }
+         else
+         {
+            event.target.innerText = 'Link';
+         }
+         
     });
 });
 

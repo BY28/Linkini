@@ -3,17 +3,25 @@
 namespace App\Repositories;
 
 use App\Link;
-use App\User;
+use App\Notification;
 use App\Project;
 
 class LinkRepository extends ResourceRepository
 {
 
     protected $link;
+    protected $notification;
 
-    public function __construct(Link $link)
+    public function __construct(Link $link, Notification $notification)
 	{
 		$this->model = $link;
+		$this->notification = $notification;
+	}
+
+	public function notifications($user)
+	{
+		$notifications = $user->notifications->reverse();
+		return $notifications;
 	}
 
 	public function getLinks($user)
@@ -27,19 +35,44 @@ class LinkRepository extends ResourceRepository
 
 	public function projectLink($inputs)
 	{
-		//$user = User::where('id', $inputs['user_id'])->first();
 		$project = Project::where('id', $inputs['projectId'])->first();
-		//$entreprise_id = $user->entreprise->id;
 		$user_id = $project->user->id;
 
-		$user = $inputs['user'];
-    	$data = [
-    		'project_id' => $project->id,
-    		'entreprise_id' => $user->id,
-    		'user_id' => $user_id
-    	];
+		$entreprise = $inputs['entreprise'];
 
-    	$this->store($data);
+		$link = $this->model->where('entreprise_id', $entreprise->id)->where('project_id', $project->id)->first();
+		if(!$link)
+		{
+	    	$data = [
+	    		'project_id' => $project->id,
+	    		'entreprise_id' => $entreprise->id,
+	    		'user_id' => $user_id
+	    	];
+
+	    	$this->store($data);
+
+	    	$data = [
+	    		'user_id' => $user_id,
+	    		'project_id' => $project->id,
+	    		'title' => 'Demande de lien',
+	    		'content' => 'L\'entreprise '. $entreprise->name . ' demande à travailler avec vous sur le projet '. $project->title .'.'
+	    	];
+		}
+		else
+		{
+			$this->model->destroy($link->id);
+
+			$data = [
+	    		'user_id' => $user_id,
+	    		'project_id' => $project->id,
+	    		'title' => 'Annulation de lien',
+	    		'content' => 'L\'entreprise '. $entreprise->name . ' a annulé la demande de travailler avec vous sur le projet '. $project->title .'.'
+	    	];
+
+		}
+
+	   	$this->notification->create($data);
+
 	}
 
 	public function accept($inputs)

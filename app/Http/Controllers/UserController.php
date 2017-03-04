@@ -84,5 +84,4 @@ class UserController extends Controller
             $request->merge(['admin' => 0]);
         }       
     }
-
 }

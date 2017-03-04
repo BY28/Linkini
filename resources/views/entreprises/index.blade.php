@@ -79,7 +79,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     
     @foreach($entreprises as $entreprise)
 
-        <article class="search-result row">
+        <article class="search-result row" data-entrepriseid="{{$entreprise->id}}">
                 <div class="col-xs-12 col-sm-12 col-md-3">
                   <a href="#" title="Lorem ipsum" class="thumbnail"><img src="{{ URL::to('uploads/business')}}/{{$entreprise->image}}" alt="Lorem ipsum" /></a>
                 </div>
@@ -91,9 +91,15 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
 
                                     <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                    
-                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </button>
+                                    <a href="#" class="btn btn-primary btn-xs favorites" title="Approved">
+                                        
+                                      @if(Auth::check())
+                                        
+                                             {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
+                                        
+                                      @endif
+
+                                    </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
@@ -148,5 +154,42 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
   </div>
 
 @endforeach
+
+@endsection
+
+@section('scripts')
+
+<script>
+
+$('.favorites').click(function(event)
+{
+    event.preventDefault();
+    
+    var token = '{{Session::token()}}';
+    var urlFav = '{{route('favorites.add')}}';
+
+    var entrepriseId = event.target.parentNode.parentNode.parentNode.dataset['entrepriseid'];
+
+    $.ajax({
+        method: 'POST',
+        url: urlFav,
+        data: {entrepriseId: entrepriseId, _token: token}
+
+    })
+    .done(function(){
+
+         if(event.target.innerText == 'Fav')
+         {
+            event.target.innerText = 'UnFav';
+         }
+         else
+         {
+            event.target.innerText = 'Fav';
+         }
+         
+    });
+});
+
+</script>
 
 @endsection

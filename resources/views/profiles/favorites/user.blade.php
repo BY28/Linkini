@@ -11,12 +11,12 @@
                          
                 <table class="table table-inbox table-hover">
                   <tbody>
-                  @foreach($notifications as $notification)
+                  @foreach($favorites as $favorite)
                
-                    <tr class="clickable-row @if(!$notification->seen) unread @endif " data-href="{{route('projects.project', $notification->project_id)}}">   
-                        <td class="view-message  dont-show">{{$notification->title}}</td>
-                        <td class="view-message ">{{$notification->content}}</td>
-                        <td class="view-message  text-right">{{$notification->created_at}}</td>
+                    <tr class="clickable-row" data-href="{{route('projects.project', $favorite->project_id)}}">   
+                        <td class="view-message  dont-show">{{$favorite->entreprise->name}}</td>
+                        <td class="view-message ">{{$favorite->entreprise->description}}</td>
+
                     </tr>
                    
                    @endforeach

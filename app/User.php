@@ -26,7 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
+    
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
@@ -45,5 +46,15 @@ class User extends Authenticatable
     public function order()
     {
         return $this->hasOne('App\EntrepriseOrder');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany('App\Favorite');
     }
 }

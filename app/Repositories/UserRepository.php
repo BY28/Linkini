@@ -13,5 +13,4 @@ class UserRepository extends ResourceRepository
 	{
 		$this->model = $user;
 	}
-
 }

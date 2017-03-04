@@ -31,8 +31,7 @@ Route::get('/', ['uses' => 'ProfileController@index', 'as' => 'profile.index']);
 Route::get('projects', ['uses' => 'ProfileController@getProject', 'as' => 'profile.projects']);
 Route::get('entreprise', ['uses' => 'ProfileController@getEntreprise', 'as' => 'profile.entreprise']);
 Route::get('messages', ['uses' => 'ProfileController@getMessages', 'as' => 'profile.messages']);
-Route::get('notifications', ['uses' => 'ProfileController@getNotifications', 'as' => 'profile.notifications']);
-Route::get('favorties', ['uses' => 'ProfileController@getFavorite', 'as' => 'profile.favorties']);
+Route::get('notifications', ['uses' => 'LinkController@getNotifications', 'as' => 'profile.notifications']);
 Route::get('statistics', ['uses' => 'ProfileController@getStatistics', 'as' => 'profile.statistics']);
 Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'profile.settings']);
 
@@ -65,6 +64,13 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 	});
 
+	Route::group(['prefix' => 'favorites'], function(){
+
+		Route::get('/', ['uses' => 'FavoriteController@getFavorites', 'as' => 'profile.favorites']);
+		Route::post('entreprise', ['uses' => 'FavoriteController@addFav', 'as' => 'favorites.add']);
+
+	});
+
 	Route::group(['prefix' => 'statistics'], function(){
 		
 	});
@@ -84,6 +90,7 @@ Route::group(['prefix' => 'entreprises'], function(){
 	Route::get('/', ['uses' => 'EntrepriseController@index', 'as' => 'entreprises.index']);
 	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprises.getorder']);
 	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprises.postorder']);
+	Route::post('links', ['uses' => 'LinkController@entrepriseLink', 'as' => 'links.entrepriselink']);
 
 	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprises.create']);
 	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.edit']);
@@ -91,8 +98,12 @@ Route::group(['prefix' => 'entreprises'], function(){
 		
 });
 
+/* PROJECT */
+Route::group(['prefix' => 'projects'], function(){
 
-Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+	Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+
+});
 
 /* ADMIN */
 
