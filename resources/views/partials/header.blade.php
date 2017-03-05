@@ -1,4 +1,14 @@
- <nav class="navbar navbar-inverse menu">
+
+<style type="text/css">
+   span.badge{
+  background-color: #ea5817;
+}
+.notification-title{
+  color: #ea5817;
+}
+</style>
+
+<nav class="navbar navbar-inverse menu">
     <div class="navbar-header" >
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -6,7 +16,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-     <a class="navbar-brand" href="#">
+     <a class="navbar-brand" href="{{route('home')}}">
       <img src="http://img11.hostingpics.net/pics/979426logo2.png" alt="">
     </a>
   </div>
@@ -14,7 +24,7 @@
   <div class="collapse navbar-collapse js-navbar-collapse">
     <ul class="nav navbar-nav">
       <li class="dropdown mega-dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTREPRISES <span class="caret"></span></a>        
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTREPRISES</a>        
         <ul class="dropdown-menu mega-dropdown-menu">
           <li class="col-sm-3">
             <ul>
@@ -85,7 +95,7 @@
         </ul>       
       </li>
             <li class="dropdown mega-dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">OFFRES <span class="caret"></span></a>       
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">OFFRES </a>       
         <ul class="dropdown-menu mega-dropdown-menu">
           <li class="col-sm-3">
               <ul>
@@ -164,14 +174,14 @@
             <div class="form-group">
               <input type="text" class="form-control search-query" placeholder="Recherche">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
           </form>
 
       
         @if (Auth::guest())
            
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CONNEXION</b> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CONNEXION</b> </a>
             <ul id="login-dp" class="dropdown-menu">
                 <li>
                      <div class="row">
@@ -224,52 +234,65 @@
         <!-- ajout de mon code --> 
 
         <li class="dropdown">
-          <a href="#" class="fa fa-envelope" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
+          <a href="#" class="fa fa-envelope fa-lg" class="dropdown-toggle" data-toggle="dropdown">
+            @if(Auth::user()->getUnreadMessagesNum()>0)
+            <span class="badge">{{Auth::user()->getUnreadMessagesNum()}}</span>
+            @endif
+          </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="#">Nouveau Message</a></li>
-              <li><a href="#">Message reçus</a></li>
-              <li><a href="#">Message envoyés</a></li>
-               <li><a href="#">Corbeille</a></li>
+              <li><a href="{{route('messages.create')}}">Nouveau Message</a></li>
+              <li><a href="{{route('messages.inbox')}}">Message reçus</a></li>
+              <li><a href="{{route('messages.sent')}}">Message envoyés</a></li>
             </ul>
         </li>
 
       <li class="dropdown">
-          <a href="#" class="fa fa-bell" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="#">Notifications</a></li>
-              
+          <a href="#" class="fa fa-bell fa-lg" class="dropdown-toggle" data-toggle="dropdown">
+          @if(Auth::user()->notifications->where('seen', false)->count())
+          <span class="badge">{{Auth::user()->notifications->where('seen', false)->count()}}
+          </span>
+            @endif
+            </a>
+            <ul class="dropdown-menu multi-level scrollable-menu" role="menu" aria-labelledby="dropdownMenu">
+              @foreach(Auth::user()->notifications as $notification)
+                
+                <li>
+                  <a href="#"> 
+                  
+                  <div class="notification-title">{{ $notification->title }}</div>
+                  <p>{{$notification->content}}</p>
+
+                  </a>
+                </li>
+                
+              @endforeach
             </ul>
         </li>
          
-           <li class="dropdown">
-          <a href="#"  class=" fa fa-plus dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="#">Créer un appel d'offre</a></li>
-              <li><a href="#">Créer une entreprise</a></li>
-              
-            </ul>
+        <li class="dropdown">
+          <a href="{{route('projects.create')}}" target="_blank"  class="fa fa-plus fa-lg"></a>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="fa fa-user" class="dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></a>
+          <a href="#" class="fa fa-user fa-lg" class="dropdown-toggle" data-toggle="dropdown"> </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="{{route('profile.index')}}">Mon Profil</a>
               </li>
               <li class="divider"></li>
-              <li><a href="#">Mes Projets</a></li>
-              <li><a href="#">Mes Entreprises</a></li>
-              <li><a href="#">Mes Favoris</a></li>
+              <li><a href="{{route('projects.pending')}}">Mes Projets</a></li>
+              <li><a href="{{route('entreprises.info')}}">Mon Entreprise</a></li>
+              <li><a href="{{route('profile.favorites')}}">Mes Favoris</a></li>
               <li><a href="#">Mes Statistiques</a></li>
               <li class="divider"></li>
               <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Paramètres</a>
+                <a tabindex="-1" href="{{route('settings.account')}}">Paramètres</a>
               </li>
             </ul>
         </li>
 
          <li class="dropdown">
-           <a class="fa fa-sign-out" href="{{ url('/logout') }}"
+           <a class="fa fa-sign-out fa-lg" href="{{ url('/logout') }}"
                   onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
                   

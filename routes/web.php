@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 /* NEWSLETTER */
 
@@ -40,7 +40,6 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 		Route::get('/', ['uses' => 'ProjectController@getPending', 'as' => 'projects.pending']);
 		Route::get('launched', ['uses' => 'ProjectController@getLaunched', 'as' => 'projects.launched']);
 		Route::get('create', ['uses' => 'ProjectController@create', 'as' => 'projects.create']);
-		Route::get('project', ['uses' => 'ProjectController@create', 'as' => 'projects.project']);
 
 		Route::post('launch', ['uses' => 'ProjectController@launch', 'as' => 'projects.launch']);
 	});

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Message;
 
 class User extends Authenticatable
 {
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->hasMany('App\Favorite');
+    }
+
+    public function getUnreadMessagesNum()
+    {
+        return Message::where('receiver_id', $this->id)->where('read', false)->count();
     }
 }

@@ -13,7 +13,7 @@
                   <tbody>
                   @foreach($projects as $project)
                
-                    <tr class="clickable-row @if(!$project->read) unread @endif " data-href="{{route('projects.project', $project->id)}}" data-projectid="{{$project->id}}">   
+                    <tr class="clickable-row" data-href="{{route('projects.show', $project->id)}}" data-projectid="{{$project->id}}">   
                         <td class="view-message  dont-show">{{$project->title}}</td>
                         <td class="view-message ">{{$project->content}}</td>
                         <td class="view-message  text-right">{{$project->created_at}}</td>
@@ -54,6 +54,14 @@ $('.launch').click(function(event)
     });
 });
 
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
 </script>
 
 @endsection
