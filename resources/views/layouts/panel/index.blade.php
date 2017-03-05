@@ -38,6 +38,13 @@
 <script src="{{ URL::to('src/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::to('src/js/functions.js') }}"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+    	$(".clickable-row").click(function() {
+        	window.location = $(this).data("href");
+    	});
+	});
+</script>
 @yield('scripts')
 </body>
 </html>

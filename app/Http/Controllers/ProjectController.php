@@ -7,6 +7,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 
 use App\Repositories\ProjectRepository;
 use App\Repositories\TagRepository;
+use App\Repositories\LinkRepository;
 
 use Illuminate\Http\Request;
 
@@ -14,15 +15,17 @@ class ProjectController extends Controller
 {
     protected $projectRepository;
     protected $tagRepository;
+    protected $linkRepository;
 
     protected $nbrPerPage = 9;
 
-    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository)
+    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
 
         $this->projectRepository = $projectRepository;
         $this->tagRepository = $tagRepository;
+        $this->linkRepository = $linkRepository;
     }
     public function index(Request $request)
     {
@@ -52,8 +55,9 @@ class ProjectController extends Controller
         return redirect('projects')->withOk("Le project " . $project->title . " a été créé.");
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $this->linkRepository->checkSeen($request->user(), $id);
         $project = $this->projectRepository->getById($id);
 
         return view('projects.show',  compact('project'));

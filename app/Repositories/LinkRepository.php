@@ -92,4 +92,21 @@ class LinkRepository extends ResourceRepository
 
 		$link->save();
 	}
+
+	public function checkSeen($user, $id)
+	{
+		$notifications = Notification::where('user_id', $user->id)->where('project_id', $id)->get();
+
+		if($notifications != null)
+		{	
+			foreach ($notifications as $notification)
+			{	
+				if(!$notification->seen)
+				{
+					$notification->seen = true;
+					$notification->save();
+				}
+			}
+		}
+	}
 }

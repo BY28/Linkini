@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="row">
+<div style="background-color: #fff">
+    <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">{{$project->title}}
                     <small>{{$project->created_at}}</small>
@@ -24,8 +25,10 @@
                 </ul>
 
         </div>
-<a href="javascript:history.back()" class="btn btn-primary">
-			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-		</a>
+
     </div>
+    <a href="javascript:history.back()" class="btn btn-primary">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+        </a>
+</div>
 @endsection
