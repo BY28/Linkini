@@ -108,6 +108,15 @@ Route::group(['prefix' => 'projects'], function(){
 
 Route::group(['prefix' => 'admin'], function(){
 
+	Route::group(['prefix' => 'categories'], function(){
+		Route::get('/', ['uses' => 'CategoryController@index', 'as' => 'categories.index']);
+		Route::post('/', ['uses' => 'CategoryController@store', 'as' => 'categories.store']);
+		Route::post('update', ['uses' => 'CategoryController@update', 'as' => 'categories.update']);
+		Route::delete('delete', ['uses' => 'CategoryController@destroy', 'as' => 'categories.delete']);
+
+		Route::post('activity', ['uses' => 'ActivityController@store', 'as' => 'activity.store']);
+	});
+
 	Route::group(['prefix' => 'entreprises'], function(){
 	
 	Route::get('/', ['uses' => 'EntrepriseController@getPendingEntreprises', 'as' => 'entreprises.getpending']);

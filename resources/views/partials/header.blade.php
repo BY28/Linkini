@@ -255,16 +255,26 @@
             </a>
             <ul class="dropdown-menu multi-level scrollable-menu" role="menu" aria-labelledby="dropdownMenu">
               @foreach(Auth::user()->notifications as $notification)
-                
-                <li>
-                  <a href="#"> 
-                  
-                  <div class="notification-title">{{ $notification->title }}</div>
-                  <p>{{$notification->content}}</p>
+                @if(!$notification->seen)
 
+                  <li>
+                    <a href="{{route('projects.show', $notification->project_id)}}"> 
+                    
+                    < <div class="notification-title">{{ $notification->title }}</div>
+                    <p>{{$notification->content}}</p>
+
+                    </a>
+                  </li>
+                @else
+                <li>
+                  <a href="{{route('profile.notifications')}}">
+                     <div class="notification-title">Voir toutes les notifications</div>
+                     <p>Pas de nouvelles notifications.</p>
                   </a>
-                </li>
-                
+                 </li>
+                  @break
+                @endif
+
               @endforeach
             </ul>
         </li>
