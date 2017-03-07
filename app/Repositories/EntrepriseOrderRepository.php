@@ -19,7 +19,7 @@ class EntrepriseOrderRepository extends ResourceRepository
 
 	public function getPendingEntreprises()
 	{
-		return $this->model->where('accepted', 0)->orderBy('created_at', 'desc')->get();		
+		return $this->model->where('accepted', 0)->where('refused', 0)->orderBy('created_at', 'desc')->get();		
 	}
 
 	public function getAcceptedEntreprises()
@@ -43,7 +43,8 @@ class EntrepriseOrderRepository extends ResourceRepository
 
 		$entrepriseInputs = [
 			'name' => $entrepriseOrder->name,
-			'user_id' => $entrepriseOrder->user_id
+			'user_id' => $entrepriseOrder->user_id,
+			'activity_id' => $entrepriseOrder->activity_id
 		];
 
 		if($entrepriseOrder->accepted)

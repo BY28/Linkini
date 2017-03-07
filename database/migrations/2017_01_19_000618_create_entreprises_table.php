@@ -20,10 +20,16 @@ class CreateEntreprisesTable extends Migration
             $table->string('image')->default('entreprise.png');
             $table->boolean('checked')->default(false);
             $table->integer('user_id')->unsigned();
+            $table->integer('activity_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onDelete('restrict')
+                    ->onUpdate('restrict');
+            $table->foreign('activity_id')
+                    ->references('id')
+                    ->on('activities')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
         });
@@ -38,6 +44,7 @@ class CreateEntreprisesTable extends Migration
     {
         Schema::table('entreprises', function(Blueprint $table){
             $table->dropForeign('entreprises_user_id_foreign');
+            $table->dropForeign('entreprises_activity_id_foreign');
         });
         Schema::dropIfExists('entreprises');
     }

@@ -3,11 +3,13 @@
 @section('content')
 <div class="row">
    <div class="col-md-offset-3 col-md-6">
-   					{!! Form::open(['route' => 'categories.store', 'class' => 'form-horizontal panel']) !!}
+   					<h1>{{$category->name}}</h1>
+   					{!! Form::open(['route' => 'activities.store', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ajouter une categorie']) !!}
+						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ajouter une activité']) !!}
 						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 					</div>
+					{!! Form::hidden('category_id', $category->id) !!}
 					{!! Form::submit('Ajouter', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!} 
    </div>
@@ -22,17 +24,17 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	@foreach($categories as $category)
+	  	@foreach($category->activities as $activity)
 	  	
-	  		<tr class="cat-row" data-categoryid="{!! $category->id !!}">
+	  		<tr class="cat-row" data-activityid="{!! $activity->id !!}">
 	     		<td>
 	     		<a href="#" class="edit" data-toggle="modal" 
-   data-target="#editModal">{{$category->name}}</a>
+   data-target="#editModal">{{$activity->name}}</a>
 	     		</td>
 	     		<td>
 	     			<a href="#" class="btn btn-danger btn-xs delete" data-toggle="modal" 
    data-target="#deleteModal">Delete</a>
-	     			<a href="{{route('activities.index', $category->id)}}" class="btn btn-warning btn-xs activities">Activities</a>
+	     			<a href="route('activity.show', $activity->id)" class="btn btn-warning btn-xs activities">Activities</a>
 	     		</td>
 	    	</tr>
 	    
@@ -55,10 +57,10 @@
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" 
-        id="favoritesModalLabel">Edit Category</h4>
+        id="favoritesModalLabel">Edit Activityy</h4>
       </div>
       <div class="modal-body form-group">
-        <input type="text" name="name" class="form-control" id="edit-cat">
+        <input type="text" name="name" class="form-control" id="edit-activity">
       </div>
       <div class="modal-footer">
         <button type="button" 
@@ -83,9 +85,9 @@
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" 
-        id="favoritesModalLabel">Delete Category</h4>
+        id="favoritesModalLabel">Delete Activityy</h4>
       </div>
-      <p> Etes vous sur de vouloir supprimer la categorie <strong id="delete-cat"></strong> ?</p>
+      <p> Etes vous sur de vouloir supprimer l'actiité <strong id="delete-activity"></strong> ?</p>
       <div class="modal-footer">
         <button type="button" 
            class="btn btn-default" 
@@ -107,27 +109,27 @@
 <script>
 
 $('.edit').click(function(event) {
-	var categoryName = event.target.innerText;
-	var categoryId = event.target.parentNode.parentNode.dataset['categoryid'];
-    $("#edit-cat").val(categoryName);
+	var activityName = event.target.innerText;
+	var activityId = event.target.parentNode.parentNode.dataset['activityid'];
+    $("#edit-activity").val(activityName);
 
     $('#save-edit').click(function(e){
 	 	event.preventDefault();
 	     
 	    var token = '{{Session::token()}}';
-	    var urlCat = '{{route('categories.update')}}';
-	    categoryName = $('#edit-cat').val();
+	    var urlCat = '{{route('activities.update')}}';
+	    activityName = $('#edit-activity').val();
 
 
 	    $.ajax({
 	        method: 'POST',
 	        url: urlCat,
-	        data: {categoryId: categoryId, categoryName: categoryName, _token: token}
+	        data: {activityId: activityId, activityName: activityName, _token: token}
 
 	    })
 	    .done(function(){
 
-	         event.target.innerText = categoryName;
+	         event.target.innerText = activityName;
 	         $('#editModal').modal('hide');
 
 	    });
@@ -137,21 +139,21 @@ $('.edit').click(function(event) {
 
 $('.delete').click(function(event) {
 	
-	var categoryName = event.target.parentNode.parentNode.childNodes[1].innerText;
-	var categoryId = event.target.parentNode.parentNode.dataset['categoryid'];
-	 $("#delete-cat").text(categoryName);
+	var activityName = event.target.parentNode.parentNode.childNodes[1].innerText;
+	var activityId = event.target.parentNode.parentNode.dataset['activityid'];
+	 $("#delete-activity").text(activityName);
 
     $('#save-delete').click(function(e){
 	 	event.preventDefault();
 	     
 	    var token = '{{Session::token()}}';
-	    var urlCat = '{{route('categories.delete')}}';
+	    var urlCat = '{{route('activities.delete')}}';
 
 
 	    $.ajax({
 	        method: 'DELETE',
 	        url: urlCat,
-	        data: {categoryId: categoryId,  _token: token}
+	        data: {activityId: activityId,  _token: token}
 
 	    })
 	    .done(function(){

@@ -12,7 +12,7 @@ class Entreprise extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'name', 'image', 'description'
+        'user_id', 'activity_id','name', 'image', 'description'
     ];
 
     public function user()
@@ -28,5 +28,10 @@ class Entreprise extends Model
     public function links()
     {
         return $this->hasMany('App\Link');
-    } 
+    }
+
+    public function activity()
+    {
+        return $this->belongsTo('App\Activity');
+    }
 }

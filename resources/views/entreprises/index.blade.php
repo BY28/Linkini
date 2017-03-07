@@ -106,11 +106,15 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                     
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i> Tags
+                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>
+                {{ $entreprise->activity->category->name }}
                     <ul class="meta-search">
+                    {{ $entreprise->activity->name }}
+                    <!--
                         @foreach($entreprise->tags as $tag)
                             {!! link_to('entreprises/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
                         @endforeach
+                    -->
                     </ul>
                 </div>
                 <span class="clearfix borda"></span>

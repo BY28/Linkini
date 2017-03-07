@@ -13,7 +13,7 @@
                   <tbody>
                   @foreach($projects as $project)
                
-                    <tr class="clickable-row @if(!$project->read) unread @endif " data-href="{{route('projects.project', $project->id)}}">   
+                    <tr class="clickable-row @if(!$project->read) unread @endif " data-href="{{route('projects.show', $project->id)}}">   
                         <td class="view-message  dont-show">{{$project->title}}</td>
                         <td class="view-message ">{{$project->content}}</td>
                         <td class="view-message  text-right">{{$project->created_at}}</td>

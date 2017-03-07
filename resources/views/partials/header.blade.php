@@ -260,7 +260,7 @@
                   <li>
                     <a href="{{route('projects.show', $notification->project_id)}}"> 
                     
-                    < <div class="notification-title">{{ $notification->title }}</div>
+                    <div class="notification-title">{{ $notification->title }}</div>
                     <p>{{$notification->content}}</p>
 
                     </a>

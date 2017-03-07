@@ -113,6 +113,13 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::post('/', ['uses' => 'CategoryController@store', 'as' => 'categories.store']);
 		Route::post('update', ['uses' => 'CategoryController@update', 'as' => 'categories.update']);
 		Route::delete('delete', ['uses' => 'CategoryController@destroy', 'as' => 'categories.delete']);
+		
+		Route::group(['prefix' => 'activities'], function(){
+			Route::get('/{id}', ['uses' => 'CategoryController@show', 'as' => 'activities.index']);
+			Route::post('/', ['uses' => 'ActivityController@store', 'as' => 'activities.store']);
+			Route::post('update', ['uses' => 'ActivityController@update', 'as' => 'activities.update']);
+			Route::delete('delete', ['uses' => 'ActivityController@destroy', 'as' => 'activities.delete']);
+		});
 
 		Route::post('activity', ['uses' => 'ActivityController@store', 'as' => 'activity.store']);
 	});

@@ -59,9 +59,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $category = $this->categoryRepository->getById($id);
+        $user = $request->user();
+
+        return view('admins.categories.activities', compact('user', 'category'));
     }
 
     /**

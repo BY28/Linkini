@@ -8,6 +8,8 @@ use App\Http\Requests\EntrepriseOrderRequest;
 
 use App\Repositories\EntrepriseRepository;
 use App\Repositories\EntrepriseOrderRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\ActivityRepository;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +20,7 @@ class EntrepriseController extends Controller
 
     protected $nbrPerPage = 9;
 
-    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository)
+    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
@@ -26,6 +28,8 @@ class EntrepriseController extends Controller
         $this->middleware('entreprise', ['only' => ['edit', 'update', 'getEntrepriseInfo']]);
         $this->entrepriseRepository = $entrepriseRepository;
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->activityRepository = $activityRepository;
     }
       public function index()
     {
@@ -93,13 +97,23 @@ class EntrepriseController extends Controller
     public function getEntrepriseOrder(Request $request)
     {
         $user = $request->user();
-        return view('entreprises.order', compact('user'));
+        $categories = $this->categoryRepository->categories();
+
+        return view('entreprises.order', compact('user', 'categories'));
     }
 
     public function postEntrepriseOrder(EntrepriseOrderRequest $request)
     {
-        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
         
+        $activity = $this->activityRepository->getByName($request->input('activity'));
+
+        $inputs = [
+            'user_id' => $request->user()->id,
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'activity_id' => $activity->id
+        ];
+
         $entreprise = $this->entrepriseOrderRepository->store($inputs);
 
         return redirect()->route('entreprises.info');

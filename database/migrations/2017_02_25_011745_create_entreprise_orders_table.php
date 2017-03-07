@@ -15,13 +15,20 @@ class CreateEntrepriseOrdersTable extends Migration
     {
         Schema::create('entreprise_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
             $table->string('name', 80);
             $table->text('description');
             $table->boolean('accepted')->default(false);
+            $table->boolean('refused')->default(false);
+            $table->integer('user_id')->unsigned();
+            $table->integer('activity_id')->unsigned();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onDelete('restrict')
+                    ->onUpdate('restrict');
+            $table->foreign('activity_id')
+                    ->references('id')
+                    ->on('activities')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
             $table->timestamps();
@@ -37,6 +44,7 @@ class CreateEntrepriseOrdersTable extends Migration
     {
         Schema::table('entreprise_orders', function(Blueprint $table){
             $table->dropForeign('entreprise_orders_user_id_foreign');
+            $table->dropForeign('entreprise_orders_activity_id_foreign');
         });
         Schema::dropIfExists('entreprise_orders');
     }
