@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
      protected $fillable = [
-        'user_id', 'title', 'content'
+        'user_id', 'category_id','title', 'content'
     ];
 
      public function user()
@@ -23,5 +23,10 @@ class Project extends Model
     public function links()
     {
         return $this->hasMany('App\Link');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
     }
 }

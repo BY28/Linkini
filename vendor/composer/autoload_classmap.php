@@ -6,17 +6,18 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateActivitiesTable' => $baseDir . '/database/migrations/2017_03_06_020054_create_activities_table.php',
-    'CreateCategoriesTable' => $baseDir . '/database/migrations/2017_03_06_015835_create_categories_table.php',
+    'CreateActivitiesTable' => $baseDir . '/database/migrations/2012_03_06_020054_create_activities_table.php',
+    'CreateCategoriesTable' => $baseDir . '/database/migrations/2011_03_06_015835_create_categories_table.php',
     'CreateEmailsTable' => $baseDir . '/database/migrations/2017_01_16_214201_create_emails_table.php',
-    'CreateEntrepriseActivitiesTable' => $baseDir . '/database/migrations/2017_03_07_035010_create_entreprise_activities_table.php',
     'CreateEntrepriseOrdersTable' => $baseDir . '/database/migrations/2017_02_25_011745_create_entreprise_orders_table.php',
     'CreateEntrepriseTagTable' => $baseDir . '/database/migrations/2017_01_31_011336_create_entreprise_tag_table.php',
     'CreateEntreprisesTable' => $baseDir . '/database/migrations/2017_01_19_000618_create_entreprises_table.php',
     'CreateFavoritesTable' => $baseDir . '/database/migrations/2017_03_03_234718_create_favorites_table.php',
+    'CreateLinkiniPagesTable' => $baseDir . '/database/migrations/2017_03_11_152129_create_linkini_pages_table.php',
     'CreateLinksTable' => $baseDir . '/database/migrations/2017_03_02_193518_create_links_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2017_02_21_145357_create_messages_table.php',
     'CreateNotificationsTable' => $baseDir . '/database/migrations/2017_03_03_190010_create_notifications_table.php',
+    'CreatePageCategoriesTable' => $baseDir . '/database/migrations/2017_03_11_152450_create_page_categories_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateProjectTagTable' => $baseDir . '/database/migrations/2017_01_31_011200_create_project_tag_table.php',
     'CreateProjectsTable' => $baseDir . '/database/migrations/2014_02_08_161625_create_projects_table.php',

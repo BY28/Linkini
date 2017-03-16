@@ -24,7 +24,9 @@
   <div class="collapse navbar-collapse js-navbar-collapse">
     <ul class="nav navbar-nav">
       <li class="dropdown mega-dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTREPRISES</a>        
+      <!-- class="dropdown-toggle" data-toggle="dropdown" -->
+        <a href="{{route('entreprises.index')}}">Activités</a>
+        <!--
         <ul class="dropdown-menu mega-dropdown-menu">
           <li class="col-sm-3">
             <ul>
@@ -35,19 +37,19 @@
                                     <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
                                     <h4><small>Summer dress floral prints</small></h4>                                        
                                     <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>       
-                                </div><!-- End Item -->
+                                </div>
                                 <div class="item">
                                     <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
                                     <h4><small>Gold sandals with shiny touch</small></h4>                                        
                                     <button class="btn btn-primary" type="button">9,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>        
-                                </div><!-- End Item -->
+                                </div>
                                 <div class="item">
                                     <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
                                     <h4><small>Denin jacket stamped</small></h4>                                        
                                     <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>      
-                                </div><!-- End Item -->                                
-                              </div><!-- End Carousel Inner -->
-                              <!-- Controls -->
+                                </div>                              
+                              </div>
+                             
                               <a class="left carousel-control" href="#menCollection" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -56,7 +58,7 @@
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                               </a>
-                            </div><!-- /.carousel -->
+                            </div>
                             <li class="divider"></li>
                             <li><a href="#">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
             </ul>
@@ -92,10 +94,12 @@
               <li><a href="#">Slide down on Hover</a></li>                         
             </ul>
           </li>
-        </ul>       
+        </ul>
+        -->       
       </li>
             <li class="dropdown mega-dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">OFFRES </a>       
+          <a href="{{route('projects.index')}}" >Projets</a>
+        <!--
         <ul class="dropdown-menu mega-dropdown-menu">
           <li class="col-sm-3">
               <ul>
@@ -137,19 +141,19 @@
                                     <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
                                     <h4><small>Summer dress floral prints</small></h4>                                        
                                     <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>       
-                                </div><!-- End Item -->
+                                </div>
                                 <div class="item">
                                     <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
                                     <h4><small>Gold sandals with shiny touch</small></h4>                                        
                                     <button class="btn btn-primary" type="button">9,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>        
-                                </div><!-- End Item -->
+                                </div>
                                 <div class="item">
                                     <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
                                     <h4><small>Denin jacket stamped</small></h4>                                        
                                     <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>      
-                                </div><!-- End Item -->                                
-                              </div><!-- End Carousel Inner -->
-                              <!-- Controls -->
+                                </div>                             
+                              </div>
+                             
                                <a class="left carousel-control" href="#womenCollection" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -158,17 +162,18 @@
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                               </a>
-                            </div><!-- /.carousel -->
+                            </div>
                             <li class="divider"></li>
                             <li><a href="#">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
             </ul>
           </li>
-        </ul>       
+        </ul> 
+        -->      
       </li>
-            <li><a href="#">SERVICES</a></li>
+            <li><a href="#">Services</a></li>
     </ul>
         <ul class="nav navbar-nav navbar-right">
-        <!-- recherche -->
+        <!-- recherche 
 
           <form class="navbar-form navbar-left" role="search" id="custom-search-input">
             <div class="form-group">
@@ -176,7 +181,7 @@
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
           </form>
-
+        -->
       
         @if (Auth::guest())
            
@@ -254,6 +259,7 @@
             @endif
             </a>
             <ul class="dropdown-menu multi-level scrollable-menu" role="menu" aria-labelledby="dropdownMenu">
+
               @foreach(Auth::user()->notifications as $notification)
                 @if(!$notification->seen)
 
@@ -265,22 +271,26 @@
 
                     </a>
                   </li>
-                @else
+                @endif
+              @endforeach
+              @if(Auth::user()->notifications->where('seen', false)->count() <= 0)
                 <li>
                   <a href="{{route('profile.notifications')}}">
                      <div class="notification-title">Voir toutes les notifications</div>
                      <p>Pas de nouvelles notifications.</p>
                   </a>
                  </li>
-                  @break
-                @endif
-
-              @endforeach
+              @endif
             </ul>
         </li>
          
         <li class="dropdown">
-          <a href="{{route('projects.create')}}" target="_blank"  class="fa fa-plus fa-lg"></a>
+          <a href="#" class="fa fa-plus fa-lg" class="dropdown-toggle" data-toggle="dropdown"> </a>
+           <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="{{route('projects.create')}}" target="_blank">Créez Votre Projet</a></li>
+              <li><a href="{{route('entreprises.getorder')}}">Créez Votre Activité</a></li>
+            </ul>
+          
         </li>
 
         <li class="dropdown">
@@ -294,7 +304,11 @@
               <li><a href="{{route('entreprises.info')}}">Mon Entreprise</a></li>
               <li><a href="{{route('profile.favorites')}}">Mes Favoris</a></li>
               <li><a href="#">Mes Statistiques</a></li>
-              <li class="divider"></li>
+              @if(Auth::user()->admin)
+                <li class="divider"></li>
+                  <li><a href="{{route('admins.index')}}">Administration</a></li>
+              @endif
+             <li class="divider"></li>
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="{{route('settings.account')}}">Paramètres</a>
               </li>

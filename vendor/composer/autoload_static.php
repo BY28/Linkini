@@ -282,17 +282,18 @@ class ComposerStaticInit38eeddc04b29303e106ea468c3eb919b
     );
 
     public static $classMap = array (
-        'CreateActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_06_020054_create_activities_table.php',
-        'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_06_015835_create_categories_table.php',
+        'CreateActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2012_03_06_020054_create_activities_table.php',
+        'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2011_03_06_015835_create_categories_table.php',
         'CreateEmailsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_16_214201_create_emails_table.php',
-        'CreateEntrepriseActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_07_035010_create_entreprise_activities_table.php',
         'CreateEntrepriseOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_25_011745_create_entreprise_orders_table.php',
         'CreateEntrepriseTagTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_31_011336_create_entreprise_tag_table.php',
         'CreateEntreprisesTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_19_000618_create_entreprises_table.php',
         'CreateFavoritesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_03_234718_create_favorites_table.php',
+        'CreateLinkiniPagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_152129_create_linkini_pages_table.php',
         'CreateLinksTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_193518_create_links_table.php',
         'CreateMessagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_21_145357_create_messages_table.php',
         'CreateNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_03_190010_create_notifications_table.php',
+        'CreatePageCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_152450_create_page_categories_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateProjectTagTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_31_011200_create_project_tag_table.php',
         'CreateProjectsTable' => __DIR__ . '/../..' . '/database/migrations/2014_02_08_161625_create_projects_table.php',

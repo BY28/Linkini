@@ -12,7 +12,7 @@ class Entreprise extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'activity_id','name', 'image', 'description'
+        'user_id', 'activity_id', 'category_id','name', 'image', 'description'
     ];
 
     public function user()
@@ -34,4 +34,10 @@ class Entreprise extends Model
     {
         return $this->belongsTo('App\Activity');
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }

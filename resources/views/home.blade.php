@@ -1,5 +1,187 @@
 @extends('layouts.master')
 
+@section('styles')
+
+<style type="text/css">
+.navbar{
+  margin-bottom: 0em;
+}
+
+.banner{
+    margin-bottom: 0em;
+}
+
+button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+button.btn.btn-default.dropdown-toggle:active, button.btn.btn-default:active{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+.content_top{
+    margin-bottom: 1em;
+}
+
+.btn-lg
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
+.btn-lg:hover
+{
+    border-radius: 0px;
+    background-color: #f96625;
+    border: none;
+}
+
+.btn-lg:active
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
+.search-results{
+  position: absolute;
+  top: 100%;
+   z-index: 1;
+}
+.search-container
+{
+  position: relative;
+}
+
+</style>
+
+@endsection
+
+@section('banner')
+
+<header class="banner">
+        
+       
+        <!--    
+            
+        -->
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+
+              <!-- Wrapper for slides --> 
+              <div class="carousel-inner" id="header-carousel-inner" role="listbox">
+                
+                     
+                    <div class="item active">
+                         <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <h1 class="tagline">Améliorez votre activité !</h1>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-7 col-md-offset-3">
+                                <h3 style="color: #fff; text-shadow: 0 0 20px #000">Les clients viennent a vous sur linkini ! Commencez votre business des maintenant.</h3>
+                            </div>
+                            </div>
+                            <div class="row">
+                                
+                                 <div class="col-md-4 col-md-offset-3">
+                                     {!! link_to_route('entreprises.getorder', 'Commencer!', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                       <div class="container">
+                            <div class="row">
+                               <div class="col-md-6 col-md-offset-4">
+                                    <h1 class="tagline">Concrétisez vos projets !</h1>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                             <div class="col-md-7 col-md-offset-4">
+                                <h3 style="color: #fff; text-shadow: 0 0 20px #000">Réalisez tous vos projets dès maintenant !</h3>
+                            </div>
+                            </div>
+
+                            <div class="row">
+                                 <div class="col-md-4 col-md-offset-3">
+                                     {!! link_to_route('projects.create', 'Réaliser!', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                       <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-5">
+                                    <h1 class="tagline">Gagnez plus !</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-8 col-md-offset-3">
+                                 <h3 style="color: #fff; text-shadow: 0 0 20px #000">Rentabilisez votre temps en gagnant plus à tous les niveaux!</h3>
+                                </div>
+                            </div>
+                              <div class="row">
+                                 <div class="col-md-4 col-md-offset-3">
+                                     {!! link_to_route('entreprises.getorder', 'Services', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+              </div>
+
+            
+            </div>
+
+</header>
+<div class="content_top">
+      <div class="container">
+         <div class="row">    
+        <div class="col-xs-8 col-xs-offset-2 search-container">
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                        <select class="selectpicker" id="select" name="filter">
+                              <option>Projets</option>
+                              <option>Activités</option>
+                        </select>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <ul class="list-group search-results"></ul>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+   </div>
+
+@endsection
+
 @section('content')
 
 <div class="row carousel-holder">

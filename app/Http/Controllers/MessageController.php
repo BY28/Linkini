@@ -61,6 +61,15 @@ class MessageController extends Controller
     	return view('profiles.messages.send',  compact('user'));
     }
 
+    public function getSendMessageWithReceiver(Request $request, $receiver_id)
+    {
+        $user = $request->user();
+        $receiver = $this->messageRepository->getUserById($receiver_id);
+
+        return view('profiles.messages.send', compact('user', 'receiver'));
+
+    }
+
     public function sendMessage(Request $request)
     {
 

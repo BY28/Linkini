@@ -16,18 +16,81 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     color: #fff;
 }
 
-.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
-.content_top span{
-    color: #fff;
+button.btn.btn-default.dropdown-toggle:active, button.btn.btn-default:active{
     background-color: #ea5817;
+    color: #fff;
 }
 
+button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+.info-btn
+{
+  float: right;
+  margin: 0.4em;
+  -webkit-animation: bounce 10s infinite;
+
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  23% {
+    -webkit-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+  27% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+}
+
+@-moz-keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    transform: translateX(0);
+  }
+  23% {
+    transform: translateX(-15px);
+  }
+  27% {
+    transform: translateX(-5px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+  23% {
+    -ms-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+  27% {
+    -ms-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+}
+
+.search-results{
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+}
+.search-container
+{
+  position: relative;
+}
 </style>
 
 @endsection
 
 @section('banner')
-
+<!--
 <header class="banner">
         <div class="container">
             <div class="row">
@@ -36,27 +99,65 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
             </div>
         </div>
 </header>
+-->
+  
+   
+@endsection
 
-  <div class="content_top">
+@section('sidebar')
+
+<div class="nav-side-menu">
+    <div class="brand">Secteurs<i class="fa fa-angle-right fa-2x info-btn"></i></div>
+    
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> Secteurs d'activités
+                  </a>
+                </li>
+                @foreach($categories as $category)
+
+                <li  data-toggle="collapse" data-target="#{{$category->id}}" class="collapsed">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> {{$category->name}} <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="{{$category->id}}">
+                  @foreach($category->activities as $activity)
+                     <a href="{{route('entreprises.activityResults', $activity->activity_url)}}"><li>{{$activity->name}}</li></a>
+                  @endforeach
+                </ul>
+
+                @endforeach
+            </ul>
+     </div>
+</div>
+
+@endsection
+
+@section('content')
+<div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-xs-8 col-xs-offset-2 search-container">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
+                    <select class="selectpicker" id="select" name="filter">
+                              <option>Projets</option>
+                              <option>Activités</option>
+                        </select>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <input type="text" class="form-control" id="search" name="x" placeholder="Search term...">
+                   <ul class="list-group search-results">
+              <!-- <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li> -->
+            </ul>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -65,13 +166,12 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     </div>
     </div>
    </div>
-   
-@endsection
-
-@section('content')
 
  <hgroup>
         <h1>Entreprises</h1>
+        @if(isset($info))
+        <h2 class="lead">{{$info}}</h2>                               
+        @endif
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
 
@@ -100,6 +200,7 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                                       @endif
 
                                     </a>
+                                    <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
@@ -107,9 +208,9 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>
-                {{ $entreprise->activity->category->name }}
+                 {!! link_to('entreprises/category/' . $entreprise->activity->category->category_url, $entreprise->activity->category->name) !!}
                     <ul class="meta-search">
-                    {{ $entreprise->activity->name }}
+                     {!! link_to('entreprises/activity/' . $entreprise->activity->activity_url, $entreprise->activity->name) !!}
                     <!--
                         @foreach($entreprise->tags as $tag)
                             {!! link_to('entreprises/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
@@ -124,40 +225,9 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
         
     </section>
 
-
-<!--
-@foreach($entreprises->chunk(3) as $entrepriseChunk)
-
-  <div class="row-eq-height">
-
-    @foreach($entrepriseChunk as $entreprise)
-      
-      <div class="col-md-3">
-        <div class="thumbnail">
-          <img src="{{ URL::to('uploads/business')}}/{{$entreprise->image}}" class="img-responsive" alt="...">
-          <div class="caption">
-            <h3>{{ $entreprise->name }}</h3>
-            <p class="description">{{ $entreprise->description }}</p>
-            <div class="clearfix">
-              <div class="pull-left link">13 Link(s)</div>
-              <a href="#" class="btn btn-success pull-right" role="button"><i class="fa fa-handshake-o" aria-hidden="true"></i> Link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    @endforeach 
-  -->
-    @if(Auth::check() and Auth::user()->admin)
-
-      {!! link_to_route('entreprises.create', 'Ajouter une entreprise', [], ['class' => 'btn btn-info pull-right']) !!}
-    
-    @endif
-
     {!! $links !!}
   </div>
 
-@endforeach
 
 @endsection
 
@@ -193,6 +263,34 @@ $('.favorites').click(function(event)
          
     });
 });
+
+/* SEARCH */
+
+$('#search').on('keyup', function(){
+
+    $value = $(this).val();
+
+    $.ajax({
+      type : 'GET',
+      url : '{{URL::to('search')}}',
+      data : {'search': $value},
+      success:function(data){
+        var value=$.trim($("#search").val());
+        if(value.length>0)
+        {
+          if(data.no != "")
+          {
+            $('.search-results').html(data);
+          }
+        }
+        else
+        {
+          $('.search-results').empty();
+        }
+      }
+    });
+})
+
 
 </script>
 

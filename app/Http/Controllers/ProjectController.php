@@ -8,6 +8,8 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Repositories\ProjectRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\LinkRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\ActivityRepository;
 
 use Illuminate\Http\Request;
 
@@ -16,34 +18,41 @@ class ProjectController extends Controller
     protected $projectRepository;
     protected $tagRepository;
     protected $linkRepository;
+    protected $categoryRepository;
 
     protected $nbrPerPage = 9;
 
-    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository)
+    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository, CategoryRepository $categoryRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
 
         $this->projectRepository = $projectRepository;
         $this->tagRepository = $tagRepository;
         $this->linkRepository = $linkRepository;
+        $this->categoryRepository = $categoryRepository;
     }
     public function index(Request $request)
     {
         $projects = $this->projectRepository->getPaginate($this->nbrPerPage);
         $links = $projects->render();
+        $categories = $this->categoryRepository->categories();
         
-        return view('projects.index', compact('projects', 'links'));
+        return view('projects.index', compact('projects', 'links', 'categories'));
     }
 
     public function create(Request $request)
     {
         $user = $request->user();
-        return view('profiles.projects.create', compact('user'));
+        $categories = $this->categoryRepository->categories();
+
+        return view('profiles.projects.create', compact('user', 'categories'));
     }
 
     public function store(ProjectCreateRequest $request, TagRepository $tagRepository)
     {
-        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        $category = $this->categoryRepository->getByName($request->input('category'));
+
+        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id, 'category_id' => $category->id]);
         
         $project = $this->projectRepository->store($inputs);
 
@@ -113,5 +122,16 @@ class ProjectController extends Controller
     public function launch(Request $request)
     {
         $this->projectRepository->launch($request->all());
+    }
+
+    public function indexCategory($category)
+    {
+        $categoryObject = $this->categoryRepository->getByURL($category);
+        $projects = $this->projectRepository->getWithUserAndCategoriesForCategoryPaginate($category, $this->nbrPerPage);
+        $links = $projects->render();
+        $categories = $this->categoryRepository->categories();
+
+        return view('projects.index', compact('projects', 'categories', 'links'))
+        ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name);
     }
 }

@@ -11,7 +11,7 @@
 					{!! Form::open(['route' => 'entreprises.postorder', 'files'=>true,'class' => 'form-horizontal panel']) !!}
 					<div class="form-group">
 						<label for="select">Secteur d'activité</label>
-						<select class="selectpicker" id="select" data-size="10" name="activity">
+						<select class="selectpicker form-control" id="select" data-size="10" name="activity">
 							@foreach($categories as $category)
 								 <optgroup label="{{$category->name}}">
 								@foreach($category->activities as $activity)

@@ -16,18 +16,103 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     color: #fff;
 }
 
-.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
-.content_top span{
-    color: #fff;
+button.btn.btn-default.dropdown-toggle:active, button.btn.btn-default:active{
     background-color: #ea5817;
+    color: #fff;
 }
 
+button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
+    background-color: #ea5817;
+    color: #fff;
+}
+
+.info-btn
+{
+  float: right;
+  margin: 0.4em;
+  -webkit-animation: bounce 10s infinite;
+
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  23% {
+    -webkit-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+  27% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+}
+
+@-moz-keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    transform: translateX(0);
+  }
+  23% {
+    transform: translateX(-15px);
+  }
+  27% {
+    transform: translateX(-5px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 25%, 30%, 35% {
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+  23% {
+    -ms-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+  27% {
+    -ms-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+}
+
+.btn-lg
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
+.btn-lg:hover
+{
+    border-radius: 0px;
+    background-color: #f96625;
+    border: none;
+}
+
+.btn-lg:active
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
+
+.search-results{
+  position: absolute;
+  top: 100%;
+   z-index: 1;
+}
+.search-container
+{
+  position: relative;
+}
 </style>
 
 @endsection
 
 @section('banner')
-
+<!--
 <header class="banner">
         <div class="container">
             <div class="row">
@@ -36,27 +121,53 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
             </div>
         </div>
 </header>
+pre-scrollable
+-->
+@endsection
 
+@section('sidebar')
+
+<div class="nav-side-menu">
+    <div class="brand">Secteurs<i class="fa fa-angle-right fa-2x info-btn"></i></div>
+    
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> Secteurs d'activités
+                  </a>
+                </li>
+                @foreach($categories as $category)
+
+                <li>
+                  <a href="{{route('projects.categoryResults', $category->category_url)}}"><i class="fa fa-gift fa-lg"></i> {{$category->name}} <span class="arrow"></span></a>
+                </li>
+
+                @endforeach
+            </ul>
+     </div>
+</div>
+
+@endsection
+
+@section('content')
   <div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-xs-8 col-xs-offset-2 search-container">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
+                   <select class="selectpicker" id="select" name="filter">
+                              <option>Projets</option>
+                              <option>Activités</option>
+                        </select>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <ul class="list-group search-results"></ul>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -66,12 +177,11 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     </div>
    </div>
    
-@endsection
-
-@section('content')
-
  <hgroup>
         <h1>Projects</h1>
+         @if(isset($info))
+        <h2 class="lead">{{$info}}</h2>                               
+        @endif
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
 
@@ -92,26 +202,38 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
                     <p>{{ $project->content }}</p>                        
 
                     <div class="action">
-
+                                     @if(Auth::user()->id ==  $project->user_id)
                                     <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-                                   
+                                    @endif
+                                   @if(Auth::check())
+                                        @if(Auth::user()->entreprise)
                                     <a href="{{route('links.projectlink')}}" class="btn btn-primary btn-xs links" title="Link">
                                     
-                                    @if(Auth::check())
-                                        @if(Auth::user()->entreprise)
+                                    
+                                        
                                              {!! Auth::user()->entreprise->links()->where('project_id', $project->id)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? 'Accepted' : 'Linked' : 'Link' !!}
-                                        @endif
-                                    @endif
+                                        
+                                  
                                     
                                     </a>
+
+                                    <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
+                                        @endif
+                                      @endif
+
+                                    @if(Auth::user()->id ==  $project->user_id)
+
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
+
+                                    @endif
                     
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i> Tags
-                    <ul class="meta-search">
+                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>  {!! link_to('projects/category/' . $project->category->category_url, $project->category->name) !!}
+                
+                    <ul class="meta-search">Tags
                         @foreach($project->tags as $tag)
                             {!! link_to('projects/tag/' . $tag->tag_url, $tag->tag, ['class' => 'btn btn-xs btn-info']) !!}
                         @endforeach
@@ -123,11 +245,6 @@ button.btn.btn-default.dropdown-toggle, button.btn.btn-default{
     @endforeach
         
     </section>
-    @if(Auth::check() and Auth::user()->admin)
-
-      {!! link_to_route('projects.create', 'Ajouter un project', [], ['class' => 'btn btn-info pull-right']) !!}
-    
-    @endif
 
     {!! $links !!}
 

@@ -13,6 +13,15 @@
 						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
 						{!! $errors->first('title', '<small class="help-block">:project</small>') !!}
 					</div>
+					<div class="form-group">
+						<label for="select">Secteur d'activité</label>
+						<select class="selectpicker form-control" id="select" data-size="10" name="category">
+							@foreach($categories as $category)
+									 <option>{{$category->name}}</option>
+							@endforeach
+							</select>
+
+					</div>
 					<div class="form-group {!! $errors->has('tags') ? 'has-error' : '' !!}">
 						{!! Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
 						{!! $errors->first('tags', '<small class="help-block">:project</small>') !!}

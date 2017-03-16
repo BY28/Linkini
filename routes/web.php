@@ -56,6 +56,7 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 		Route::get('/', ['uses' => 'MessageController@getMessages', 'as' => 'messages.inbox']);
 		Route::get('message/{id}', ['uses' => 'MessageController@getMessage', 'as' => 'messages.message']);
+		Route::get('receiver/{id}', ['uses' => 'MessageController@getSendMessageWithReceiver', 'as' => 'messages.sendwithreceiver']);
 		Route::get('sent', ['uses' => 'MessageController@getMessageSent', 'as' => 'messages.sent']);
 		Route::get('send', ['uses' => 'MessageController@getSendMessage', 'as' => 'messages.create']);
 		Route::post('send', ['uses' => 'MessageController@sendMessage', 'as' => 'messages.send']);
@@ -94,6 +95,10 @@ Route::group(['prefix' => 'entreprises'], function(){
 	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprises.create']);
 	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.edit']);
 	Route::post('destroy', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.destroy']);
+
+	Route::get('activity/{activity}', 'EntrepriseController@indexActivity')->name('entreprises.activityResults');
+	Route::get('category/{category}', 'EntrepriseController@indexCategory')->name('entreprises.categoryResults');
+
 		
 });
 
@@ -101,12 +106,16 @@ Route::group(['prefix' => 'entreprises'], function(){
 Route::group(['prefix' => 'projects'], function(){
 
 	Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+	Route::get('tag/{tag}', 'ProjectController@indexTag')->name('projects.tagResults');
+	Route::get('category/{category}', 'ProjectController@indexCategory')->name('projects.categoryResults');
 
 });
 
 /* ADMIN */
 
 Route::group(['prefix' => 'admin'], function(){
+
+	Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admins.index']);
 
 	Route::group(['prefix' => 'categories'], function(){
 		Route::get('/', ['uses' => 'CategoryController@index', 'as' => 'categories.index']);
@@ -131,10 +140,18 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('checked', ['uses' => 'EntrepriseController@getCheckedEntreprises', 'as' => 'entreprises.getchecked']);
 
 	Route::post('accept', ['uses' => 'EntrepriseController@accept', 'as' => 'entreprises.accept']);
+	Route::post('check', ['uses' => 'EntrepriseController@check', 'as' => 'entreprises.check']);	
 	});
-	Route::post('check', ['uses' => 'EntrepriseController@check', 'as' => 'entreprises.check']);		
-});
+	
+	Route::group(['prefix' => 'pages'], function(){
+			Route::get('home', ['uses' => 'LinkiniPageController@index', 'as' => 'homepage.index']);
+			Route::post('home', ['uses' => 'LinkiniPageController@storeCarousel', 'as' => 'homepage.storeCarousel']);
+			//Route::delete('delete', ['uses' => 'LinkiniPageController@destroy', 'as' => 'homepage.deleteCarousel']);
+			Route::delete('destroy/{id}', ['uses' => 'LinkiniPageController@destroy', 'as' => 'homepage.deleteCarousel']);
+		});
 
+});
+Route::get('search', 'ActivityController@search');
 
 Route::resource('user', 'UserController');
 
@@ -143,8 +160,6 @@ Route::resource('entreprises', 'EntrepriseController');
 Route::resource('projects', 'ProjectController', ['except' => ['create']]);
 
 Route::resource('tags', 'TagController', ['only' => ['create', 'store']]);
-
-Route::get('projects/tag/{tag}', 'ProjectController@indexTag');
 
 Auth::routes();
 

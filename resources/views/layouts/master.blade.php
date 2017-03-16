@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/sidebar.css') }}">
 
 	@yield('styles')
 </head>
@@ -14,6 +15,7 @@
 @include('partials.header')
 
 @yield('banner')
+@yield('sidebar')
 
 <div class="container">
 	@yield('content')

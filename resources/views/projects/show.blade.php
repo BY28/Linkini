@@ -6,6 +6,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">{{$project->title}}
                     <small>{{$project->created_at}}</small>
+                    <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs pull-right" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
                 </h1>
             </div>
     </div>

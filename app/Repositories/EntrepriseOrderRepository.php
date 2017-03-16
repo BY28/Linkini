@@ -10,6 +10,7 @@ class EntrepriseOrderRepository extends ResourceRepository
 
     protected $entrepriseOrder;
     protected $entreprise;
+    protected $activity;
 
     public function __construct(EntrepriseOrder $entrepriseOrder, Entreprise $entreprise)
 	{
@@ -44,7 +45,8 @@ class EntrepriseOrderRepository extends ResourceRepository
 		$entrepriseInputs = [
 			'name' => $entrepriseOrder->name,
 			'user_id' => $entrepriseOrder->user_id,
-			'activity_id' => $entrepriseOrder->activity_id
+			'activity_id' => $entrepriseOrder->activity_id,
+			'category_id' => $entrepriseOrder->category_id
 		];
 
 		if($entrepriseOrder->accepted)

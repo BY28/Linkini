@@ -17,6 +17,7 @@ class EntrepriseController extends Controller
 {
     protected $entrepriseRepository;
     protected $entrepriseOrderRepository;
+    protected $categoryRepository;
 
     protected $nbrPerPage = 9;
 
@@ -35,8 +36,9 @@ class EntrepriseController extends Controller
     {
         $entreprises = $this->entrepriseRepository->getPaginate($this->nbrPerPage);
         $links = $entreprises->render();
+        $categories = $this->categoryRepository->categories();
 
-        return view('entreprises.index', compact('entreprises', 'links'));
+        return view('entreprises.index', compact('entreprises', 'links', 'categories'));
     }
 
     public function create()
@@ -111,7 +113,8 @@ class EntrepriseController extends Controller
             'user_id' => $request->user()->id,
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'activity_id' => $activity->id
+            'activity_id' => $activity->id,
+            'category_id' => $activity->category->id
         ];
 
         $entreprise = $this->entrepriseOrderRepository->store($inputs);
@@ -151,5 +154,27 @@ class EntrepriseController extends Controller
     public function check(Request $request)
     {
         $this->entrepriseOrderRepository->check($request->all());
+    }
+
+    public function indexActivity($activity)
+    {
+        $activityObject = $this->activityRepository->getByURL($activity);
+        $entreprises = $this->entrepriseRepository->getWithUserAndActivitiessForActivityPaginate($activity, $this->nbrPerPage);
+        $links = $entreprises->render();
+        $categories = $this->categoryRepository->categories();
+
+        return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+        ->with('info', 'Résultats pour la recherche de l\'activité : ' . $activityObject->name);
+    }
+
+    public function indexCategory($category)
+    {
+        $categoryObject = $this->categoryRepository->getByURL($category);
+        $entreprises = $this->entrepriseRepository->getWithUserAndCategoriesForCategoryPaginate($category, $this->nbrPerPage);
+        $links = $entreprises->render();
+        $categories = $this->categoryRepository->categories();
+
+        return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+        ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name);
     }
 }

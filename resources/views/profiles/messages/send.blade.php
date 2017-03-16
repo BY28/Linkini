@@ -10,7 +10,11 @@
 				<div class="col-sm-12">
 					{!! Form::open(['route' => 'messages.send', 'files'=>true,'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
+					@if(isset($receiver))
+						{!! Form::text('email', $receiver->email, ['class' => 'form-control', 'placeholder' => 'To']) !!}
+					@else
 						{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'To']) !!}
+					@endif
 						{!! $errors->first('email', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group {!! $errors->has('subject') ? 'has-error' : '' !!}">

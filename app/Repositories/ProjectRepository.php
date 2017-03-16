@@ -61,6 +61,20 @@ class ProjectRepository extends ResourceRepository
 
 	}
 
+	private function queryWithUserAndCategory()
+	{
+		return $this->model->with('user', 'category')
+		->orderBy('projects.created_at', 'desc');		
+	}
+
+	public function getWithUserAndCategoriesForCategoryPaginate($category, $n)
+	{
+		return $this->queryWithUserAndCategory()
+		->whereHas('category', function($q) use ($category)
+		{
+		  $q->where('categories.category_url', $category);
+		})->paginate($n);
+	}
 	/*
 		*
 		* PAS DE SURCHARGE POUR LE MOMENT

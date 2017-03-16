@@ -25,4 +25,34 @@ class EntrepriseRepository extends ResourceRepository
 		}
 		
 	}
+
+	private function queryWithUserAndActivity()
+	{
+		return $this->model->with('user', 'activity')
+		->orderBy('entreprises.created_at', 'desc');		
+	}
+
+	private function queryWithUserAndCategory()
+	{
+		return $this->model->with('user', 'category')
+		->orderBy('entreprises.created_at', 'desc');		
+	}
+
+	public function getWithUserAndActivitiessForActivityPaginate($activity, $n)
+	{
+		return $this->queryWithUserAndActivity()
+		->whereHas('activity', function($q) use ($activity)
+		{
+		  $q->where('activities.activity_url', $activity);
+		})->paginate($n);
+	}
+
+	public function getWithUserAndCategoriesForCategoryPaginate($category, $n)
+	{
+		return $this->queryWithUserAndCategory()
+		->whereHas('category', function($q) use ($category)
+		{
+		  $q->where('categories.category_url', $category);
+		})->paginate($n);
+	}
 }

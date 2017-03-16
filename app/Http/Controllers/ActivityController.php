@@ -17,6 +17,28 @@ class ActivityController extends Controller
         
         $this->activityRepository = $activityRepository;
     }
+
+    public function search(Request $request)
+    {
+        $output = "";
+        if($request->ajax())
+        {
+            $activities = $this->activityRepository->getSearchedActivities($request);
+        
+            if($activities)
+            {        
+                foreach ($activities as $activity) 
+                {
+                    $output .= '<li class="list-group-item"><a href="'.route('entreprises.activityResults', $activity->activity_url).'">'.$activity->name.'</a></li>';
+                }
+                return Response($output);
+            }
+            else
+            {
+                return Response()->json(['no' => 'Not Found.']);
+            }
+        }
+    }
     /**
      * Display a listing of the resource.
      *

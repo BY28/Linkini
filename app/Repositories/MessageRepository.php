@@ -78,4 +78,9 @@ class MessageRepository extends ResourceRepository
 
     	$this->store($inputs);
 	}
+
+	public function getUserById($id)
+	{
+		return User::where('id', $id)->first();
+	}
 }

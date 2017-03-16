@@ -1,4 +1,4 @@
-jQuery(document).on('click', '.dropdown', function(e) {
+/*jQuery(document).on('click', '.dropdown', function(e) {
   e.stopPropagation()
 });
 
@@ -10,8 +10,8 @@ jQuery(document).on('click', '.dropdown', function(e) {
 		      $(this).parent().carousel('next');  
 	   });  
 	}); 
-/*
-	 $(document).ready(function(){
+*/
+$(document).ready(function(){
     $(".dropdown").hover(            
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
@@ -23,5 +23,3 @@ jQuery(document).on('click', '.dropdown', function(e) {
         }
     );
 });
-*/
-
