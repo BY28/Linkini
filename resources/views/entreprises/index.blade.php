@@ -79,11 +79,22 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 .search-results{
   position: absolute;
   top: 100%;
-  z-index: 1;
+  z-index: 20;
 }
 .search-container
 {
   position: relative;
+}
+/* SEARCH RESULT LIST*/
+.list-group-item-linkable:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+.search-results{
+    max-height: 325px;
+    overflow-y:scroll; 
 }
 </style>
 
@@ -145,8 +156,8 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <select class="selectpicker" id="select" name="filter">
-                              <option>Projets</option>
-                              <option>Activités</option>
+                              <option id="#project_filter">Projets</option>
+                              <option id="#activity_filter">Activités</option>
                         </select>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
@@ -189,22 +200,21 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
                     <div class="action">
 
-                                    <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-                                   
-                                    <a href="#" class="btn btn-primary btn-xs favorites" title="Approved">
-                                        
                                       @if(Auth::check())
-                                        
-                                             {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
-                                        
-                                      @endif
+                                       <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
 
-                                    </a>
-                                    <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
+                                         <a href="#" class="btn btn-primary btn-xs favorites" title="Approved">
+                                             {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
+                                         </a>
+
+                                          <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
+
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
-                    
+
+                                      @endif
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>
@@ -267,9 +277,10 @@ $('.favorites').click(function(event)
 /* SEARCH */
 
 $('#search').on('keyup', function(){
-
+    var timer;
     $value = $(this).val();
-
+    clearTimeout(timer);  
+    timer = setTimeout(function() {
     $.ajax({
       type : 'GET',
       url : '{{URL::to('search')}}',
@@ -289,8 +300,8 @@ $('#search').on('keyup', function(){
         }
       }
     });
+  }, 500);
 })
-
 
 </script>
 

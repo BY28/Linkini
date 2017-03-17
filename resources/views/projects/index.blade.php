@@ -101,11 +101,22 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 .search-results{
   position: absolute;
   top: 100%;
-   z-index: 1;
+   z-index: 20;
 }
 .search-container
 {
   position: relative;
+}
+/* SEARCH RESULT LIST*/
+.list-group-item-linkable:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+.search-results{
+    max-height: 325px;
+    overflow-y:scroll; 
 }
 </style>
 
@@ -154,20 +165,26 @@ pre-scrollable
 @endsection
 
 @section('content')
-  <div class="content_top">
+<div class="content_top">
       <div class="container">
          <div class="row">    
         <div class="col-xs-8 col-xs-offset-2 search-container">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
-                   <select class="selectpicker" id="select" name="filter">
+                    <select class="selectpicker" id="select" name="filter">
                               <option>Projets</option>
                               <option>Activités</option>
                         </select>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <ul class="list-group search-results"></ul>
+                <input type="text" class="form-control" id="search" name="x" placeholder="Search term...">
+                   <ul class="list-group search-results">
+              <!-- <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li> -->
+            </ul>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -202,10 +219,11 @@ pre-scrollable
                     <p>{{ $project->content }}</p>                        
 
                     <div class="action">
-                                     @if(Auth::user()->id ==  $project->user_id)
+                                   @if(Auth::check())
+
+                                    @if(Auth::user()->id ==  $project->user_id)
                                     <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                     @endif
-                                   @if(Auth::check())
                                         @if(Auth::user()->entreprise)
                                     <a href="{{route('links.projectlink')}}" class="btn btn-primary btn-xs links" title="Link">
                                     
@@ -219,15 +237,14 @@ pre-scrollable
 
                                     <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
                                         @endif
-                                      @endif
-
-                                    @if(Auth::user()->id ==  $project->user_id)
+                                           @if(Auth::user()->id ==  $project->user_id)
 
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
                                     {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
 
                                     @endif
+                                      @endif
                     
                     </div>
                 </div>
@@ -282,6 +299,35 @@ $('.links').click(function(event)
          
     });
 });
+
+/* SEARCH */
+
+$('#search').on('keyup', function(){
+    var timer;
+    $value = $(this).val();
+    clearTimeout(timer);  
+    timer = setTimeout(function() {
+    $.ajax({
+      type : 'GET',
+      url : '{{URL::to('search')}}',
+      data : {'search': $value},
+      success:function(data){
+        var value=$.trim($("#search").val());
+        if(value.length>0)
+        {
+          if(data.no != "")
+          {
+            $('.search-results').html(data);
+          }
+        }
+        else
+        {
+          $('.search-results').empty();
+        }
+      }
+    });
+  }, 500);
+})
 
 </script>
 

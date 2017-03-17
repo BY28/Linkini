@@ -38,7 +38,7 @@ class EntrepriseRepository extends ResourceRepository
 		->orderBy('entreprises.created_at', 'desc');		
 	}
 
-	public function getWithUserAndActivitiessForActivityPaginate($activity, $n)
+	public function getWithUserAndActivitiesForActivityPaginate($activity, $n)
 	{
 		return $this->queryWithUserAndActivity()
 		->whereHas('activity', function($q) use ($activity)

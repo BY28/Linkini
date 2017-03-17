@@ -159,7 +159,7 @@ class EntrepriseController extends Controller
     public function indexActivity($activity)
     {
         $activityObject = $this->activityRepository->getByURL($activity);
-        $entreprises = $this->entrepriseRepository->getWithUserAndActivitiessForActivityPaginate($activity, $this->nbrPerPage);
+        $entreprises = $this->entrepriseRepository->getWithUserAndActivitiesForActivityPaginate($activity, $this->nbrPerPage);
         $links = $entreprises->render();
         $categories = $this->categoryRepository->categories();
 

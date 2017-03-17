@@ -73,4 +73,18 @@ class TagRepository extends ResourceRepository
 		}
 	}
 
+	public function getByName($name)
+	{
+		return $this->model->where('tag', $name)->first();
+	}
+
+	public function getByURL($slug)
+	{
+		return $this->model->where('tag_url', $slug)->first();
+	}
+
+	public function getSearchedTags($inputs)
+	{
+		return $this->model->where('tag', 'LIKE', '%'.$inputs['search'].'%')->get();
+	}
 }

@@ -151,7 +151,8 @@ Route::group(['prefix' => 'admin'], function(){
 		});
 
 });
-Route::get('search', 'ActivityController@search');
+Route::get('search', 'SearchController@search')->name('search');
+Route::post('search', 'SearchController@postSearch')->name('postSearch');
 
 Route::resource('user', 'UserController');
 

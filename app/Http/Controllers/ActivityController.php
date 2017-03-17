@@ -21,16 +21,32 @@ class ActivityController extends Controller
     public function search(Request $request)
     {
         $output = "";
+        $inputs = $request->all();
         if($request->ajax())
         {
-            $activities = $this->activityRepository->getSearchedActivities($request);
+            $activities = $this->activityRepository->getSearchedActivities($inputs);
         
             if($activities)
             {        
                 foreach ($activities as $activity) 
                 {
-                    $output .= '<li class="list-group-item"><a href="'.route('entreprises.activityResults', $activity->activity_url).'">'.$activity->name.'</a></li>';
+                    /*$output .= '<li class="list-group-item list-group-item-linkable"><a href="'.route('entreprises.activityResults', $activity->activity_url).'">'.$activity->name.'</a></li>';*/
+                    $output .= '<li class="list-group-item list-group-item-linkable">'.$activity->name.'</li>';
                 }
+                $output .= "
+                <script>
+                    $(document).ready(function() {
+                    $('.list-group-item-linkable').on('click', function() {
+                        //window.location.href = $(this).data('link');
+                        // new window:
+                        //window.open($(this).data('link'));
+                        $('#search').val($(this).text());
+                        $('.search-results').empty();
+                    });
+                })
+                </script>
+                "
+                ;
                 return Response($output);
             }
             else

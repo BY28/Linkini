@@ -48,9 +48,9 @@ class ActivityRepository extends ResourceRepository
 		return $this->model->where('activity_url', $slug)->first();
 	}
 
-	public function getSearchedActivities($request)
+	public function getSearchedActivities($inputs)
 	{
-		return $this->model->where('name', 'LIKE', '%'.$request->input('search').'%')->get();
+		return $this->model->where('name', 'LIKE', '%'.$inputs['search'].'%')->get();
 	}
 
 }

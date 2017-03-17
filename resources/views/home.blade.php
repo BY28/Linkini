@@ -54,13 +54,24 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 .search-results{
   position: absolute;
   top: 100%;
-   z-index: 1;
+   z-index: 20;
 }
 .search-container
 {
   position: relative;
 }
 
+/* SEARCH RESULT LIST*/
+.list-group-item-linkable:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+.search-results{
+    max-height: 325px;
+    overflow-y:scroll; 
+}
 </style>
 
 @endsection
@@ -161,20 +172,28 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
       <div class="container">
          <div class="row">    
         <div class="col-xs-8 col-xs-offset-2 search-container">
+        <form action="{{route('postSearch')}}" method="POST">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
-                        <select class="selectpicker" id="select" name="filter">
-                              <option>Projets</option>
-                              <option>Activités</option>
+                    <select class="selectpicker" id="select" name="filter">
+                              <option class="search-option">Secteur d'activité</option>
+                              <option class="search-option">Projets</option>
                         </select>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <ul class="list-group search-results"></ul>
+                </div>    
+                <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher un secteur d'activité" autocomplete="off">
+                   <ul class="list-group search-results">
+             <!--  <li class="list-group-item list-group-item-linkable">Cras justo odio</li>
+             <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li> -->
+            </ul>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
+            {{csrf_field()}}
+        </form>
         </div>
     </div>
     </div>
@@ -761,5 +780,52 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
 });
+
+/* SEARCH */
+$(document).ready(function() {
+
+  $('#select').change(function(){
+
+      if($('#select').val() == 'Secteur d\'activité')
+      {
+        $('#search').prop("placeholder", "Rechercher un secteur d'activité");
+      }
+      else
+      {
+        $('#search').prop("placeholder", "Mot clé pour la recherche d'un projet (plomberie,construction,électricité...)");
+      }
+  });
+
+  $('#search').on('keyup', function(){
+      var timer;
+      $value = $(this).val();
+      $filter = $('#select').val();
+
+      clearTimeout(timer);  
+      timer = setTimeout(function() {
+      $.ajax({
+        type : 'GET',
+        url : '{{URL::to('search')}}',
+        data : {'search': $value, 'filter': $filter},
+        success:function(data){
+          var value=$.trim($("#search").val());
+          if(value.length>0)
+          {
+            if(data.no != "")
+            {
+              $('.search-results').html(data);
+            }
+          }
+          else
+          {
+            $('.search-results').empty();
+          }
+        }
+      });
+    }, 500);
+  })
+
+});
+
 </script>
 @endsection
