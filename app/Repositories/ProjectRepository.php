@@ -30,7 +30,7 @@ class ProjectRepository extends ResourceRepository
 		return $this->queryWithUserAndTags()
 		->whereHas('tags', function($q) use ($tag)
 		{
-		  $q->where('tags.tag_url', $tag);
+		  $q->whereIn('tags.tag', $tag);
 		})->paginate($n);
 	}
 

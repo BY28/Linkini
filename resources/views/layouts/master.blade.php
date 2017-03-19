@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/sidebar.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/tags.css') }}">
 
 	@yield('styles')
 </head>
@@ -25,6 +26,7 @@
 <script src="{{ URL::to('src/bootstrap/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::to('src/js/functions.js') }}"></script>
+<script src="{{ URL::to('src/js/tags.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

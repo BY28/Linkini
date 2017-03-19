@@ -72,15 +72,14 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     max-height: 325px;
     overflow-y:scroll; 
 }
+
 </style>
 
 @endsection
 
 @section('banner')
-
+  
 <header class="banner">
-        
-       
         <!--    
             
         -->
@@ -171,7 +170,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2 search-container">
+        <div class="col-xs-10 col-xs-offset-1 search-container">
         <form action="{{route('postSearch')}}" method="POST">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
@@ -180,7 +179,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                               <option class="search-option">Projets</option>
                         </select>
                 </div>    
+                <div class="tags-input form-control" data-name="tags" id="tags"></div>
                 <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher un secteur d'activité" autocomplete="off">
+                <input type="hidden" name="tags-input" id="hidden-tag">
                    <ul class="list-group search-results">
              <!--  <li class="list-group-item list-group-item-linkable">Cras justo odio</li>
              <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -768,33 +769,8 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
 @section('scripts')
 <script type="text/javascript">
+$('.tags-input').hide();
 
-    
-$(document).ready(function() {
-    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-    });
-});
-
-/* SEARCH */
-$(document).ready(function() {
-
-  $('#select').change(function(){
-
-      if($('#select').val() == 'Secteur d\'activité')
-      {
-        $('#search').prop("placeholder", "Rechercher un secteur d'activité");
-      }
-      else
-      {
-        $('#search').prop("placeholder", "Mot clé pour la recherche d'un projet (plomberie,construction,électricité...)");
-      }
-  });
 
   $('#search').on('keyup', function(){
       var timer;
@@ -822,9 +798,71 @@ $(document).ready(function() {
           }
         }
       });
-    }, 500);
+    }, 100);
   })
 
+  $('.main-input').on('keyup', function(){
+      var timer;
+      $value = $(this).val();
+      $filter = $('#select').val();
+
+      clearTimeout(timer);  
+      timer = setTimeout(function() {
+      $.ajax({
+        type : 'GET',
+        url : '{{URL::to('search')}}',
+        data : {'search': $value, 'filter': $filter},
+        success:function(data){
+           var value=$(".main-input").val().replace('/\s/g','');
+          if(value.length>0)
+          {
+            if(data.no != "")
+            {
+              $('.search-results').html(data);
+            }
+          }
+          else
+          {
+            $('.search-results').empty();
+          }
+        }
+      });
+    }, 100);
+  })
+
+/* SEARCH */
+$(document).ready(function() {
+
+  $('#select').change(function(){
+
+      if($('#select').val() == 'Secteur d\'activité')
+      {
+        $('#search').prop("placeholder", "Rechercher un secteur d'activité");
+        $('.tags-input').hide();
+        $('#search').show();
+
+        $('.search-results').on('click', function(){
+           var input = $("#search");
+            input.focus();
+        });
+      }
+      else
+      {
+        $('#search').prop("placeholder", "Mot clé pour la recherche d'un projet (plomberie,construction,électricité...)");
+        $('#search').hide();
+        $('.tags-input').show();
+
+        $('.tags-input').on('click', function(){
+            var input = $(".main-input");
+            input.focus();
+        });
+
+        $('.search-results').on('click', function(){
+           var input = $(".main-input");
+            input.focus();
+        });
+      }
+  });
 });
 
 </script>

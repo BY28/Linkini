@@ -87,7 +87,7 @@ class SearchController extends Controller
 	                        //window.location.href = $(this).data('link');
 	                        // new window:
 	                        //window.open($(this).data('link'));
-	                        $('#search').val($(this).text());
+	                        $('.main-input').val($(this).text());
 	                        $('.search-results').empty();
 	                    });
 	                })
@@ -118,13 +118,14 @@ class SearchController extends Controller
     	}
     	else
     	{
-    		$tag = $this->tagRepository->getByName($request->input('search'));
-    		$projects = $this->projectRepository->getWithUserAndTagsForTagPaginate($tag->tag, $this->nbrPerPage);
+            $tags = explode(',', $request->input('tags'));
+    		//$tag = $this->tagRepository->getByName($request->input('tags-input'));
+    		$projects = $this->projectRepository->getWithUserAndTagsForTagPaginate(/*$tag->tag*/$tags, $this->nbrPerPage);
        		$links = $projects->render();
     		$categories = $this->categoryRepository->categories();
 
-    		return view('projects.index', compact('projects', 'categories', 'links'))
-        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);
+    		return view('projects.index', compact('projects', 'categories', 'links'));/*
+        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
     	}
     }
     /**
