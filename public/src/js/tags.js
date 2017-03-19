@@ -20,7 +20,7 @@
             });
             mainInput.value = '';
         }
-        if(tags.length >= 3)
+        if(tags.length >= 5)
         {
             mainInput.setAttribute('placeholder', ' ');
         }
@@ -42,7 +42,7 @@
 
 
     function addTag (text) {
-        if(tags.length < 3)
+        if(tags.length < 5)
         {
         let tag = {
             text: text,
@@ -67,7 +67,7 @@
         }
         else
         {
-            alert('Vous pouvez entrer un maximum de 3 tags');
+            alert('Veuillez entrer un maximum de 5 tags');
         }
     }
 

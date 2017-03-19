@@ -170,7 +170,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-10 col-xs-offset-1 search-container">
+        <div class="col-xs-12 search-container">
         <form action="{{route('postSearch')}}" method="POST">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
