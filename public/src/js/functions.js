@@ -1,4 +1,4 @@
-/*jQuery(document).on('click', '.dropdown', function(e) {
+jQuery(document).on('click', '.dropdown', function(e) {
   e.stopPropagation()
 });
 
@@ -10,7 +10,7 @@
 		      $(this).parent().carousel('next');  
 	   });  
 	}); 
-*/
+/*
 $(document).ready(function(){
     $(".dropdown").hover(            
         function() {
@@ -23,3 +23,4 @@ $(document).ready(function(){
         }
     );
 });
+*/

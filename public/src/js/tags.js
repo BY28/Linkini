@@ -37,6 +37,11 @@
         }
     });
 
+    $('#post_search').on('submit',function(){
+        addTag(mainInput.value);
+        mainInput.value = '';
+    });
+
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 

@@ -37,7 +37,7 @@ class SearchController extends Controller
         $inputs = $request->all();
         if($request->ajax())
         {	
-        	if($request->input('filter') != "Projets")
+        	if($request->input('filter') == "Secteur d'activité")
         	{
 	            $activities = $this->activityRepository->getSearchedActivities($inputs);
 	        
@@ -69,7 +69,7 @@ class SearchController extends Controller
 	                return Response()->json(['no' => 'Not Found.']);
 	            }
 	        }
-	        else
+	        else if($request->input('filter') == "Projets" || $request->input('filter') == "Tags")
 	        {
 	        	$tags = $this->tagRepository->getSearchedTags($inputs);
 	        
@@ -106,27 +106,50 @@ class SearchController extends Controller
 
     public function postSearch(Request $request)
     {
-    	if($request->input('filter') != 'Projets')
+    	if($request->input('filter') == "Secteur d'activité")
     	{
-    		$activity = $this->activityRepository->getByName($request->input('search'));
-    		$entreprises = $this->entrepriseRepository->getWithUserAndActivitiesForActivityPaginate($activity->activity_url, $this->nbrPerPage);
-       		$links = $entreprises->render();
-    		$categories = $this->categoryRepository->categories();
-
-    		return view('entreprises.index', compact('entreprises', 'categories', 'links'))
-        ->with('info', 'Résultats pour la recherche de l\'activité : ' . $activity->name);
+    		return $this->searchActivities($request);
     	}
-    	else
+    	else if($request->input('filter') == "Projets" || $request->input('filter') == "Tags")
     	{
-            $tags = explode(',', $request->input('tags'));
-    		//$tag = $this->tagRepository->getByName($request->input('tags-input'));
-    		$projects = $this->projectRepository->getWithUserAndTagsForTagPaginate(/*$tag->tag*/$tags, $this->nbrPerPage);
-       		$links = $projects->render();
-    		$categories = $this->categoryRepository->categories();
-
-    		return view('projects.index', compact('projects', 'categories', 'links'));/*
-        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+            return $this->searchTags($request);
     	}
+        else if($request->input('filter') == "Titre/Description")
+        {
+            return $this->searchProjectsTitle($request);
+        }
+        else if($request->input('filter') == "Nom/Description")
+        {
+            return $this->searchEntreprisesName($request);
+        }
+    }
+
+    public function searchActivities($request)
+    {
+        $activity = $this->activityRepository->getByName($request->input('search'));
+            
+        return redirect()->route('entreprises.activityResults', $activity->activity_url);
+    }
+
+    public function searchTags($request)
+    {
+        $tags = explode(',', $request->input('tags'));
+
+        return redirect()->route('projects.tagResults', $tags);
+    }
+
+     public function searchProjectsTitle($request)
+    {
+            $query = $request->input('search');
+            
+             return redirect()->route('projects.titleResults', $query);
+    }
+
+     public function searchEntreprisesName($request)
+    {
+            $query = $request->input('name');
+            
+             return redirect()->route('entreprises.nameResults', $query);
     }
     /**
      * Display a listing of the resource.

@@ -55,4 +55,9 @@ class EntrepriseRepository extends ResourceRepository
 		  $q->where('categories.category_url', $category);
 		})->paginate($n);
 	}
+
+	public function getEntreprisesFromName($query, $n)
+	{
+		return $this->model->where('name', 'LIKE', '%'.$query.'%')->orWhere('description', 'LIKE', '%'.$query.'%')->paginate($n);
+	}
 }

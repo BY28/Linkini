@@ -177,4 +177,15 @@ class EntrepriseController extends Controller
         return view('entreprises.index', compact('entreprises', 'categories', 'links'))
         ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name);
     }
+
+    public function indexName($query)
+    {
+            
+            $entreprises = $this->entrepriseRepository->getEntreprisesFromName($query, $this->nbrPerPage);
+            $links = $entreprises->render();
+            $categories = $this->categoryRepository->categories();
+
+            return view('entreprises.index', compact('entreprises', 'categories', 'links'));/*
+        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+    }
 }

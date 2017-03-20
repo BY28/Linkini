@@ -98,6 +98,7 @@ Route::group(['prefix' => 'entreprises'], function(){
 
 	Route::get('activity/{activity}', 'EntrepriseController@indexActivity')->name('entreprises.activityResults');
 	Route::get('category/{category}', 'EntrepriseController@indexCategory')->name('entreprises.categoryResults');
+	Route::get('search/{query}', 'EntrepriseController@indexName')->name('entreprises.nameResults');
 
 		
 });
@@ -108,6 +109,7 @@ Route::group(['prefix' => 'projects'], function(){
 	Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
 	Route::get('tag/{tag}', 'ProjectController@indexTag')->name('projects.tagResults');
 	Route::get('category/{category}', 'ProjectController@indexCategory')->name('projects.categoryResults');
+	Route::get('search/{query}', 'ProjectController@indexTitle')->name('projects.titleResults');
 
 });
 

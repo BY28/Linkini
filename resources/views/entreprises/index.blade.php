@@ -152,27 +152,30 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2 search-container">
+        <div class="col-xs-12 search-container">
+        <form action="{{route('postSearch')}}" method="POST" id="post_search">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <select class="selectpicker" id="select" name="filter">
-                              <option id="#project_filter">Projets</option>
-                              <option id="#activity_filter">Activités</option>
+                              <option class="search-option">Nom/Description</option>
+                              <option class="search-option">Secteur d'activité</option>
                         </select>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" id="search" name="x" placeholder="Search term...">
+                </div>    
+                <input type="text" class="form-control" id="entreprise" name="name" placeholder="Rechercher quelqu'un pour concrétiser vos projets" autocomplete="off">
+                <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher dans un secteur d'activité" autocomplete="off">
                    <ul class="list-group search-results">
-              <!-- <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
+             <!--  <li class="list-group-item list-group-item-linkable">Cras justo odio</li>
+             <li class="list-group-item">Dapibus ac facilisis in</li>
               <li class="list-group-item">Morbi leo risus</li>
               <li class="list-group-item">Porta ac consectetur ac</li>
               <li class="list-group-item">Vestibulum at eros</li> -->
             </ul>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
+            {{csrf_field()}}
+        </form>
         </div>
     </div>
     </div>
@@ -276,32 +279,93 @@ $('.favorites').click(function(event)
 
 /* SEARCH */
 
-$('#search').on('keyup', function(){
-    var timer;
-    $value = $(this).val();
-    clearTimeout(timer);  
-    timer = setTimeout(function() {
-    $.ajax({
-      type : 'GET',
-      url : '{{URL::to('search')}}',
-      data : {'search': $value},
-      success:function(data){
-        var value=$.trim($("#search").val());
-        if(value.length>0)
-        {
-          if(data.no != "")
+$('#search').hide();
+
+
+  $('#search').on('keyup', function(){
+      var timer;
+      $value = $(this).val();
+      $filter = $('#select').val();
+
+      clearTimeout(timer);  
+      timer = setTimeout(function() {
+      $.ajax({
+        type : 'GET',
+        url : '{{URL::to('search')}}',
+        data : {'search': $value, 'filter': $filter},
+        success:function(data){
+          var value=$.trim($("#search").val());
+          if(value.length>0)
           {
-            $('.search-results').html(data);
+            if(data.no != "")
+            {
+              $('.search-results').html(data);
+            }
+          }
+          else
+          {
+            $('.search-results').empty();
           }
         }
-        else
-        {
-          $('.search-results').empty();
+      });
+    }, 100);
+  })
+
+  $('.main-input').on('keyup', function(){
+      var timer;
+      $value = $(this).val();
+      $filter = $('#select').val();
+
+      clearTimeout(timer);  
+      timer = setTimeout(function() {
+      $.ajax({
+        type : 'GET',
+        url : '{{URL::to('search')}}',
+        data : {'search': $value, 'filter': $filter},
+        success:function(data){
+           var value=$(".main-input").val().replace('/\s/g','');
+          if(value.length>0)
+          {
+            if(data.no != "")
+            {
+              $('.search-results').html(data);
+            }
+          }
+          else
+          {
+            $('.search-results').empty();
+          }
         }
+      });
+    }, 100);
+  })
+
+/* SEARCH */
+$(document).ready(function() {
+
+  $('#select').change(function(){
+
+      if($('#select').val() == "Secteur d'activité")
+      {
+        $('#search').prop("placeholder", "Rechercher dans un secteur d'activité");
+        $('#entreprise').hide();
+        $('#search').show();
+
+        $('.search-results').on('click', function(){
+           var input = $("#search");
+            input.focus();
+        });
       }
-    });
-  }, 500);
-})
+      else
+      {
+        $('#search').prop("placeholder", "Recherchez quelqu'un pour concrétiser vos projet");
+        $('#search').hide();
+        $('#entreprise').show();
+
+      }
+  });
+});
+
 
 </script>
 

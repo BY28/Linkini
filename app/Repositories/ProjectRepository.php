@@ -75,6 +75,11 @@ class ProjectRepository extends ResourceRepository
 		  $q->where('categories.category_url', $category);
 		})->paginate($n);
 	}
+
+	public function getProjectsFromTitle($query, $n)
+	{
+		return $this->model->where('title', 'LIKE', '%'.$query.'%')->orWhere('content', 'LIKE', '%'.$query.'%')->paginate($n);
+	}
 	/*
 		*
 		* PAS DE SURCHARGE POUR LE MOMENT

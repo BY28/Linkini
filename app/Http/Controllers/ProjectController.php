@@ -96,11 +96,25 @@ class ProjectController extends Controller
 
     public function indexTag($tag)
     {
-        $projects = $this->projectRepository->getWithUserAndTagsForTagPaginate($tag, $this->nbrPerPage);
-        $links = $projects->render();
+        $tags = explode(',', $tag);
+            //$tag = $this->tagRepository->getByName($request->input('tags-input'));
+            $projects = $this->projectRepository->getWithUserAndTagsForTagPaginate(/*$tag->tag*/$tags, $this->nbrPerPage);
+            $links = $projects->render();
+            $categories = $this->categoryRepository->categories();
 
-        return view('projects.liste', compact('projects', 'links'))
-        ->with('info', 'Résultats pour la recherche du mot-clé : ' . $tag);
+            return view('projects.index', compact('projects', 'categories', 'links'));/*
+        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+    }
+
+    public function indexTitle($query)
+    {
+            
+            $projects = $this->projectRepository->getProjectsFromTitle($query, $this->nbrPerPage);
+            $links = $projects->render();
+            $categories = $this->categoryRepository->categories();
+
+            return view('projects.index', compact('projects', 'categories', 'links'));/*
+        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
     }
 
      public function getPending(Request $request)
