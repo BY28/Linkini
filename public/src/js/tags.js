@@ -32,14 +32,20 @@
             removeTag(tags.length - 1);
         }
         else if(keyCode === 13 && mainInput.value.length != 0){
-            addTag(mainInput.value);
-            mainInput.value = '';
+            if(mainInput.value != '')
+            {    
+                addTag(mainInput.value);
+                mainInput.value = '';
+            }
         }
     });
 
     $('#post_search').on('submit',function(){
-        addTag(mainInput.value);
-        mainInput.value = '';
+        if(mainInput.value != '')
+        {  
+            addTag(mainInput.value);
+            mainInput.value = '';
+        }
     });
 
     el.appendChild(mainInput);
@@ -88,7 +94,7 @@
         tags.forEach(function (t) {
             tagsList.push(t.text);
         });
-        hiddenInput.value = tagsList.join(',');
+        hiddenInput.value = tagsList.join('+');
     }
 
     function filterTag (tag) {

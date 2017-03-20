@@ -96,7 +96,7 @@ class ProjectController extends Controller
 
     public function indexTag($tag)
     {
-        $tags = explode(',', $tag);
+        $tags = explode('+', $tag);
             //$tag = $this->tagRepository->getByName($request->input('tags-input'));
             $projects = $this->projectRepository->getWithUserAndTagsForTagPaginate(/*$tag->tag*/$tags, $this->nbrPerPage);
             $links = $projects->render();

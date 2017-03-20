@@ -168,7 +168,7 @@ pre-scrollable
 <div class="content_top">
       <div class="container">
          <div class="row">    
-        <div class="col-xs-12 search-container">
+        <div class="col-xs-11 search-container">
         <form action="{{route('postSearch')}}" method="POST" id="post_search">
             <div class="input-group">
                 <div class="input-group-btn search-panel">
