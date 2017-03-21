@@ -10,6 +10,7 @@ use App\Repositories\EntrepriseRepository;
 use App\Repositories\EntrepriseOrderRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ActivityRepository;
+use App\Repositories\LinkRepository;
 
 use Illuminate\Http\Request;
 
@@ -18,10 +19,11 @@ class EntrepriseController extends Controller
     protected $entrepriseRepository;
     protected $entrepriseOrderRepository;
     protected $categoryRepository;
+    protected $projectRepository;
 
     protected $nbrPerPage = 9;
 
-    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository)
+    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository, LinkRepository $linkRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
@@ -31,6 +33,7 @@ class EntrepriseController extends Controller
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
         $this->categoryRepository = $categoryRepository;
         $this->activityRepository = $activityRepository;
+        $this->linkRepository = $linkRepository;
     }
       public function index()
     {
@@ -82,6 +85,14 @@ class EntrepriseController extends Controller
         $this->entrepriseRepository->destroy($id);
 
         return back();
+    }
+
+    public function getEntreprisePendingProjects(Request $request)
+    {
+        $user = $request->user();
+        $links = $this->linkRepository->getEntreprisePendingProjects($user->entreprise->id);
+
+        return view('profiles.entreprise.pending', compact('links', 'user'));
     }
 
     public function getEntrepriseInfo(Request $request)

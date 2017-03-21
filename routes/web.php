@@ -45,8 +45,11 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	});
 
 	Route::group(['prefix' => 'entreprise'], function(){
-		Route::get('/', ['uses' => 'EntrepriseController@getEntrepriseInfo', 'as' => 'entreprises.info']);
+		Route::get('/informations', ['uses' => 'EntrepriseController@getEntrepriseInfo', 'as' => 'entreprises.info']);
 		Route::get('/waiting', ['uses' => 'EntrepriseController@getEntrepriseWaiting', 'as' => 'entreprises.waiting']);
+		Route::get('/projects', ['uses' => 'EntrepriseController@getEntreprisePendingProjects', 'as' => 'entreprises.pendingProjects']);
+		Route::get('/projects/attributions', ['uses' => 'EntrepriseController@getEntrepriseAttribtionProjects', 'as' => 'entreprises.attributionProjects']);
+		Route::get('/projects/launched', ['uses' => 'EntrepriseController@getEntrepriseLaunchedProjects', 'as' => 'entreprises.launchedProjects']);
 		
 	});
 

@@ -109,4 +109,10 @@ class LinkRepository extends ResourceRepository
 			}
 		}
 	}
+
+	public function getEntreprisePendingProjects($entreprise_id)
+	{
+		return $this->model->where('accepted', 0)->where('entreprise_id', $entreprise_id)->orderBy('created_at', 'desc')->get();
+	}
+
 }

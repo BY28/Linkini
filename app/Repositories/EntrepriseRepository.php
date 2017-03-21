@@ -60,4 +60,6 @@ class EntrepriseRepository extends ResourceRepository
 	{
 		return $this->model->where('name', 'LIKE', '%'.$query.'%')->orWhere('description', 'LIKE', '%'.$query.'%')->paginate($n);
 	}
+
+	
 }

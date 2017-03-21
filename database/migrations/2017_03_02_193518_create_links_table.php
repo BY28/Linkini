@@ -20,6 +20,9 @@ class CreateLinksTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->boolean('accepted')->default(false);
             $table->boolean('refused')->default(false);
+            $table->integer('amout')->unsigned();
+            $table->string('time');
+            $table->string('informations');
             $table->timestamps();
             $table->foreign('project_id')->references('id')->on('projects')
                         ->onDelete('restrict')
