@@ -40,13 +40,20 @@ class LinkRepository extends ResourceRepository
 
 		$entreprise = $inputs['entreprise'];
 
-		$link = $this->model->where('entreprise_id', $entreprise->id)->where('project_id', $project->id)->first();
+		$amount = $inputs['amount'];
+		$time = $inputs['time'];
+		$informations = $inputs['informations'];
+
+		$link = $this->model->where('entreprise_id', $entreprise->id)->where('project_id', $project->id)->where('refused', false)->first();
 		if(!$link)
 		{
 	    	$data = [
 	    		'project_id' => $project->id,
 	    		'entreprise_id' => $entreprise->id,
-	    		'user_id' => $user_id
+	    		'user_id' => $user_id,
+	    		'amount' => $amount,
+	    		'time' => $time,
+	    		'informations' => $informations
 	    	];
 
 	    	$this->store($data);
@@ -58,9 +65,39 @@ class LinkRepository extends ResourceRepository
 	    		'content' => 'L\'entreprise '. $entreprise->name . ' demande à travailler avec vous sur le projet '. $project->title .'.'
 	    	];
 		}
-		else
+		/*else
 		{
 			$this->model->destroy($link->id);
+
+			$data = [
+	    		'user_id' => $user_id,
+	    		'project_id' => $project->id,
+	    		'title' => 'Annulation de lien',
+	    		'content' => 'L\'entreprise '. $entreprise->name . ' a annulé la demande de travailler avec vous sur le projet '. $project->title .'.'
+	    	];
+
+		}*/
+
+	   	$this->notification->create($data);
+
+	}
+
+	public function projectUnLink($inputs)
+	{
+		$project = Project::where('id', $inputs['projectId'])->first();
+		$user_id = $project->user->id;
+
+		$entreprise = $inputs['entreprise'];
+
+		$link = $this->model->where('entreprise_id', $entreprise->id)->where('project_id', $project->id)->where('refused', false)->first();
+
+		if($link)
+		{
+			$updateData = [
+	    		'refused' => true
+	    	];
+
+			$link->update($updateData);
 
 			$data = [
 	    		'user_id' => $user_id,

@@ -229,13 +229,12 @@ pre-scrollable
                                     <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                                     @endif
                                         @if(Auth::user()->entreprise)
-                                    <a href="{{route('links.projectlink')}}" class="btn btn-primary btn-xs links" title="Link">
-                                    
-                                    
+                                    <!-- <a href="{{route('links.projectlink')}}" class="btn btn-primary btn-xs links" title="Link">
+                                    -->
+                                    <a href="#" data-toggle="modal" 
+   data-target="{{Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? '#deleteModal' : '#deleteModal' : '#sendModal'}}" class="btn btn-primary btn-xs links" title="Link">
                                         
-                                             {!! Auth::user()->entreprise->links()->where('project_id', $project->id)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? 'Accepted' : 'Linked' : 'Link' !!}
-                                        
-                                  
+                                             {!! Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? 'Accepted' : 'Linked' : 'Link' !!}
                                     
                                     </a>
 
@@ -269,12 +268,76 @@ pre-scrollable
 
     {!! $links !!}
 
+    <!-- Modals -->
+
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Send Demand</h4>
+      </div>
+      <div class="modal-body form-group">
+        <div class="form-group">
+          <input type="text" name="amount" class="form-control" id="amount" placeholder="Montant du service">
+        </div>
+        <div class="form-group">  
+          <input type="text" name="time" class="form-control" id="time" placeholder="Temps de réalisation (délais)">
+        </div>
+        <div class="form-group">  
+          <textarea type="text" name="informations" class="form-control" id="informations" placeholder="Informations supplémentaires..." rows="10"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Close</button> -->
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" id="save-send">
+            Save
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Cancel Demand</h4>
+      </div>
+      <p> Etes vous sur de vouloir annuler votre demande d'attribution<strong id="delete-cat"></strong> ?</p>
+      <div class="modal-footer">
+      <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Annuler</button>
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" id="save-delete">
+            Confirmer
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('scripts')
 
 <script>
-
+/*
 $('.links').click(function(event)
 {
     event.preventDefault();
@@ -303,7 +366,7 @@ $('.links').click(function(event)
          
     });
 });
-
+*/
 /* SEARCH */
 
 $('.tags-input').hide();
@@ -400,6 +463,81 @@ $(document).ready(function() {
         });
       }
   });
+});
+
+/* MODALS */
+
+$('.links').click(function(event) {
+  var projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+
+    $('#save-send').click(function(e){
+    event.preventDefault();
+      var amount = $('#amount').val();
+      var time = $('#time').val();
+      var informations = $('#informations').val();
+
+     var token = '{{Session::token()}}';
+     var urlLink = '{{route('links.projectlink')}}';
+
+
+      $.ajax({
+          method: 'POST',
+          url: urlLink,
+          data: {projectId: projectId, amount: amount, time: time, informations: informations, _token: token}
+
+      })
+      .done(function(){
+        if(event.target.innerText == 'Link')
+        {
+          event.target.innerText = 'Linked';
+        }
+        else
+        {
+          event.target.innerText = 'Link';
+        }
+        $(event.target).removeAttr('data-target');
+        $(event.target).attr('data-target', '#deleteModal');
+        $('#sendModal').modal('hide');
+      });
+  });
+
+});
+
+$('.links').click(function(event) {
+  
+   var projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+
+    $('#save-delete').click(function(e){
+    event.preventDefault();
+      var amount = $('#amount').val();
+      var time = $('#time').val();
+      var informations = $('#informations').val();
+
+     var token = '{{Session::token()}}';
+     var urlUnLink = '{{route('links.projectunlink')}}';
+
+
+      $.ajax({
+          method: 'POST',
+          url: urlUnLink,
+          data: {projectId: projectId, _token: token}
+
+      })
+      .done(function(){
+        if(event.target.innerText == 'Linked')
+        {
+          event.target.innerText = 'Link';
+        }
+        else
+        {
+          event.target.innerText = 'Linked';
+        }
+        $(event.target).removeAttr('data-target');
+        $(event.target).attr('data-target', '#sendModal');
+        $('#deleteModal').modal('hide');
+      });
+  });
+
 });
 
 </script>

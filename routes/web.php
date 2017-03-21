@@ -110,6 +110,7 @@ Route::group(['prefix' => 'entreprises'], function(){
 Route::group(['prefix' => 'projects'], function(){
 
 	Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+	Route::post('unlik', ['uses' => 'LinkController@projectUnLink', 'as' => 'links.projectunlink']);
 	Route::get('tag/{tag}', 'ProjectController@indexTag')->name('projects.tagResults');
 	Route::get('category/{category}', 'ProjectController@indexCategory')->name('projects.categoryResults');
 	Route::get('search/{query}', 'ProjectController@indexTitle')->name('projects.titleResults');

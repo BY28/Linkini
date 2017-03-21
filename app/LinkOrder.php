@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Link extends Model
+class LinkOrder extends Model
 {
     protected $fillable = [
-    	'project_id', 'entreprise_id', 'user_id', 'amount', 'time', 'informations', 'accepted', 'refused', 'seen'
+    	'project_id', 'entreprise_id', 'user_id','accepted', 'refused', 'seen'
     ];
 
     public function getCreatedAtAttribute($value)

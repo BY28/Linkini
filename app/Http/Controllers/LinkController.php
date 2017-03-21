@@ -37,6 +37,12 @@ class LinkController extends Controller
         $this->linkRepository->projectLink($inputs);
     }
 
+    public function projectUnLink(Request $request)
+    {
+        $inputs = array_merge($request->all(), ['entreprise' => $request->user()->entreprise]);
+        $this->linkRepository->projectUnLink($inputs);
+    }
+
     public function accept(Request $request)
     {
         $this->linkRepository->accept($request->all());

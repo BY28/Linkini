@@ -30,6 +30,11 @@ class Entreprise extends Model
         return $this->hasMany('App\Link');
     }
 
+    public function linkorders()
+    {
+        return $this->hasMany('App\LinkOrder');
+    }
+
     public function activity()
     {
         return $this->belongsTo('App\Activity');

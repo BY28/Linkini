@@ -2,7 +2,7 @@ jQuery(document).on('click', '.dropdown', function(e) {
   e.stopPropagation()
 });
 
-    $(document).ready(function() {  
+/*    $(document).ready(function() {  
   		 $(".carousel-inner").swiperight(function() {  
     		  $(this).parent().carousel('prev');  
 	    		});  
@@ -10,6 +10,7 @@ jQuery(document).on('click', '.dropdown', function(e) {
 		      $(this).parent().carousel('next');  
 	   });  
 	}); 
+*/
 /*
 $(document).ready(function(){
     $(".dropdown").hover(            

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLinksTable extends Migration
+class CreateLinkOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,27 +13,23 @@ class CreateLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('link_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->integer('entreprise_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->boolean('accepted')->default(false);
             $table->boolean('refused')->default(false);
-            $table->string('amount')->default('Non spécifié.');
-            $table->string('time')->default('Non spécifié.');
-            $table->string('informations')->défault('Pas d\'informations supplémentaires.');
             $table->timestamps();
             $table->foreign('project_id')->references('id')->on('projects')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
-
             $table->foreign('entreprise_id')->references('id')->on('entreprises')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
             $table->foreign('user_id')->references('id')->on('users')
                         ->onDelete('restrict')
-                        ->onUpdate('restrict');
+                        ->onUpdate('restrict');;
         });
     }
 
@@ -44,11 +40,11 @@ class CreateLinksTable extends Migration
      */
     public function down()
     {
-        Schema::table('links', function(Blueprint $table){
-            $table->dropForeign('links_project_id_foreign');
-            $table->dropForeign('links_entreprise_id_foreign');
-            $table->dropForeign('links_user_id_foreign');
+         Schema::table('link_orders', function(Blueprint $table){
+            $table->dropForeign('link_orders_project_id_foreign');
+            $table->dropForeign('link_orders_entreprise_id_foreign');
+            $table->dropForeign('link_orders_user_id_foreign');
         });
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('link_orders');
     }
 }

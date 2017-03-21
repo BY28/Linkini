@@ -258,9 +258,9 @@
           </span>
             @endif
             </a>
-            <ul class="dropdown-menu multi-level scrollable-menu" role="menu" aria-labelledby="dropdownMenu">
+            <ul class="dropdown-menu multi-level scrollable-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenu">
 
-              @foreach(Auth::user()->notifications as $notification)
+              @foreach(Auth::user()->notifications->reverse() as $notification)
                 @if(!$notification->seen)
 
                   <li>
@@ -287,8 +287,8 @@
         <li class="dropdown">
           <a href="#" class="fa fa-plus fa-lg" class="dropdown-toggle" data-toggle="dropdown"> </a>
            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="{{route('projects.create')}}" target="_blank">Créez Votre Projet</a></li>
-              <li><a href="{{route('entreprises.getorder')}}">Créez Votre Activité</a></li>
+              <li><a href="{{route('projects.create')}}" target="_blank">Créer un projet</a></li>
+              <li><a href="{{route('entreprises.getorder')}}">Créez votre activité</a></li>
             </ul>
           
         </li>
