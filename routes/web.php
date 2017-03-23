@@ -37,8 +37,9 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 
 
 	Route::group(['prefix' => 'projects'], function(){
-		Route::get('/', ['uses' => 'ProjectController@getPending', 'as' => 'projects.pending']);
-		Route::get('launched', ['uses' => 'ProjectController@getLaunched', 'as' => 'projects.launched']);
+		Route::get('/', ['uses' => 'ProjectController@getUserProjects', 'as' => 'projects.all']);
+		Route::get('/attributions', ['uses' => 'LinkController@getUserAttributionProjects', 'as' => 'projects.attributions']);
+		Route::get('launched', ['uses' => 'LinkController@getUserLaunchedProjects', 'as' => 'projects.launched']);
 		Route::get('create', ['uses' => 'ProjectController@create', 'as' => 'projects.create']);
 
 		Route::post('launch', ['uses' => 'ProjectController@launch', 'as' => 'projects.launch']);
@@ -47,9 +48,10 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	Route::group(['prefix' => 'entreprise'], function(){
 		Route::get('/informations', ['uses' => 'EntrepriseController@getEntrepriseInfo', 'as' => 'entreprises.info']);
 		Route::get('/waiting', ['uses' => 'EntrepriseController@getEntrepriseWaiting', 'as' => 'entreprises.waiting']);
-		Route::get('/projects', ['uses' => 'EntrepriseController@getEntreprisePendingProjects', 'as' => 'entreprises.pendingProjects']);
-		Route::get('/projects/attributions', ['uses' => 'EntrepriseController@getEntrepriseAttribtionProjects', 'as' => 'entreprises.attributionProjects']);
-		Route::get('/projects/launched', ['uses' => 'EntrepriseController@getEntrepriseLaunchedProjects', 'as' => 'entreprises.launchedProjects']);
+		Route::get('/projects', ['uses' => 'LinkController@getPendingProjects', 'as' => 'entreprises.pendingProjects']);
+		Route::get('/projects/attributions', ['uses' => 'LinkController@getAttributionProjects', 'as' => 'entreprises.attributionProjects']);
+		Route::get('/projects/launched', ['uses' => 'LinkController@getLaunchedProjects', 'as' => 'entreprises.launchedProjects']);
+		Route::get('/projects/canceled', ['uses' => 'LinkController@getCanceledProjects', 'as' => 'entreprises.canceledProjects']);
 		
 	});
 
@@ -94,6 +96,10 @@ Route::group(['prefix' => 'entreprises'], function(){
 	Route::get('order', ['uses' => 'EntrepriseController@getEntrepriseOrder', 'as' => 'entreprises.getorder']);
 	Route::post('order', ['uses' => 'EntrepriseController@postEntrepriseOrder', 'as' => 'entreprises.postorder']);
 	Route::post('links', ['uses' => 'LinkController@entrepriseLink', 'as' => 'links.entrepriselink']);
+	Route::post('links/order', ['uses' => 'LinkController@linkOrder', 'as' => 'links.linkorder']);
+	Route::post('links/unlink', ['uses' => 'LinkController@unlinkOrder', 'as' => 'links.unlinkorder']);
+	Route::post('links/confirm', ['uses' => 'LinkController@attributionConfirm', 'as' => 'links.attributionConfirm']);
+
 
 	Route::get('create', ['uses' => 'EntrepriseController@create', 'as' => 'entreprises.create']);
 	Route::get('edit', ['uses' => 'EntrepriseController@edit', 'as' => 'entreprises.edit']);
@@ -110,7 +116,10 @@ Route::group(['prefix' => 'entreprises'], function(){
 Route::group(['prefix' => 'projects'], function(){
 
 	Route::post('links', ['uses' => 'LinkController@projectLink', 'as' => 'links.projectlink']);
+	Route::post('links/accept', ['uses' => 'LinkController@attributionAccept', 'as' => 'links.attributionAccept']);
+	Route::post('links/cancel', ['uses' => 'LinkController@attributionCancel', 'as' => 'links.attributionCancel']);
 	Route::post('unlik', ['uses' => 'LinkController@projectUnLink', 'as' => 'links.projectunlink']);
+	Route::get('canceled', ['uses' => 'LinkController@getProjectsCanceled', 'as' => 'projects.canceled']);
 	Route::get('tag/{tag}', 'ProjectController@indexTag')->name('projects.tagResults');
 	Route::get('category/{category}', 'ProjectController@indexCategory')->name('projects.categoryResults');
 	Route::get('search/{query}', 'ProjectController@indexTitle')->name('projects.titleResults');

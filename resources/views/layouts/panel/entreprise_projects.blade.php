@@ -19,7 +19,7 @@
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
 	  <div class="btn-group header-btn" role="group">
 	  <a href="{{route('entreprises.pendingProjects')}}">
-	    <button type="button" class="btn btn-default">En attente</button>
+	    <button type="button" class="btn btn-default">Demandes</button>
 	  </a>
 	  </div>
 	  <div class="btn-group header-btn" role="group">
@@ -29,7 +29,12 @@
 	  </div>
 	  <div class="btn-group header-btn" role="group">
 	  	<a href="{{route('entreprises.launchedProjects')}}">
-	    	<button type="button" class="btn btn-default">Lancé</button>
+	    	<button type="button" class="btn btn-default">Lancés</button>
+	    </a>
+	  </div>
+	  <div class="btn-group header-btn" role="group">
+	  	<a href="{{route('entreprises.canceledProjects')}}">
+	    	<button type="button" class="btn btn-default">Annulés</button>
 	    </a>
 	  </div>
 	</div>

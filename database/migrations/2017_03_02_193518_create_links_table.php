@@ -20,6 +20,7 @@ class CreateLinksTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->boolean('accepted')->default(false);
             $table->boolean('refused')->default(false);
+            $table->boolean('confirmed')->default(false);
             $table->string('amount')->default('Non spécifié.');
             $table->string('time')->default('Non spécifié.');
             $table->string('informations')->défault('Pas d\'informations supplémentaires.');

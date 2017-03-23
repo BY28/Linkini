@@ -19,13 +19,10 @@
                         <td class="view-message ">{{$link->time}}</td>
                         <td class="view-message ">{{$link->informations}}</td>
                         <td class="view-message  text-right">{{$link->created_at}}</td>
-                        @if(!$link->confirmed)
-                         <td><a href="#" data-toggle="modal" 
-   data-target="#cancelModal" class="links">Annuler</a></td>
+                       <td><a href="#" data-toggle="modal" 
+   data-target="#acceptModal" class="links">Accepter</a></td>
                     </tr>
-                    @else
-                    <td>Confirmé</td>
-                        @endif
+                   
                    @endforeach
                 </tbody>
                 </table>
@@ -33,9 +30,10 @@
         </aside>
     </div>
    </div>
+
    <!-- MODALS -->
 
-   <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+   <div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,15 +42,15 @@
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" 
-        id="favoritesModalLabel">Cancel Project</h4>
+        id="favoritesModalLabel">Accept Demand</h4>
       </div>
-      <p> Etes-vous sur de vouloir annuler le projet en cours<strong id="cancel-cat"></strong> ?</p>
+      <p> Accepter la demande d'attribution<strong id="accept-cat"></strong> ?</p>
       <div class="modal-footer">
       <button type="button" 
            class="btn btn-default" 
            data-dismiss="modal">Annuler</button>
         <span class="pull-right">
-          <button type="button" class="btn btn-default" id="save-cancel">
+          <button type="button" class="btn btn-default" id="save-accept">
             Confirmer
           </button>
         </span>
@@ -60,6 +58,7 @@
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('scripts')
@@ -86,28 +85,27 @@ $('.launch').click(function(event)
     });
 });
 */
-
 /* MODALS */
 $('.links').click(function(event) {
   
    var linkId = event.target.parentNode.parentNode.dataset['linkid'];
    console.log(linkId);
-    $('#save-cancel').click(function(e){
+    $('#save-accept').click(function(e){
     event.preventDefault();
 
      var token = '{{Session::token()}}';
-     var urlCancel = '{{route('links.attributionCancel')}}';
+     var urlAccept = '{{route('links.attributionAccept')}}';
 
 
       $.ajax({
           method: 'POST',
-          url: urlCancel,
+          url: urlAccept,
           data: {linkId: linkId, _token: token}
 
       })
       .done(function(){
         event.target.parentNode.parentNode.remove();
-        $('#cancelModal').modal('hide');
+        $('#acceptModal').modal('hide');
       });
   });
 

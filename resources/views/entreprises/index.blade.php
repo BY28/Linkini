@@ -210,6 +210,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                              {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
                                          </a>
 
+                                          <a href="#" data-toggle="modal" 
+   data-target="#sendModal" class="btn btn-primary btn-xs links" title="Link">Notification</a>
+
                                           <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
 
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
@@ -241,7 +244,42 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     {!! $links !!}
   </div>
 
-
+    <!-- Modals -->
+@if(Auth::check())
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Send Demand</h4>
+      </div>
+      <div class="modal-body form-group">
+        <div class="form-group">
+          <select id="project-select" name="projectselect" class="form-control selectpicker">
+            @foreach(Auth::user()->projects as $project)
+                <option value="{{$project->id}}">{{$project->title}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Close</button> -->
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" id="save-send">
+            Save
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 @endsection
 
 @section('scripts')
@@ -366,7 +404,30 @@ $(document).ready(function() {
   });
 });
 
+/* MODALS */
 
+$('.links').click(function(event) {
+  var entrepriseId = event.target.parentNode.parentNode.parentNode.dataset['entrepriseid'];
+
+    $('#save-send').click(function(e){
+    event.preventDefault();
+
+     var token = '{{Session::token()}}';
+     var urlLink = '{{route('links.linkorder')}}';
+     var projectId = $('#project-select').val();
+
+      $.ajax({
+          method: 'POST',
+          url: urlLink,
+          data: {projectId: projectId, entrepriseId: entrepriseId, _token: token}
+
+      })
+      .done(function(){
+        $('#sendModal').modal('hide');
+      });
+  });
+
+});
 </script>
 
 @endsection

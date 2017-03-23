@@ -16,7 +16,7 @@ class FavoriteRepository extends ResourceRepository
 
 	public function favorites($user)
 	{
-		return $this->model->with('entreprise')
+		return $this->model->with('entreprise')->where('user_id', $user->id)
 		->orderBy('created_at', 'desc')->get();
 	}
 

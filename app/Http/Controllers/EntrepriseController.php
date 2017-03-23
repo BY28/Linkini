@@ -11,6 +11,7 @@ use App\Repositories\EntrepriseOrderRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ActivityRepository;
 use App\Repositories\LinkRepository;
+use App\Repositories\LinkOrderRepository;
 
 use Illuminate\Http\Request;
 
@@ -20,10 +21,12 @@ class EntrepriseController extends Controller
     protected $entrepriseOrderRepository;
     protected $categoryRepository;
     protected $projectRepository;
+    protected $linkRepository;
+    protected $linkOrderRepository;
 
     protected $nbrPerPage = 9;
 
-    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository, LinkRepository $linkRepository)
+    public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository, LinkRepository $linkRepository, LinkOrderRepository $linkOrderRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
@@ -34,6 +37,7 @@ class EntrepriseController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->activityRepository = $activityRepository;
         $this->linkRepository = $linkRepository;
+        $this->linkOrderRepository = $linkOrderRepository;
     }
       public function index()
     {
@@ -85,14 +89,6 @@ class EntrepriseController extends Controller
         $this->entrepriseRepository->destroy($id);
 
         return back();
-    }
-
-    public function getEntreprisePendingProjects(Request $request)
-    {
-        $user = $request->user();
-        $links = $this->linkRepository->getEntreprisePendingProjects($user->entreprise->id);
-
-        return view('profiles.entreprise.pending', compact('links', 'user'));
     }
 
     public function getEntrepriseInfo(Request $request)

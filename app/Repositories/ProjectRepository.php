@@ -80,6 +80,11 @@ class ProjectRepository extends ResourceRepository
 	{
 		return $this->model->where('title', 'LIKE', '%'.$query.'%')->orWhere('content', 'LIKE', '%'.$query.'%')->paginate($n);
 	}
+
+	public function getUserProjects($user_id)
+	{
+		return $this->model->where('user_id', $user_id)->get();
+	}
 	/*
 		*
 		* PAS DE SURCHARGE POUR LE MOMENT

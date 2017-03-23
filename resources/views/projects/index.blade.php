@@ -509,9 +509,6 @@ $('.links').click(function(event) {
 
     $('#save-delete').click(function(e){
     event.preventDefault();
-      var amount = $('#amount').val();
-      var time = $('#time').val();
-      var informations = $('#informations').val();
 
      var token = '{{Session::token()}}';
      var urlUnLink = '{{route('links.projectunlink')}}';

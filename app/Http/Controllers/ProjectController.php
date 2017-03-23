@@ -117,6 +117,14 @@ class ProjectController extends Controller
         ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
     }
 
+    public function getUserProjects(Request $request)
+    {
+        $user = $request->user();
+        $projects = $this->projectRepository->getUserProjects($user->id);
+        
+        return view('profiles.projects.all', compact('projects', 'user'));
+    }
+
      public function getPending(Request $request)
     {
         $projects = $this->projectRepository->getPending();

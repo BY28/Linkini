@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class LinkOrder extends Model
 {
     protected $fillable = [
-    	'project_id', 'entreprise_id', 'user_id','accepted', 'refused', 'seen'
+    	'project_id', 'entreprise_id', 'user_id'
     ];
 
     public function getCreatedAtAttribute($value)

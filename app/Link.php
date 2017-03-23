@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Link extends Model
 {
     protected $fillable = [
-    	'project_id', 'entreprise_id', 'user_id', 'amount', 'time', 'informations', 'accepted', 'refused', 'seen'
+    	'project_id', 'entreprise_id', 'user_id', 'amount', 'time', 'informations', 'accepted', 'refused', 'confirmed'
     ];
 
     public function getCreatedAtAttribute($value)

@@ -300,8 +300,8 @@
                 <a tabindex="-1" href="{{route('profile.index')}}">Mon Profil</a>
               </li>
               <li class="divider"></li>
-              <li><a href="{{route('projects.pending')}}">Mes Projets</a></li>
-              <li><a href="{{route('entreprises.info')}}">Mon Entreprise</a></li>
+              <li><a href="{{route('projects.all')}}">Mes Projets</a></li>
+              <li><a href="{{route('entreprises.pendingProjects')}}">Mon Entreprise</a></li>
               <li><a href="{{route('profile.favorites')}}">Mes Favoris</a></li>
               <li><a href="#">Mes Statistiques</a></li>
               @if(Auth::user()->admin)
