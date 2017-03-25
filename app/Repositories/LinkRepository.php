@@ -23,8 +23,8 @@ class LinkRepository extends ResourceRepository
 
 	public function notifications($user)
 	{
-		$notifications = $user->notifications->reverse();
-		return $notifications;
+		//$notifications = $user->notifications->reverse();
+		return $this->notification->where('user_id', $user->id)->paginate(12);
 	}
 
 	public function getLinks($user)

@@ -50,7 +50,7 @@
            class="btn btn-default" 
            data-dismiss="modal">Annuler</button>
         <span class="pull-right">
-          <button type="button" class="btn btn-default" id="save-accept">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Accepter de la demande" id="save-accept">
             Confirmer
           </button>
         </span>
@@ -92,6 +92,8 @@ $('.links').click(function(event) {
    console.log(linkId);
     $('#save-accept').click(function(e){
     event.preventDefault();
+    var $this = $(this);
+    $this.button('loading');
 
      var token = '{{Session::token()}}';
      var urlAccept = '{{route('links.attributionAccept')}}';
@@ -106,6 +108,7 @@ $('.links').click(function(event) {
       .done(function(){
         event.target.parentNode.parentNode.remove();
         $('#acceptModal').modal('hide');
+        $this.button('reset');
       });
   });
 

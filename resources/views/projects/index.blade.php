@@ -297,7 +297,7 @@ pre-scrollable
            class="btn btn-default" 
            data-dismiss="modal">Close</button> -->
         <span class="pull-right">
-          <button type="button" class="btn btn-default" id="save-send">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Envoi de la demande" id="save-send">
             Save
           </button>
         </span>
@@ -323,7 +323,7 @@ pre-scrollable
            class="btn btn-default" 
            data-dismiss="modal">Annuler</button>
         <span class="pull-right">
-          <button type="button" class="btn btn-default" id="save-delete">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Annulation de la demande" id="save-delete">
             Confirmer
           </button>
         </span>
@@ -472,6 +472,8 @@ $('.links').click(function(event) {
 
     $('#save-send').click(function(e){
     event.preventDefault();
+    var $this = $(this);
+    $this.button('loading');
       var amount = $('#amount').val();
       var time = $('#time').val();
       var informations = $('#informations').val();
@@ -498,6 +500,7 @@ $('.links').click(function(event) {
         $(event.target).removeAttr('data-target');
         $(event.target).attr('data-target', '#deleteModal');
         $('#sendModal').modal('hide');
+        $this.button('reset');
       });
   });
 
@@ -509,7 +512,8 @@ $('.links').click(function(event) {
 
     $('#save-delete').click(function(e){
     event.preventDefault();
-
+    var $this = $(this);
+    $this.button('loading');
      var token = '{{Session::token()}}';
      var urlUnLink = '{{route('links.projectunlink')}}';
 
@@ -532,6 +536,7 @@ $('.links').click(function(event) {
         $(event.target).removeAttr('data-target');
         $(event.target).attr('data-target', '#sendModal');
         $('#deleteModal').modal('hide');
+        $this.button('reset');
       });
   });
 

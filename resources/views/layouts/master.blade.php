@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/sidebar.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/tags.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/footer.css') }}">
 
 	@yield('styles')
 </head>
@@ -21,7 +22,7 @@
 <div class="container">
 	@yield('content')
 </div>
-
+@include('partials.footer')
 <script src="{{ URL::to('src/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap.min.js') }}"></script>

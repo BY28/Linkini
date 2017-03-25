@@ -51,6 +51,13 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     border: none;
 }
 
+.btn-info:active
+{
+   border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
 .search-results{
   position: absolute;
   top: 100%;

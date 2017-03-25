@@ -28,8 +28,9 @@ class LinkController extends Controller
     {
         $user = $request->user();
         $notifications = $this->linkRepository->notifications($user);
+        $links = $notifications->render();
 
-        return view('profiles.notifications.notifications', compact('user', 'notifications'));        
+        return view('profiles.notifications.notifications', compact('user', 'notifications', 'links'));        
     }
 
     public function getLinks(Request $request)
@@ -53,15 +54,17 @@ class LinkController extends Controller
     public function projectUnLink(Request $request)
     {
         $inputs = array_merge($request->all(), ['entreprise' => $request->user()->entreprise]);
-        if(isset($inputs['linkId']))
+        if(isset($inputs['linkid']))
         {
              $this->linkRepository->projectUnLink($inputs);
         }
         else
         {
-            if($link_id = $this->linkRepository->getLinkId($request->user()->entreprise->id, $inputs['projectId']))
+            $link_id = $this->linkRepository->getLinkId($request->user()->entreprise->id, $inputs['projectId']);
+            if($link_id)
             {    
                 $inputs = array_merge($inputs, ['linkid' => $link_id]);
+                $this->linkRepository->projectUnLink($inputs);
             }
         }
        

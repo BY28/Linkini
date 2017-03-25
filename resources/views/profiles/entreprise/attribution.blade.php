@@ -50,7 +50,7 @@
            class="btn btn-default" 
            data-dismiss="modal">Annuler</button>
         <span class="pull-right">
-          <button type="button" class="btn btn-default" id="save-delete">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Annulation de la demande" id="save-delete">
             Confirmer
           </button>
         </span>
@@ -94,6 +94,8 @@ $('.links').click(function(event) {
 
     $('#save-delete').click(function(e){
     event.preventDefault();
+    var $this = $(this);
+    $this.button('loading');
 
      var token = '{{Session::token()}}';
      var urlUnLink = '{{route('links.projectunlink')}}';
@@ -108,6 +110,7 @@ $('.links').click(function(event) {
       .done(function(){
         event.target.parentNode.parentNode.remove();
         $('#deleteModal').modal('hide');
+        $this.button('reset');
       });
   });
 
