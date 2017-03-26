@@ -86,12 +86,13 @@ $('.launch').click(function(event)
 });
 */
 /* MODALS */
+var linkId = null;
+var $buttonClicked = null;
 $('.links').click(function(event) {
-  
-   var linkId = event.target.parentNode.parentNode.dataset['linkid'];
-   console.log(linkId);
+   linkId = event.target.parentNode.parentNode.dataset['linkid'];
+   $buttonClicked = event.target;
+});
     $('#save-accept').click(function(e){
-    event.preventDefault();
     var $this = $(this);
     $this.button('loading');
 
@@ -106,13 +107,13 @@ $('.links').click(function(event) {
 
       })
       .done(function(){
-        event.target.parentNode.parentNode.remove();
+        $buttonClicked.parentNode.parentNode.remove();
         $('#acceptModal').modal('hide');
         $this.button('reset');
+        linkId = null;
+        $buttonClicked = null;
       });
   });
-
-});
 
 </script>
 

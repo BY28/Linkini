@@ -405,12 +405,12 @@ $(document).ready(function() {
 });
 
 /* MODALS */
-
+/*SEND NOTIFICATION*/
+var entrepriseId = null;
 $('.links').click(function(event) {
-  var entrepriseId = event.target.parentNode.parentNode.parentNode.dataset['entrepriseid'];
-
+  entrepriseId = event.target.parentNode.parentNode.parentNode.dataset['entrepriseid'];
+});
     $('#save-send').click(function(e){
-    event.preventDefault();
     var $this = $(this);
     $this.button('loading');
 
@@ -427,10 +427,9 @@ $('.links').click(function(event) {
       .done(function(){
         $('#sendModal').modal('hide');
         $this.button('reset');
+        entrepriseId = null;
       });
   });
-
-});
 </script>
 
 @endsection

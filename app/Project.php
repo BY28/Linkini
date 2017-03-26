@@ -25,9 +25,9 @@ class Project extends Model
         return $this->hasMany('App\Link');
     }
 
-    public function linkorders()
+    public function linkorder()
     {
-        return $this->hasMany('App\LinkOrder');
+        return $this->hasOne('App\LinkOrder');
     }
 
     public function category()

@@ -467,11 +467,15 @@ $(document).ready(function() {
 
 /* MODALS */
 
-$('.links').click(function(event) {
-  var projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+/* LINKPROJECT */
+var projectId = null;
+var $buttonClicked = null;
 
+$('.links').click(function(event) {
+  projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+  $buttonClicked = event.target;
+});
     $('#save-send').click(function(e){
-    event.preventDefault();
     var $this = $(this);
     $this.button('loading');
       var amount = $('#amount').val();
@@ -489,29 +493,29 @@ $('.links').click(function(event) {
 
       })
       .done(function(){
-        if(event.target.innerText == 'Link')
+        if($buttonClicked.innerText == 'Link')
         {
-          event.target.innerText = 'Linked';
+          $buttonClicked.innerText = 'Linked';
         }
         else
         {
-          event.target.innerText = 'Link';
+          $buttonClicked.innerText = 'Link';
         }
-        $(event.target).removeAttr('data-target');
-        $(event.target).attr('data-target', '#deleteModal');
+        $($buttonClicked).removeAttr('data-target');
+        $($buttonClicked).attr('data-target', '#deleteModal');
         $('#sendModal').modal('hide');
         $this.button('reset');
+        projectId = null;
+        $buttonClicked = null;
       });
   });
 
-});
+/* UNLINKPROJECT */
 
 $('.links').click(function(event) {
-  
-   var projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
-
-    $('#save-delete').click(function(e){
-    event.preventDefault();
+  projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+});
+  $('#save-delete').click(function(e){
     var $this = $(this);
     $this.button('loading');
      var token = '{{Session::token()}}';
@@ -525,22 +529,22 @@ $('.links').click(function(event) {
 
       })
       .done(function(){
-        if(event.target.innerText == 'Linked')
+        if($buttonClicked.innerText == 'Linked')
         {
-          event.target.innerText = 'Link';
+          $buttonClicked.innerText = 'Link';
         }
         else
         {
-          event.target.innerText = 'Linked';
+          $buttonClicked.innerText = 'Linked';
         }
-        $(event.target).removeAttr('data-target');
-        $(event.target).attr('data-target', '#sendModal');
+        $($buttonClicked).removeAttr('data-target');
+        $($buttonClicked).attr('data-target', '#sendModal');
         $('#deleteModal').modal('hide');
         $this.button('reset');
+        projectId = null;
+        $buttonClicked = null;
       });
   });
-
-});
 
 </script>
 
