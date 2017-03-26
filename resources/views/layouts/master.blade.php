@@ -14,20 +14,28 @@
 	@yield('styles')
 </head>
 <body>
+
+<div id="wrapper">
+	
 @include('partials.header')
 
 @yield('banner')
 @yield('sidebar')
 
-<div class="container">
+<div class="container fill">
 	@yield('content')
 </div>
+
 @include('partials.footer')
+
+</div>
+
 <script src="{{ URL::to('src/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::to('src/js/functions.js') }}"></script>
 <script src="{{ URL::to('src/js/tags.js') }}"></script>
 @yield('scripts')
+
 </body>
 </html>

@@ -209,10 +209,10 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                          <a href="#" class="btn btn-primary btn-xs favorites" title="Approved">
                                              {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
                                          </a>
-
+                                         @if(Auth::user()->projects->count() > 0)
                                           <a href="#" data-toggle="modal" 
    data-target="#sendModal" class="btn btn-primary btn-xs links" title="Link">Notification</a>
-
+                                          @endif
                                           <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
 
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}

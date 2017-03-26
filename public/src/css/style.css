@@ -1,3 +1,22 @@
+html,body{
+    padding:0;
+    margin:0;
+    height:100%;
+}
+
+#wrapper{
+    min-height:100%;
+    position:relative;
+}
+footer {
+  position: absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:red;
+  height:100px;
+}
+
 .mega-dropdown {
   position: static !important;
 }

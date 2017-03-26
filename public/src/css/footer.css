@@ -128,3 +128,24 @@
 {
   color: #ea5817;
 }
+
+.btn-lg
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
+
+.btn-lg:hover
+{
+    border-radius: 0px;
+    background-color: #f96625;
+    border: none;
+}
+
+.btn-lg:active
+{
+    border-radius: 0px;
+    background-color: #ea5817;
+    border: none;
+}
