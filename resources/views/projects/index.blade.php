@@ -514,6 +514,7 @@ $('.links').click(function(event) {
 
 $('.links').click(function(event) {
   projectId = event.target.parentNode.parentNode.parentNode.dataset['projectid'];
+  $buttonClicked = event.target;
 });
   $('#save-delete').click(function(e){
     var $this = $(this);
