@@ -13,8 +13,7 @@ footer {
   bottom:0;
   left:0;
   width:100%;
-  background:red;
-  height:100px;
+  height: 0px;
 }
 
 .mega-dropdown {
@@ -450,3 +449,180 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   border-bottom: #ea5817 solid 3px;
 }
 
+/* SERVICES */
+
+#work-shop {
+    background-color: rgb(247, 247, 247);
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.service-box{
+    background: #fff;
+    padding: 60px 30px 80px;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+    margin-left: 0.75em;
+}
+.icon-box i {
+    color: #ea5817;
+    font-size: 65px;
+}
+.ser-text {
+    font-size: 24px;
+}
+.icon-box, .icon-text {
+    padding: 20px 0px 0px;
+}
+
+
+/***********************************
+************************************
+Responsive media queries
+************************************
+***********************************/
+
+ @media (min-width: 769px) and (max-width: 980px) {
+    .ser-text {
+    font-size: 20px;
+    }
+    .service-box, .feature-info, .orga-stru{
+        margin-bottom: 30px;
+    }
+    .pricing-head .amount {
+    font-size: 51px;
+    }
+    .price-table .pricing-head h4 {
+    font-size: 18px;
+    }
+}
+@media (min-width: 451px) and (max-width: 768px) {
+    .ser-text {
+    font-size: 20px;
+    }
+    .service-box, .feature-info{
+        margin-bottom: 30px;
+    }
+
+    .pricing-head .amount {
+    font-size: 51px;
+    }
+    .price-table .pricing-head h4 {
+    font-size: 18px;
+    }   
+}
+@media (min-width: 20px) and (max-width: 450px) {
+    .text-dec {
+    font-size: 20px;
+    }
+    .big-text {
+    font-size: 30px;
+    }
+    .small-text {
+    font-size: 14px;
+    }
+    .intro-para {
+    font-size: 30px;
+    }
+    .header-section p{
+        font-size: 14px;
+    }
+    .heading {
+    margin-bottom: 20px;
+    }
+    .orga-stru i {
+    font-size: 92px;
+    }
+    .orga-stru {
+    padding: 5px 5px 15px 5px;
+    width: 75px;
+    margin-bottom: 20px;
+    }
+    .orga-stru h3 {
+    font-size: 28px;
+    }
+    .orga-stru p {
+    font-size: 13px;
+    }
+    h3.det-txt {
+    font-size: 28px;
+    }
+    .cta-2-txt {
+    font-size: 20px;
+    }
+    .service-box, .text-comment, .price-table{
+        margin-bottom: 30px;
+    }
+    .contact-form-button{
+        width: 40%;
+    }
+    .footer .social-links li {
+    margin: 0 5px 25px;
+    }
+    .cta-2-form-submit-btn {
+    font-size: 10px;
+    }
+    .cta-2-form input[type="email"] {
+    padding: 13px 10px;
+    font-size: 10px;
+    min-width: 187px;
+    }
+    .modal-sm {
+    width: 300px;
+    }
+    .login-box-body {
+    padding: 15px 20px;
+    }
+    .navbar-default .navbar-brand{
+        margin-left: 10px;
+    }
+    .navbar-default .navbar-nav > li > a{
+        text-align: center;
+    }
+}
+
+/* HOME SECTIONS */
+
+
+body {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bg-primary {
+  background-color: #f96625;
+}
+.bg-dark {
+  background-color: #ea5817;
+  color: white;
+}
+.text-faded {
+  color: rgba(255, 255, 255, 0.7);
+}
+.section {
+  padding: 100px 0;
+}
+.section-boxes
+{
+  padding: 50px 0; 
+}
+aside {
+  padding: 50px 0;
+}
+
+.section-heading {
+  margin-top: 0;
+}
+.service-box {
+  max-width: 400px;
+  margin: 50px auto 0;
+}
+@media (min-width: 992px) {
+  .service-box {
+    margin: 20px auto 0;
+  }
+}
+.service-box p {
+  margin-bottom: 0;
+}
+
+.text-primary {
+  color: #f96625;
+}

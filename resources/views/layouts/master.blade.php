@@ -22,10 +22,10 @@
 @yield('banner')
 @yield('sidebar')
 
-<div class="container fill">
+<div class="container">
 	@yield('content')
 </div>
-
+@yield('addContent')
 @include('partials.footer')
 
 </div>

@@ -225,13 +225,13 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
+                                    <img class="img-responsive height-box" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
+                                    <img class="img-responsive height-box" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive" src="http://lorempixel.com/750/500/" alt="">
+                                    <img class="img-responsive height-box" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
                             </div>
 
@@ -240,7 +240,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     </div>
 
                     <!-- Service Tabs -->
-        <div class="col-md-6 bhoechie-tab-container">
+        <div class="col-md-6 bhoechie-tab-container height-box">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
               <div class="list-group">
                 <a href="#" class="list-group-item active text-center">
@@ -295,6 +295,45 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
         </div>
 
      </div>
+      <!--  <section id="work-shop" class="section-padding">
+      
+        <div class="row">
+          <div class="header-section text-center">
+          <div class="col-md-4 col-sm-6">
+            <div class="service-box text-center">
+              <div class="icon-box">
+                <i class="fa fa-line-chart color-green"></i>
+              </div>
+              <div class="icon-text">
+                <h4 class="ser-text">Elargissez votre réseau</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="service-box text-center">
+              <div class="icon-box">
+                <i class="fa fa-rocket color-green"></i>
+              </div>
+              <div class="icon-text">
+                <h4 class="ser-text">Réalisez vos rêves</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="service-box text-center">
+              <div class="icon-box">
+                <i class="fa fa-money color-green"></i>
+              </div>
+              <div class="icon-text">
+                <h4 class="ser-text">Réussissez financierement</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section> -->
+    <!--
      <div class="row">
         <div class="row">
             <div class="col-md-9">
@@ -302,7 +341,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     Carousel Product Cart Slider</h3>
             </div>
             <div class="col-md-3">
-                <!-- Controls -->
+               
                 <div class="controls pull-right hidden-xs">
                     <a class="left fa fa-chevron-left btn btn-primary" href="#carousel-example"
                         data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-primary" href="#carousel-example"
@@ -311,9 +350,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             </div>
         </div>
         <div id="carousel-example" class="carousel slide" data-interval="false">
-        <!-- CONTAINER -->
+       
         <div class="container">
-            <!-- Wrapper for slides -->
+            
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -559,10 +598,12 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                 </div>
             </div>
         </div>
-        <!-- -->
+      
         </div>
-        <!-- -->
+     
     </div>
+    -->
+    <!--
     <div class="row">
         <div class="row">
             <div class="col-md-9">
@@ -570,7 +611,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     Carousel Product Cart Slider</h3>
             </div>
             <div class="col-md-3">
-                <!-- Controls -->
+      
                 <div class="controls pull-right hidden-xs">
                     <a class="left fa fa-chevron-left btn btn-primary" href="#carousel-example-generic"
                         data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-primary" href="#carousel-example-generic"
@@ -579,9 +620,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             </div>
         </div>
         <div id="carousel-example-generic" class="carousel slide" data-interval="false">
-<!-- CONTAINER -->
+
         <div class="container">
-            <!-- Wrapper for slides -->
+      
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row">
@@ -767,11 +808,79 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                 </div>
             </div>
         </div>
-        <!-- -->
-        </div>
-        <!-- -->
-    </div>
 
+        </div>
+
+    </div>
+-->
+@endsection
+
+@section('addContent')
+
+    <section id="services" class="section-boxes">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Your Service</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <h3>Sturdy Templates</h3>
+                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <h3>Ready to Ship</h3>
+                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>Up to Date</h3>
+                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+                        <h3>Made with Love</h3>
+                        <p class="text-muted">You have to make your websites with love these days!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="bg-primary section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">We've got what you need!</h2>
+                    <hr class="light">
+                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Free Download at Start Bootstrap!</h2>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
+            </div>
+        </div>
+    </aside>
 @endsection
 
 @section('scripts')
@@ -872,5 +981,24 @@ $(document).ready(function() {
   });
 });
 
+$( document ).ready(function() {
+    var heights = $(".service-box").map(function() {
+        return $(this).height();
+    }).get(),
+
+    maxHeight = Math.max.apply(null, heights);
+
+    $(".service-box").height(maxHeight);
+});
+
+$( document ).ready(function() {
+    var heights = $(".height-box").map(function() {
+        return $(this).height();
+    }).get(),
+
+    maxHeight = Math.max.apply(null, heights);
+
+    $(".height-box").height(maxHeight);
+});
 </script>
 @endsection
