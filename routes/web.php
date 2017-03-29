@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('contact', function () {
+    return view('contact');
+})->name('contact');
+
 /* NEWSLETTER */
 
 Route::get('newsletter', 'EmailController@getForm');
@@ -22,7 +26,8 @@ Route::post('newsletter', [
 		'uses' => 'EmailController@postForm',
 		'as' => 'storeEmail'
 	]);
-
+Route::get('notifications/update', 'LinkController@updateNotifications')->name('notifications.update');
+Route::get('messages/update', 'MessageController@unreadMessages')->name('messages.update');
 /* PROFILE */
 
 Route::group(['prefix' => 'profile'], function(){

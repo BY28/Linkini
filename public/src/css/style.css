@@ -588,6 +588,7 @@ body {
 
 .bg-primary {
   background-color: #f96625;
+  background: url('../../images/banners/bot_banner.PNG') no-repeat;
 }
 .bg-dark {
   background-color: #ea5817;

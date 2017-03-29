@@ -23,6 +23,20 @@ class MessageController extends Controller
 
     	return view('profiles.messages.notifications',  compact('notifications', 'user'));
     }
+
+    public function unreadMessages(Request $request)
+    {
+        $output = "";
+        $user = $request->user();
+
+        if($request->ajax())
+        {
+
+                $data = $user->getUnreadMessagesNum();
+               
+                return Response($data);
+        }
+    }
     
     public function getMessages(Request $request)
     {

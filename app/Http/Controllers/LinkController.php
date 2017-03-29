@@ -33,6 +33,47 @@ class LinkController extends Controller
         return view('profiles.notifications.notifications', compact('user', 'notifications', 'links'));        
     }
 
+    public function updateNotifications(Request $request)
+    {
+        $output = "";
+        $user = $request->user();
+
+        if($request->ajax())
+        {
+
+                foreach($user->notifications->reverse() as $notification)
+                {
+                    if(!$notification->seen)
+                    {
+                        $output .= '<li>
+                            <a href="'.route('projects.show', $notification->project_id).'"> 
+                            
+                            <div class="notification-title">'. $notification->title .'</div>
+                            <p>'.$notification->content.'</p>
+
+                            </a>
+                          </li>';
+                    }
+                }
+
+                if($user->notifications->where('seen', false)->count() <= 0)
+                {
+                     $output .= '<li>
+                  <a href="'.route('profile.notifications').'">
+                     <div class="notification-title">Voir toutes les notifications</div>
+                     <p>Pas de nouvelles notifications.</p>
+                  </a>
+                 </li>';
+                }
+
+                $data[0] = $output;
+                $data[1] = $user->notifications->where('seen', false)->count();
+               
+                return Response($data);
+        }
+
+    }
+
     public function getLinks(Request $request)
     {
         $links = $this->LinkRepository->getLinks($request->user());

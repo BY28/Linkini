@@ -27,6 +27,11 @@ class LinkRepository extends ResourceRepository
 		return $this->notification->where('user_id', $user->id)->paginate(12);
 	}
 
+	public function unreadNotifications($user)
+	{
+		return $this->notification->where('user_id', $user->id)->where('seen', false)->orderBy('created_at', 'desc')->get();
+	}
+
 	public function getLinks($user)
     {
     	if($user->entreprise != null)

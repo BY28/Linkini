@@ -239,26 +239,26 @@
         <!-- ajout de mon code --> 
 
         <li class="dropdown">
-          <a href="#" class="fa fa-envelope fa-lg" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="fa fa-envelope fa-lg" class="dropdown-toggle" data-toggle="dropdown" id="messages">
             @if(Auth::user()->getUnreadMessagesNum()>0)
-            <span class="badge">{{Auth::user()->getUnreadMessagesNum()}}</span>
+            <span class="badge" id="messages_badge">{{Auth::user()->getUnreadMessagesNum()}}</span>
             @endif
           </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="{{route('messages.inbox')}}">Messages reçus</a></li>
+              <li><a href="{{route('messages.sent')}}">Messages envoyés</a></li>
               <li><a href="{{route('messages.create')}}">Nouveau Message</a></li>
-              <li><a href="{{route('messages.inbox')}}">Message reçus</a></li>
-              <li><a href="{{route('messages.sent')}}">Message envoyés</a></li>
             </ul>
         </li>
 
       <li class="dropdown">
-          <a href="#" class="fa fa-bell fa-lg" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="fa fa-bell fa-lg" class="dropdown-toggle" data-toggle="dropdown" id="notifications">
           @if(Auth::user()->notifications->where('seen', false)->count())
-          <span class="badge">{{Auth::user()->notifications->where('seen', false)->count()}}
+          <span class="badge" id="notifications_badge">{{Auth::user()->notifications->where('seen', false)->count()}}
           </span>
             @endif
             </a>
-            <ul class="dropdown-menu multi-level scrollable-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenu">
+            <ul class="dropdown-menu multi-level scrollable-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenu" id="update_notifications">
 
               @foreach(Auth::user()->notifications->reverse() as $notification)
                 @if(!$notification->seen)
@@ -281,6 +281,7 @@
                   </a>
                  </li>
               @endif
+
             </ul>
         </li>
          
@@ -331,5 +332,54 @@
       
         @endif
       </ul>
-  </div><!-- /.nav-collapse -->
+  </div>
   </nav>
+
+  <script type="text/javascript">
+window.setInterval(function(){
+  
+  $.ajax({
+      type : 'GET',
+      url : '{{route('notifications.update')}}',
+      success:function(data){
+
+        $('#update_notifications').html(data[0]);
+        if(data[1] <= 0)
+        {
+          $('#notifications_badge').remove();
+        }
+        else
+        {
+          if(data[1] >= 100)
+          {
+            data[1] = '+99';
+          }
+          var fill = '<span class="badge" id="notifications_badge">'+data[1]+'</span>';
+          $('#notifications').html(fill);
+        }
+      }
+    });
+
+  $.ajax({
+      type : 'GET',
+      url : '{{route('messages.update')}}',
+      success:function(data){
+
+        if(data <= 0)
+        {
+          $('#messages_badge').remove();
+        }
+        else
+        {
+          if(data >= 100)
+          {
+            data = '+99';
+          }
+          var fill = '<span class="badge" id="messages_badge">'+data+'</span>';
+          $('#messages').html(fill);
+        }
+      }
+    });
+
+}, 5000);
+  </script>
