@@ -189,15 +189,15 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
 
-    <section class="col-xs-12 col-sm-6 col-md-12">
+    <section class="col-xs-12 col-sm-12 col-md-12">
     
     @foreach($entreprises as $entreprise)
 
         <article class="search-result row" data-entrepriseid="{{$entreprise->id}}">
-                <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
                   <a href="#" title="Lorem ipsum" class="thumbnail"><img src="{{ URL::to('uploads/business')}}/{{$entreprise->image}}" alt="Lorem ipsum" /></a>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 result">
+                <div class="col-xs-6 col-sm-6 col-md-6 result">
                     <h3><a href="#" title="">{{ $entreprise->name }}</a></h3>
                     <p>{{ $entreprise->description }}</p>                        
 
@@ -206,9 +206,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                       @if(Auth::check())
                                        <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
 
-                                         <a href="#" class="btn btn-primary btn-xs favorites" title="Approved">
+                                         <button type="button" class="btn btn-primary btn-xs favorites" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" title="Approved">
                                              {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
-                                         </a>
+                                         </button>
                                          @if(Auth::user()->projects->count() > 0)
                                           <a href="#" data-toggle="modal" 
    data-target="#sendModal" class="btn btn-primary btn-xs links" title="Link">Notification</a>
@@ -223,7 +223,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>
+                <div class="col-xs-3 col-sm-3 col-md-3"><i class="glyphicon glyphicon-tags"></i>
                  {!! link_to('entreprises/category/' . $entreprise->activity->category->category_url, $entreprise->activity->category->name) !!}
                     <ul class="meta-search">
                      {!! link_to('entreprises/activity/' . $entreprise->activity->activity_url, $entreprise->activity->name) !!}
@@ -289,7 +289,11 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 $('.favorites').click(function(event)
 {
     event.preventDefault();
-    
+    var $this = $(this);
+    //$this.button('loading');
+    var text = event.target.innerText;
+    $this.attr('disabled', 'disabled');
+    $this.html('<i class="fa fa-refresh fa-spin"></i>');
     var token = '{{Session::token()}}';
     var urlFav = '{{route('favorites.add')}}';
 
@@ -302,8 +306,9 @@ $('.favorites').click(function(event)
 
     })
     .done(function(){
-
-         if(event.target.innerText == 'Fav')
+         //$this.button('reset');
+        $this.removeAttr('disabled');
+         if(text == 'Fav')
          {
             event.target.innerText = 'UnFav';
          }
@@ -311,7 +316,7 @@ $('.favorites').click(function(event)
          {
             event.target.innerText = 'Fav';
          }
-         
+        
     });
 });
 

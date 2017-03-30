@@ -32,7 +32,7 @@
 						{!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Message']) !!}
 						{!! $errors->first('message', '<small class="help-block">:message</small>') !!}
 					</div>
-					{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{{ Form::button('Envoyer', ['type' => 'submit', 'class' => 'btn btn-primary pull-right send', 'data-loading-text' => '<i class="fa fa-refresh fa-spin"></i> Envoi du message']) }}
 					{!! Form::close() !!}
 				</div>
 			</div>
@@ -40,4 +40,17 @@
 
    </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+	
+$('.send').click(function(event)
+{
+
+    var $this = $(this);
+    $this.button('loading');
+
+});
+</script>
 @endsection

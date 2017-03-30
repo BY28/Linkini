@@ -101,9 +101,16 @@ class ProjectController extends Controller
             $projects = $this->projectRepository->getWithUserAndTagsForTagPaginate(/*$tag->tag*/$tags, $this->nbrPerPage);
             $links = $projects->render();
             $categories = $this->categoryRepository->categories();
-
-            return view('projects.index', compact('projects', 'categories', 'links'));/*
-        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+        if($projects->count() > 0)
+        {
+            return view('projects.index', compact('projects', 'categories', 'links'))
+                    ->with('info', 'Résultats pour la recherche : ' . $tag);
+        }
+        else
+        {
+            return view('projects.index', compact('projects', 'categories', 'links'))
+                    ->with('info', 'Aucun résultat pour la recherche : ' . $tag);
+        }
     }
 
     public function indexTitle($query)
@@ -112,9 +119,16 @@ class ProjectController extends Controller
             $projects = $this->projectRepository->getProjectsFromTitle($query, $this->nbrPerPage);
             $links = $projects->render();
             $categories = $this->categoryRepository->categories();
-
-            return view('projects.index', compact('projects', 'categories', 'links'));/*
-        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+        if($projects->count() > 0)
+        {
+            return view('projects.index', compact('projects', 'categories', 'links'))
+                    ->with('info', 'Résultats pour la recherche : ' . $query);
+        }
+        else
+        {
+            return view('projects.index', compact('projects', 'categories', 'links'))
+                    ->with('info', 'Aucun résultat pour la recherche : ' . $query);
+        }
     }
 
     public function getUserProjects(Request $request)

@@ -37,7 +37,7 @@
 						{!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
 						{!! $errors->first('content', '<small class="help-block">:project</small>') !!}
 					</div>
-					{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{!! Form::button('Envoyer', ['type' => 'submit', 'class' => 'btn btn-primary pull-right send', 'data-loading-text' => '<i class="fa fa-refresh fa-spin"></i> Creation du projet']) !!}
 					{!! Form::close() !!}
 				</div>
 			</div>
@@ -45,4 +45,17 @@
 
    </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+	
+$('.send').click(function(event)
+{
+
+    var $this = $(this);
+    $this.button('loading');
+
+});
+</script>
 @endsection

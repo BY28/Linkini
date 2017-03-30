@@ -334,7 +334,7 @@
       </ul>
   </div>
   </nav>
-
+@if(Auth::check())
   <script type="text/javascript">
 window.setInterval(function(){
   
@@ -383,3 +383,4 @@ window.setInterval(function(){
 
 }, 5000);
   </script>
+@endif

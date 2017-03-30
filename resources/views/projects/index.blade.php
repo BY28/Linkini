@@ -206,19 +206,19 @@ pre-scrollable
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
 
-    <section class="col-xs-12 col-sm-6 col-md-12">
+    <section class="col-xs-12 col-sm-12 col-md-12">
     
     @foreach($projects as $project)
 
         <article class="search-result row" data-projectid="{{$project->id}}">
-                <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
                     <ul class="meta-search pull-left">
                         <li><i class="glyphicon glyphicon-calendar"></i> <span>{!! $project->created_at->format('d/m/Y') !!}</span></li>
                         <li><i class="glyphicon glyphicon-time"></i> <span>{!! $project->created_at->format('H:m') !!}</span></li>
                         <li><i class="glyphicon glyphicon-user"></i> <span>{!! $project->user->email !!}</span></li>
                     </ul>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 result">
+                <div class="col-xs-6 col-sm-6 col-md-6 result">
                     <h3><a href="#" title="">{{ $project->title }}</a></h3>
                     <p>{{ $project->content }}</p>                        
 
@@ -251,7 +251,7 @@ pre-scrollable
                     
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3"><i class="glyphicon glyphicon-tags"></i>  {!! link_to('projects/category/' . $project->category->category_url, $project->category->name) !!}
+                <div class="col-xs-3 col-sm-3 col-md-3"><i class="glyphicon glyphicon-tags"></i>  {!! link_to('projects/category/' . $project->category->category_url, $project->category->name) !!}
                 
                     <ul class="meta-search">Tags
                         @foreach($project->tags as $tag)

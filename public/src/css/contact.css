@@ -42,7 +42,7 @@
 	font-weight: bold;
     width: 35%;
     display: inline-block;
-	color:#212121;
+	color:#333;
 }
 .mail_right ul li span i {
     padding-right: 1em;
@@ -62,7 +62,7 @@
 	text-decoration:none;
 }
 .mail_right ul li a:hover{
-	color:#212121;
+	color:#333;
 }
 .mail_right ul li:last-child{
 	margin-bottom:0;
@@ -109,7 +109,7 @@
 	position: relative;
     font-size: 2em;
     font-weight: 600;
-    color: #212121;
+    color: #333;
     text-align: center;
     padding-bottom:.8em;
     text-transform: uppercase;
@@ -161,7 +161,7 @@
     background:none;
     border:2px solid #b5b5b5;
     font-size: 12px;
-    color: #212121;
+    color: #333;
     width:97.5%;
     padding:.9em 0.5em;
 	margin: 2em 0;
@@ -270,7 +270,7 @@
 	padding:.9em 0.5em;
 	background: transparent;
 	border: 2px solid #b5b5b5;
-	color: #212121;
+	color: #333;
 	-webkit-transition: border-color 0.25s;
 	transition: border-color 0.25s;
 }

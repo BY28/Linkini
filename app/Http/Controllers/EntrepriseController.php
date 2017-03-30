@@ -170,8 +170,16 @@ class EntrepriseController extends Controller
         $links = $entreprises->render();
         $categories = $this->categoryRepository->categories();
 
-        return view('entreprises.index', compact('entreprises', 'categories', 'links'))
-        ->with('info', 'Résultats pour la recherche de l\'activité : ' . $activityObject->name);
+        if($activityObject)
+        {
+            return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+                    ->with('info', 'Résultats pour la recherche de l\'activité : ' . $activityObject->name);
+        }
+        else
+        {
+             return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+                    ->with('info', 'Aucun résultat pour la recherche de l\'activité : ' . $activity);
+        }
     }
 
     public function indexCategory($category)
@@ -181,8 +189,8 @@ class EntrepriseController extends Controller
         $links = $entreprises->render();
         $categories = $this->categoryRepository->categories();
 
-        return view('entreprises.index', compact('entreprises', 'categories', 'links'))
-        ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name);
+        return view('entreprises.index', compact('entreprises', 'categories', 'links'))/*
+        ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name)*/;
     }
 
     public function indexName($query)
@@ -191,8 +199,15 @@ class EntrepriseController extends Controller
             $entreprises = $this->entrepriseRepository->getEntreprisesFromName($query, $this->nbrPerPage);
             $links = $entreprises->render();
             $categories = $this->categoryRepository->categories();
-
-            return view('entreprises.index', compact('entreprises', 'categories', 'links'));/*
-        ->with('info', 'Résultats pour la recherche du tag : ' . $tag->tag);*/
+            if($entreprises->count() > 0)
+            {
+                return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+                    ->with('info', 'Résultats pour la recherche : ' . $query);
+            }
+            else
+            {
+                return view('entreprises.index', compact('entreprises', 'categories', 'links'))
+        ->with('info', 'Aucun résultat pour la recherche : ' . $query);
+            }
     }
 }

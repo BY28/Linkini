@@ -127,8 +127,14 @@ class SearchController extends Controller
     public function searchActivities($request)
     {
         $activity = $this->activityRepository->getByName($request->input('search'));
-            
-        return redirect()->route('entreprises.activityResults', $activity->activity_url);
+        if($activity)    
+        {
+            return redirect()->route('entreprises.activityResults', $activity->activity_url);
+        }
+        else
+        {
+            return redirect()->route('entreprises.activityResults', $request->input('search'));
+        }
     }
 
     public function searchTags($request)
