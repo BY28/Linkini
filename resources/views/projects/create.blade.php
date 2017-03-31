@@ -27,7 +27,7 @@
 						{!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
 						{!! $errors->first('content', '<small class="help-block">:message</small>') !!}
 					</div>
-					{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{!! Form::button('Envoyer', ['type' => 'submit', 'class' => 'btn btn-primary pull-right send', 'data-loading-text' => '<i class="fa fa-refresh fa-spin"></i> Envoi de la commande']) !!}
 					{!! Form::close() !!}
 				</div>
 			</div>
@@ -36,4 +36,17 @@
 			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
 		</a>
 	</div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    
+$('.newsletter-send').click(function(event)
+{
+
+    var $this = $(this);
+    $this.button('loading');
+
+});
+</script>
 @endsection

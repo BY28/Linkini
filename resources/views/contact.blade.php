@@ -153,30 +153,31 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
   
   <div class="banner-bottom">
     <div class="container">
-      <h3 class="wthree_head">get in touch with us</h3>
-        <p class="agileits_para agile_para">Etiam malesuada odio vitae enim malesuada accumsan diam sed.</p>
+      <h3 class="wthree_head">Restez en contact!</h3>
+        <p class="agileits_para agile_para">Envoyez nous votre message, commentaire ou requête.</p>
       <div class="agileinfo_mail_grids">
-        <form action="#" method="post">
+        <form action="{{route('sendContactEmail')}}" method="post">
           <span class="input input_">
-            <input class="input__field input__field_" name="Name" type="text" id="input-13" placeholder=" " required="" />
-            <label class="input__label input__label_" for="input-13">
-              <span class="input__label-content input__label-content_" data-content="Name">Name</span>
-            </label>
+            <input class="input__field input__field_" name="name" type="text" placeholder="Nom Prénom" required="" />
+           <!-- <label class="input__label input__label_" for="input-13">
+              <span class="input__label-content input__label-content_" data-content="Name">Nom</span>
+            </label>-->
           </span>
           <span class="input input_">
-            <input class="input__field input__field_" name="Email" type="email" id="input-14" placeholder=" " required="" />
-            <label class="input__label input__label_" for="input-14">
+            <input class="input__field input__field_" name="email" type="email" placeholder="Email" required="" />
+           <!-- <label class="input__label input__label_" for="input-14">
               <span class="input__label-content input__label-content_" data-content="Email">Email</span>
-            </label>
+            </label>-->
           </span>
           <span class="input input_">
-            <input class="input__field input__field_" name="Subject" type="text" id="input-15" placeholder=" " required="" />
-            <label class="input__label input__label_" for="input-15">
-              <span class="input__label-content input__label-content_" data-content="Subject">Subject</span>
-            </label>
+            <input class="input__field input__field_" name="subject" type="text" placeholder="Sujet" required="" />
+           <!-- <label class="input__label input__label_" for="input-15">
+              <span class="input__label-content input__label-content_" data-content="Subject">Sujet</span>
+            </label>-->
           </span>
-          <textarea name="Message" placeholder="Your comment here..." required=""></textarea>
-          <input type="submit" value="Submit">
+          <textarea name="content" placeholder="Message..." required=""></textarea>
+          {{csrf_field()}}
+          <button type="submit" class="btn btn-success">Envoyer</button>
         </form>
       </div>
     </div>

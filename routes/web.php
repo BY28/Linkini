@@ -30,6 +30,11 @@ Route::post('newsletter', [
 		'uses' => 'EmailController@postForm',
 		'as' => 'storeEmail'
 	]);
+
+/*CONTACT*/
+
+Route::post('contact', ['uses' => 'EmailController@sendContactMail', 'as' => 'sendContactEmail']);
+
 Route::get('notifications/update', 'LinkController@updateNotifications')->name('notifications.update');
 Route::get('messages/update', 'MessageController@unreadMessages')->name('messages.update');
 /* PROFILE */

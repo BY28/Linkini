@@ -43,8 +43,11 @@
                     <ul>
                         <li>
                             <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center form-control" placeholder="Email ">
-                                <button class="btn  btn-lg" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
+                            <form action="{{route('storeEmail')}}" method="POST">        
+                                <input type="text" name="email" class="full text-center form-control" placeholder="Email ">
+                                <button class="btn  btn-lg newsletter-send" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Envoi de l'e-mail" type="submit"> Envoyer <i class="fa fa-long-arrow-right"> </i> </button>
+                                {{csrf_field()}}
+                            </form>
                             </div>
                         </li>
                     </ul>

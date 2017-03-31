@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
+        'address' => 'noreply@linkini.com',
         'name' => 'Example',
     ],
 
