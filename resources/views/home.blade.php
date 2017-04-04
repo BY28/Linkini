@@ -188,14 +188,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                 </div>    
                 <div class="tags-input form-control" data-name="tags" id="tags"></div>
                 <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher un secteur d'activité" autocomplete="off">
-                <input type="hidden" name="tags-input" id="hidden-tag">
-                   <ul class="list-group search-results">
-             <!--  <li class="list-group-item list-group-item-linkable">Cras justo odio</li>
-             <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li> -->
-            </ul>
+                <!-- <input type="hidden" name="tags-input" id="hidden-tag"> -->
+                  <ul class="list-group search-results">
+                  </ul>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -816,7 +811,15 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 @endsection
 
 @section('addContent')
-
+<aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Free Download at Start Bootstrap!</h2>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
+            </div>
+        </div>
+    </aside>
     <section id="services" class="section-boxes">
         <div class="container">
             <div class="row">
@@ -872,6 +875,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             </div>
         </div>
     </section>
+<!--
 <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
@@ -881,6 +885,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             </div>
         </div>
     </aside>
+-->
 @endsection
 
 @section('scripts')

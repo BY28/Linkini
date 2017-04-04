@@ -23,8 +23,8 @@
 	     		<td>{{$entreprise->description}}</td>
 	     		<td>{{$entreprise->created_at}}</td>
 	     		<td>
-	     			<a href="#" class="btn btn-warning btn-xs accept">Accept</a>
-	     			<a href="#" class="btn btn-warning btn-xs refuse">refuse</a>
+	     			<a href="#" class="btn btn-primary btn-xs accept" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" >Accept</a>
+	     			<a href="#" class="btn btn-primary btn-xs refuse">refuse</a>
 	     		</td>
 	    	</tr>
 	    
@@ -43,7 +43,8 @@
 $('.accept').click(function(event)
 {
     event.preventDefault();
-    
+    var $this = $(this);
+    $this.button('loading');
     var token = '{{ Session::token() }}';
     var urlAccept = '{{ route('entreprises.accept') }}';
 
@@ -56,6 +57,7 @@ $('.accept').click(function(event)
 
     })
     .done(function(){
+    	$this.button('reset');
         event.target.parentNode.parentNode.remove();
     });
 });

@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/msg.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/tags.css') }}">
 
 	@yield('styles')
 </head>
@@ -41,6 +42,7 @@
 <script src="{{ URL::to('src/bootstrap/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::to('src/js/functions.js') }}"></script>
 <script src="{{ URL::to('src/js/jquery.jscroll.min.js') }}"></script>
+<script src="{{ URL::to('src/js/tags.js') }}"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
     	$(".clickable-row").click(function() {

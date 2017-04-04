@@ -152,11 +152,13 @@ pre-scrollable
                   </a>
                 </li>
                 @foreach($categories as $category)
-
-                <li>
-                  <a href="{{route('projects.categoryResults', $category->category_url)}}"><i class="fa fa-gift fa-lg"></i> {{$category->name}} <span class="arrow"></span></a>
-                </li>
-
+               
+                    <li>
+                      <a href="{{route('projects.categoryResults', $category->category_url)}}">
+                        <i class="fa fa-gift fa-lg"></i> {{$category->name}} <span class="arrow"></span>
+                      </a>
+                    </li>
+                  
                 @endforeach
             </ul>
      </div>

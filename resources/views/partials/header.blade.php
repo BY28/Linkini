@@ -170,7 +170,8 @@
         </ul> 
         -->      
       </li>
-            <li><a href="#">Services</a></li>
+            <li><a href="{{route('services')}}">Services</a></li>
+            <li><a href="{{route('contact')}}">Contact</a></li>
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <!-- recherche 
@@ -228,7 +229,13 @@
                                  </form>
                             </div>
                             <div class="bottom text-center">
-                                Vous n'êtes pas inscrit ? <a href="{{ url('/register') }}"><b>Rejoignez nous</b></a>
+                                Vous n'êtes pas inscrit ? 
+                                <div>
+                                  <a href="{{ url('/register') }}"><b>Rejoignez nous</b></a>
+                                </div>
+                                <div>
+                                  <a href="{{url('/password/reset')}}">Mot de passe oublié?</a>
+                                </div>
                             </div>
                      </div>
                 </li>
@@ -289,7 +296,9 @@
           <a href="#" class="fa fa-plus fa-lg" class="dropdown-toggle" data-toggle="dropdown"> </a>
            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li><a href="{{route('projects.create')}}" target="_blank">Créer un projet</a></li>
-              <li><a href="{{route('entreprises.getorder')}}">Créez votre activité</a></li>
+              @if(!Auth::user()->entreprise)
+                <li><a href="{{route('entreprises.getorder')}}">Créez votre activité</a></li>
+              @endif
             </ul>
           
         </li>
@@ -301,8 +310,11 @@
                 <a tabindex="-1" href="{{route('profile.index')}}">Mon Profil</a>
               </li>
               <li class="divider"></li>
+              @if(Auth::user()->entreprise)
+                <li><a href="{{route('entreprises.pendingProjects')}}">Mon Entreprise</a></li>
+                <li class="divider"></li>
+              @endif
               <li><a href="{{route('projects.all')}}">Mes Projets</a></li>
-              <li><a href="{{route('entreprises.pendingProjects')}}">Mon Entreprise</a></li>
               <li><a href="{{route('profile.favorites')}}">Mes Favoris</a></li>
               <li><a href="#">Mes Statistiques</a></li>
               @if(Auth::user()->admin)

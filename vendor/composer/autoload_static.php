@@ -282,6 +282,7 @@ class ComposerStaticInit38eeddc04b29303e106ea468c3eb919b
     );
 
     public static $classMap = array (
+        'CategoryTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoryTableSeeder.php',
         'CreateActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2012_03_06_020054_create_activities_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2011_03_06_015835_create_categories_table.php',
         'CreateEmailsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_16_214201_create_emails_table.php',
@@ -289,7 +290,7 @@ class ComposerStaticInit38eeddc04b29303e106ea468c3eb919b
         'CreateEntrepriseTagTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_31_011336_create_entreprise_tag_table.php',
         'CreateEntreprisesTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_19_000618_create_entreprises_table.php',
         'CreateFavoritesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_03_234718_create_favorites_table.php',
-        'CreateLinkOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_21_154850_create_link_orders_table.php',
+        'CreateLinkOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_193517_create_link_orders_table.php',
         'CreateLinkiniPagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_152129_create_linkini_pages_table.php',
         'CreateLinksTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_193518_create_links_table.php',
         'CreateMessagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_21_145357_create_messages_table.php',
@@ -750,6 +751,7 @@ class ComposerStaticInit38eeddc04b29303e106ea468c3eb919b
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PageCategoryTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PageCategoryTableSeeder.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

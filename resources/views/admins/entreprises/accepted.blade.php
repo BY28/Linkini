@@ -23,7 +23,7 @@
 	     		<td>{{$entreprise->description}}</td>
 	     		<td>{{$entreprise->created_at}}</td>
 	     		<td>
-	     			<a href="#" class="btn btn-primary btn-xs check">Check</a>
+	     			<a href="#" class="btn btn-primary btn-xs check" data-loading-text="<i class='fa fa-refresh fa-spin'></i>">Check</a>
 	     			<a href="#" class="btn btn-primary btn-xs refuse">Refuse</a>
 	     		</td>
 	    	</tr>
@@ -43,7 +43,9 @@
 $('.check').click(function(event)
 {
     event.preventDefault();
-    
+    var $this = $(this);
+    $this.button('loading');
+
     var token = '{{Session::token()}}';
     var urlAccept = '{{route('entreprises.check')}}';
 
@@ -56,6 +58,7 @@ $('.check').click(function(event)
 
     })
     .done(function(){
+    	$this.button('reset');
         event.target.parentNode.parentNode.remove();
     });
 });

@@ -18,6 +18,7 @@ class LinkController extends Controller
     public function __construct(LinkRepository $linkRepository, LinkOrderRepository $linkOrderRepository, ProjectRepository $projectRepository, EntrepriseRepository $entrepriseRepository)
     {
         $this->middleware('auth');
+        $this->middleware('entreprise', ['only' => ['getPendingProjects']]);
         $this->linkRepository = $linkRepository;
         $this->linkOrderRepository = $linkOrderRepository;
         $this->projectRepository = $projectRepository;

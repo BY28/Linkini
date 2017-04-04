@@ -8,10 +8,10 @@
 			
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::open(['route' => 'projects.store', 'files'=>true,'class' => 'form-horizontal panel']) !!}
+					{!! Form::open(['route' => 'projects.store', 'files'=>true,'class' => 'form-horizontal panel', 'id' => 'project_create_form']) !!}
 					<div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
 						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
-						{!! $errors->first('title', '<small class="help-block">:project</small>') !!}
+						{!! $errors->first('title', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group">
 						<label for="select">Secteur d'activité</label>
@@ -23,8 +23,9 @@
 
 					</div>
 					<div class="form-group {!! $errors->has('tags') ? 'has-error' : '' !!}">
-						{!! Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Tags']) !!}
-						{!! $errors->first('tags', '<small class="help-block">:project</small>') !!}
+					 <div class="tags-input form-control" data-name="tags" id="tags"></div>
+						
+						{!! $errors->first('tags', '<small class="help-block">:message</small>') !!}
 					</div>
 					<!-- PAS D'IMAGE POUR LE MOMENT
 					<div class="form-group {!! $errors->has('image') ? 'has-error' : '' !!}">
@@ -35,7 +36,7 @@
 					-->
 					<div class="form-group {!! $errors->has('content') ? 'has-error' : '' !!}">
 						{!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
-						{!! $errors->first('content', '<small class="help-block">:project</small>') !!}
+						{!! $errors->first('content', '<small class="help-block">:message</small>') !!}
 					</div>
 					{!! Form::button('Envoyer', ['type' => 'submit', 'class' => 'btn btn-primary pull-right send', 'data-loading-text' => '<i class="fa fa-refresh fa-spin"></i> Creation du projet']) !!}
 					{!! Form::close() !!}
@@ -57,5 +58,12 @@ $('.send').click(function(event)
     $this.button('loading');
 
 });
+
+$('.tags-input').on('click', function(){
+            var input = $(".main-input");
+            input.focus();
+        });
+
+
 </script>
 @endsection

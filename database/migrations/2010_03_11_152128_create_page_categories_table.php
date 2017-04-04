@@ -16,7 +16,6 @@ class CreatePageCategoriesTable extends Migration
         Schema::create('page_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

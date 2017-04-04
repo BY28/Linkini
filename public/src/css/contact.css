@@ -9,7 +9,7 @@
 
 
 .mail_right {
-    background: #f96625;
+    background: #ff7132;
     min-height:413px;
 }
 .mail_right h3{
@@ -92,7 +92,7 @@
     margin: 1em 1em 1em 0;
     width: 292px;
 }
-
+/*
 .banner-bottom {
     padding: 5em 0;
 }
@@ -100,9 +100,16 @@
 .banner-bottom {
     padding: 3em 0;
 }
+*/
 
 .banner-bottom {
     padding: 2em 0;
+      background: url('../../images/backgrounds/services.jpg') no-repeat 0px 0px;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-attachment:fixed;
 }
 
 .wthree_head{

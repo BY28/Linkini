@@ -109,6 +109,7 @@ class EntrepriseController extends Controller
         $categories = $this->categoryRepository->categories();
 
         return view('entreprises.order', compact('user', 'categories'));
+
     }
 
     public function postEntrepriseOrder(EntrepriseOrderRequest $request)
@@ -119,12 +120,15 @@ class EntrepriseController extends Controller
         $inputs = [
             'user_id' => $request->user()->id,
             'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
             'description' => $request->input('description'),
             'activity_id' => $activity->id,
             'category_id' => $activity->category->id
         ];
 
-        $entreprise = $this->entrepriseOrderRepository->store($inputs);
+            $entreprise = $this->entrepriseOrderRepository->store($inputs);
 
         return redirect()->route('entreprises.info');
     }
@@ -156,6 +160,11 @@ class EntrepriseController extends Controller
     public function accept(Request $request)
     {
         $this->entrepriseOrderRepository->accept($request->all());
+    }
+
+    public function refuse(Request $request)
+    {
+        $this->entrepriseOrderRepository->refuse($request->all());
     }
 
     public function check(Request $request)

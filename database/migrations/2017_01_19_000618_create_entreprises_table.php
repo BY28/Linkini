@@ -16,8 +16,12 @@ class CreateEntreprisesTable extends Migration
         Schema::create('entreprises', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 80);
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
             $table->string('description')->default('Entreprise sérieuse et fiable, en partenariat avec Linkini. Description attente...');
             $table->string('image')->default('entreprise.png');
+            $table->string('entreprise_url');
             $table->boolean('checked')->default(false);
             $table->integer('user_id')->unsigned();
             $table->integer('activity_id')->unsigned();

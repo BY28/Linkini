@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CategoryTableSeeder' => $baseDir . '/database/seeds/CategoryTableSeeder.php',
     'CreateActivitiesTable' => $baseDir . '/database/migrations/2012_03_06_020054_create_activities_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2011_03_06_015835_create_categories_table.php',
     'CreateEmailsTable' => $baseDir . '/database/migrations/2017_01_16_214201_create_emails_table.php',
@@ -13,7 +14,7 @@ return array(
     'CreateEntrepriseTagTable' => $baseDir . '/database/migrations/2017_01_31_011336_create_entreprise_tag_table.php',
     'CreateEntreprisesTable' => $baseDir . '/database/migrations/2017_01_19_000618_create_entreprises_table.php',
     'CreateFavoritesTable' => $baseDir . '/database/migrations/2017_03_03_234718_create_favorites_table.php',
-    'CreateLinkOrdersTable' => $baseDir . '/database/migrations/2017_03_21_154850_create_link_orders_table.php',
+    'CreateLinkOrdersTable' => $baseDir . '/database/migrations/2017_03_02_193517_create_link_orders_table.php',
     'CreateLinkiniPagesTable' => $baseDir . '/database/migrations/2017_03_11_152129_create_linkini_pages_table.php',
     'CreateLinksTable' => $baseDir . '/database/migrations/2017_03_02_193518_create_links_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2017_02_21_145357_create_messages_table.php',
@@ -474,6 +475,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PageCategoryTableSeeder' => $baseDir . '/database/seeds/PageCategoryTableSeeder.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',

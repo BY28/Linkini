@@ -16,6 +16,9 @@ class CreateEntrepriseOrdersTable extends Migration
         Schema::create('entreprise_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 80);
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
             $table->text('description');
             $table->boolean('accepted')->default(false);
             $table->boolean('refused')->default(false);

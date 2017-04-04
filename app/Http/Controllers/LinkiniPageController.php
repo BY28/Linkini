@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\LinkiniPageRepository;
+use App\Repositories\EntrepriseRepository;
 
 class LinkiniPageController extends Controller
 {
 
 
-    public function __construct(LinkiniPageRepository $pageRepository)
+    public function __construct(LinkiniPageRepository $pageRepository, EntrepriseRepository $entrepriseRepository)
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
 
         $this->pageRepository = $pageRepository;
+        $this->entrepriseRepository = $entrepriseRepository;
     }
 
     /**
@@ -48,7 +50,7 @@ class LinkiniPageController extends Controller
      */
     public function storeCarousel(Request $request)
     {
-        $category = $this->pageRepository->getCategory('carouselImages');
+        $category = $this->pageRepository->getCategory('home_advertisement');
 
         $inputs = [
             'image' => $request->file('image'),
@@ -66,9 +68,17 @@ class LinkiniPageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($entreprise_url)
     {
-        //
+        $entreprise = $this->entrepriseRepository->getByUrl($entreprise_url);
+        if($entreprise)
+        {
+            return view('pages.entreprise.index', compact('entreprise'));
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
     }
 
     /**

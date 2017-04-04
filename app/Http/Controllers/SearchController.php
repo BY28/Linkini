@@ -139,7 +139,7 @@ class SearchController extends Controller
 
     public function searchTags($request)
     {
-        $tags = explode(',', $request->input('tags'));
+        $tags = $request->input('tags');
 
         return redirect()->route('projects.tagResults', $tags);
     }

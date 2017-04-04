@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="col-sm-offset-4 col-sm-4">
+	<div class="col-sm-offset-2 col-sm-8">
 		<br>
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Commande d'une entreprise</div>
@@ -23,11 +23,23 @@
 
 					</div>
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) !!}
+						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Dénomination professionnelle']) !!}
 						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 					</div>
+					<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
+						{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email professionnel']) !!}
+						{!! $errors->first('email', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('phone') ? 'has-error' : '' !!}">
+						{!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Telephone']) !!}
+						{!! $errors->first('phone', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('address') ? 'has-error' : '' !!}">
+						{!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Adresse']) !!}
+						{!! $errors->first('address', '<small class="help-block">:message</small>') !!}
+					</div>
 					<div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
-						{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description']) !!}
+						{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Description de votre activité']) !!}
 						{!! $errors->first('description', '<small class="help-block">:message</small>') !!}
 					</div>
 					{!! Form::button('Envoyer', ['type' => 'submit', 'class' => 'btn btn-primary pull-right send', 'data-loading-text' => '<i class="fa fa-refresh fa-spin"></i> Envoi de la commande']) !!}

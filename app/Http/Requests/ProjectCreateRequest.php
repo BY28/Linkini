@@ -26,7 +26,8 @@ class ProjectCreateRequest extends FormRequest
         return [
             'title' => 'required|max:80',
             'content' => 'required',
-            'tags' => 'regex:/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/'
+            /*'tags' => 'regex:/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/'*/
+            'tags' => 'required'
         ];
     }
 }

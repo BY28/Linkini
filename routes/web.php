@@ -180,6 +180,9 @@ Route::group(['prefix' => 'admin'], function(){
 		});
 
 });
+
+Route::get('page/{entreprise_url}', ['uses' => 'LinkiniPageController@show', 'as' => 'page.entreprise']);
+
 Route::get('search', 'SearchController@search')->name('search');
 Route::post('search', 'SearchController@postSearch')->name('postSearch');
 

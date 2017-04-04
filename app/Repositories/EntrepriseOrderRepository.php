@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\EntrepriseOrder;
 use App\Entreprise;
 
+use Illuminate\Support\Str;
+
 class EntrepriseOrderRepository extends ResourceRepository
 {
 
@@ -44,6 +46,11 @@ class EntrepriseOrderRepository extends ResourceRepository
 
 		$entrepriseInputs = [
 			'name' => $entrepriseOrder->name,
+			'email' => $entrepriseOrder->email,
+			'phone' => $entrepriseOrder->phone,
+			'address' => $entrepriseOrder->address,
+			'description' => $entrepriseOrder->description,
+            'entreprise_url' => Str::slug($entrepriseOrder->name),
 			'user_id' => $entrepriseOrder->user_id,
 			'activity_id' => $entrepriseOrder->activity_id,
 			'category_id' => $entrepriseOrder->category_id
@@ -63,6 +70,12 @@ class EntrepriseOrderRepository extends ResourceRepository
 		*/
 	}
 
+	public function refuse($inputs)
+	{
+		$entrepriseorder = $this->getById($inputs['entrepriseId']);
+		$this->destroy($entrepriseOrder->id);
+	}
+
 	public function check($inputs)
 	{
 		$entreprise = $this->entreprise->findOrFail($inputs['entrepriseId']);
@@ -70,6 +83,11 @@ class EntrepriseOrderRepository extends ResourceRepository
 		$entreprise->checked = true;
 
 		$entreprise->save();
+	}
+
+	public function getByUserId($user_id)
+	{
+		return $this->model->where('user_id', $user_id)->first();
 	}
 
 }

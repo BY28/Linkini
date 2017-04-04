@@ -12,7 +12,7 @@ class Entreprise extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'activity_id', 'category_id','name', 'image', 'description'
+        'user_id', 'activity_id', 'category_id','name', 'email','phone', 'address','image', 'description', 'entreprise_url'
     ];
 
     public function user()
@@ -43,6 +43,11 @@ class Entreprise extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function page()
+    {
+        return $this->hasOne('App\LinkiniPage');
     }
 
 }

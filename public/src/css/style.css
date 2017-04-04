@@ -591,8 +591,15 @@ body {
   background: url('../../images/banners/bot_banner.PNG') no-repeat;
 }
 .bg-dark {
-  background-color: #ea5817;
-  color: white;
+  background-color: rgba(249, 102, 37, 0.5);
+  background: url('../../images/backgrounds/services.jpg') no-repeat 0px 0px;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-attachment:fixed;
+  color: #333;
+  margin-top: 2em;
 }
 .text-faded {
   color: rgba(255, 255, 255, 0.7);
