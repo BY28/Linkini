@@ -108,10 +108,16 @@
 
 <script>
 
+var activityName = null;
+var activityId = null;
+var clickEvent = null;
+
 $('.edit').click(function(event) {
-	var activityName = event.target.innerText;
-	var activityId = event.target.parentNode.parentNode.dataset['activityid'];
+	activityName = event.target.innerText;
+	activityId = event.target.parentNode.parentNode.dataset['activityid'];
     $("#edit-activity").val(activityName);
+    clickEvent = event;
+});
 
     $('#save-edit').click(function(e){
 	 	event.preventDefault();
@@ -129,19 +135,22 @@ $('.edit').click(function(event) {
 	    })
 	    .done(function(){
 
-	         event.target.innerText = activityName;
-	         $('#editModal').modal('hide');
+	        event.target.innerText = activityName;
+	        activityName = null;
+			activityId = null;
+			clickEvent = null;
+	        $('#editModal').modal('hide');
 
 	    });
 	});
 
-});
-
 $('.delete').click(function(event) {
 	
-	var activityName = event.target.parentNode.parentNode.childNodes[1].innerText;
-	var activityId = event.target.parentNode.parentNode.dataset['activityid'];
-	 $("#delete-activity").text(activityName);
+	activityName = event.target.parentNode.parentNode.childNodes[1].innerText;
+	activityId = event.target.parentNode.parentNode.dataset['activityid'];
+	$("#delete-activity").text(activityName);
+	clickEvent = event;
+});
 
     $('#save-delete').click(function(e){
 	 	event.preventDefault();
@@ -158,15 +167,14 @@ $('.delete').click(function(event) {
 	    })
 	    .done(function(){
 
-	         event.target.parentNode.parentNode.remove();
-	         $('#deleteModal').modal('hide');
+	        event.target.parentNode.parentNode.remove();
+	        activityName = null;
+			activityId = null;
+			clickEvent = null;
+	        $('#deleteModal').modal('hide');
 
 	    });
 	});
-
-});
-
-
 </script>
 
 @endsection

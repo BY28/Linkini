@@ -29,7 +29,7 @@ class ProfileController extends Controller
     {
         $user = $this->profileRepository->getById(Auth::user()->id);
 
-        return view('profiles.index',  compact('user'));
+        return view('profiles.settings.account',  compact('user'));
     }
 
     /**
@@ -200,5 +200,8 @@ class ProfileController extends Controller
         return view('profiles.settings.notifications',  compact('user'));
     }
     /* END SETTINGS */
+
+
+    
 
 }

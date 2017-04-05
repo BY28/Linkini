@@ -634,3 +634,31 @@ aside {
 .text-primary {
   color: #f96625;
 }
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #f96625;
+    border-color: #f96625;
+}
+
+.panel-primary {
+    border-color: #f96625;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ea5817;
+    border-color: #ea5817;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #f96625;
+    border-color: #f96625;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #f96625;
+    border-color: #f96625;
+}

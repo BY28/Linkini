@@ -15,7 +15,11 @@ class PageCategoryTableSeeder extends Seeder
 
         $categories = array(
 
-        		array('name' => 'home_advertisement')
+        		array('name' => 'home_advertisement'),
+                array('name' => 'page_header'),
+                array('name' => 'page_about'),
+                array('name' => 'page_services'),
+                array('name' => 'page_contact')
 
         	);
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LinkiniPage extends Model
 {
     protected $fillable = [
-    	'page_category_id', 'content_title', 'content_sub_title', 'content_text', 'image'
+    	'entreprise_id', 'page_category_id', 'content_title', 'content_sub_title', 'content_text', 'image'
     ];
 
     public function page()

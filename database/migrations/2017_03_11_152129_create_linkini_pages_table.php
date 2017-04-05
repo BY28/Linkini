@@ -17,10 +17,10 @@ class CreateLinkiniPagesTable extends Migration
             $table->increments('id');
             $table->integer('entreprise_id')->unsigned();
             $table->integer('page_category_id')->unsigned();
-            $table->string('content_title');
-            $table->string('content_sub_title');
-            $table->string('content_text');
-            $table->string('image')->default('entreprise.png');
+            $table->string('content_title')->default('');
+            $table->string('content_sub_title')->default('');
+            $table->string('content_text')->default('');
+            $table->string('image')->default('');
             $table->timestamps();
             $table->foreign('entreprise_id')->references('id')->on('entreprises')
                         ->onDelete('restrict')

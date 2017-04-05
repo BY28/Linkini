@@ -1,7 +1,7 @@
 @extends('layouts.panel.settings')
 
 @section('content')
-<div class="col-sm-offset-4 col-sm-4">
+<div class="col-sm-12">
     	<br>
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Modification d'un utilisateur</div>

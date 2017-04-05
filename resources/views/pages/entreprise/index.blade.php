@@ -43,13 +43,13 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Your Favorite Source of Free Bootstrap Themes</h1>
+
+                <h1 id="homeHeading">{{$header_content[0]->content_title}}</h1>
                 <hr>
-                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <p>{{$header_content[0]->content_text}}</p>
                 <a href="#about" class="btn btn-primary btn-md page-scroll">
                     <i class="fa fa-angle-double-down fa-2x"></i>
                 </a>
-
             </div>
         </div>
     </header>
@@ -60,9 +60,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
+                    <h2 class="section-heading">{{$about_content[0]->content_title}}</h2>
                     <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                    <p class="text-faded">{{$about_content[0]->content_text}}</p>
                 </div>
             </div>
         </div>
@@ -72,37 +72,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">Services</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                @foreach($services_content as $service)
+                     <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h3>{{$service->content_title}}</h3>
+                            <p class="text-muted">{{$service->content_text}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -111,37 +95,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <h2 class="section-heading">{{$contact_content[0]->content_title}}</h2>
                     <hr class="primary">
-                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                    <p>{{$contact_content[0]->content_text}}</p>
                 </div>
             </div>
             <div class="row">
     <div class="col-sm-5">
-      <p>Contact us and we'll get back to you within 24 hours.</p>
       <p><span class="glyphicon glyphicon-map-marker"></span> {{$entreprise->address}}</p>
       <p><span class="glyphicon glyphicon-phone"></span> {{$entreprise->phone}}</p>
       <p><span class="glyphicon glyphicon-envelope"></span> {{$entreprise->email}}</p>
     </div>
     <div class="col-sm-7 slideanim">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
-        </div>
-      </div>
+        <form action="{{route('sendPageContactEmail')}}" method="POST">
+          <div class="row">      
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="name" placeholder="Nom" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            </div>
+          </div>
+          <textarea class="form-control" id="comments" name="content" placeholder="Message..." rows="5"></textarea><br>
+          {{csrf_field()}}
+          <input type="hidden" name="entreprise_email" value="{{$entreprise->email}}">
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-primary pull-right" type="submit">Envoyer</button>
+            </div>
+          </div>
+        </form>
     </div>
   </div>
         </div>
-
     </section>
 @endsection
 

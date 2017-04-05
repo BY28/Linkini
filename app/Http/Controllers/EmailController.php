@@ -38,4 +38,13 @@ class EmailController extends Controller
 
         return redirect()->route('contact');
     }
+
+    public function sendPageContactMail(Request $request)
+    {
+        Mail::send('emails.page_contact', ['name' => $request->input('name'), 'email' => $request->input('email'), 'content' => $request->input('content')], function($message) use ($request){
+            $message->to($request->input('entreprise_email'))->subject('Linkini Contact');
+        });
+
+        return redirect()->back();
+    }
 }

@@ -8,5 +8,5 @@
                     <a href="{{route('profile.notifications')}}" class="list-group-item">Notifications</a>
                     <a href="{{route('profile.favorites')}}" class="list-group-item">Favoris</a>
                     <a href="#" class="list-group-item">Statistiques</a>
-                    <a href="{{route('profile.settings')}}" class="list-group-item">Paramètres</a>
+                    <a href="{{route('settings.account')}}" class="list-group-item">Paramètres</a>
                 </div>

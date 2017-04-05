@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\EntrepriseOrder;
 use App\Entreprise;
+use App\Http\Controllers\LinkiniPageController;
 
 use Illuminate\Support\Str;
 
@@ -12,12 +13,14 @@ class EntrepriseOrderRepository extends ResourceRepository
 
     protected $entrepriseOrder;
     protected $entreprise;
+    protected $pageController;
     protected $activity;
 
-    public function __construct(EntrepriseOrder $entrepriseOrder, Entreprise $entreprise)
+    public function __construct(EntrepriseOrder $entrepriseOrder, Entreprise $entreprise, LinkiniPageController $pageController)
 	{
 		$this->model = $entrepriseOrder;
 		$this->entreprise = $entreprise;
+		$this->pageController = $pageController;
 	}
 
 	public function getPendingEntreprises()
@@ -58,7 +61,8 @@ class EntrepriseOrderRepository extends ResourceRepository
 
 		if($entrepriseOrder->accepted)
 		{
-			$this->entreprise->create($entrepriseInputs);
+			$entreprise = $this->entreprise->create($entrepriseInputs);
+			$this->pageController->setupContent($entreprise);
 		}
 
 		/*

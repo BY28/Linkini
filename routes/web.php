@@ -47,7 +47,6 @@ Route::get('entreprise', ['uses' => 'ProfileController@getEntreprise', 'as' => '
 Route::get('messages', ['uses' => 'ProfileController@getMessages', 'as' => 'profile.messages']);
 Route::get('notifications', ['uses' => 'LinkController@getNotifications', 'as' => 'profile.notifications']);
 Route::get('statistics', ['uses' => 'ProfileController@getStatistics', 'as' => 'profile.statistics']);
-Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'profile.settings']);
 
 
 	Route::group(['prefix' => 'projects'], function(){
@@ -60,7 +59,7 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	});
 
 	Route::group(['prefix' => 'entreprise'], function(){
-		Route::get('/informations', ['uses' => 'EntrepriseController@getEntrepriseInfo', 'as' => 'entreprises.info']);
+		Route::get('/page', ['uses' => 'LinkiniPageController@getEntrepriseInfo', 'as' => 'entreprises.info']);
 		Route::get('/waiting', ['uses' => 'EntrepriseController@getEntrepriseWaiting', 'as' => 'entreprises.waiting']);
 		Route::get('/projects', ['uses' => 'LinkController@getPendingProjects', 'as' => 'entreprises.pendingProjects']);
 		Route::get('/projects/attributions', ['uses' => 'LinkController@getAttributionProjects', 'as' => 'entreprises.attributionProjects']);
@@ -95,9 +94,9 @@ Route::get('settings', ['uses' => 'ProfileController@getSettings', 'as' => 'prof
 	});
 
 	Route::group(['prefix' => 'settings'], function(){
-		Route::get('account', ['uses' => 'ProfileController@getSettingsAccount', 'as' => 'settings.account']);
+		Route::get('/', ['uses' => 'ProfileController@getSettingsAccount', 'as' => 'settings.account']);
 		Route::get('entreprise', ['uses' => 'ProfileController@getSettingsEntreprise', 'as' => 'settings.entreprise']);
-		Route::get('notifications', ['uses' => 'ProfileController@getSettingsNotifications', 'as' => 'settings.notifications']);
+		//Route::get('notifications', ['uses' => 'ProfileController@getSettingsNotifications', 'as' => 'settings.notifications']);
 	});
 	
 });
@@ -175,13 +174,20 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::group(['prefix' => 'pages'], function(){
 			Route::get('home', ['uses' => 'LinkiniPageController@index', 'as' => 'homepage.index']);
 			Route::post('home', ['uses' => 'LinkiniPageController@storeCarousel', 'as' => 'homepage.storeCarousel']);
-			//Route::delete('delete', ['uses' => 'LinkiniPageController@destroy', 'as' => 'homepage.deleteCarousel']);
 			Route::delete('destroy/{id}', ['uses' => 'LinkiniPageController@destroy', 'as' => 'homepage.deleteCarousel']);
 		});
 
 });
 
-Route::get('page/{entreprise_url}', ['uses' => 'LinkiniPageController@show', 'as' => 'page.entreprise']);
+Route::group(['prefix' => 'page'], function(){
+	Route::get('/{entreprise_url}', ['uses' => 'LinkiniPageController@show', 'as' => 'page.entreprise']);
+	Route::put('/update/{id}', ['uses' => 'LinkiniPageController@updateContent', 'as' => 'page.update']);
+	Route::post('/store/{category_name}', ['uses' => 'LinkiniPageController@createContent', 'as' =>'page.store']);
+	Route::delete('/delete/{id}', ['uses' => 'LinkiniPageController@deleteContent', 'as' => 'page.delete']);
+	Route::post('contact', ['uses' => 'EmailController@sendPageContactMail', 'as' => 'sendPageContactEmail']);
+});
+
+
 
 Route::get('search', 'SearchController@search')->name('search');
 Route::post('search', 'SearchController@postSearch')->name('postSearch');

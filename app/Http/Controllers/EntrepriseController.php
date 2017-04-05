@@ -76,12 +76,13 @@ class EntrepriseController extends Controller
         return view('entreprises.edit',  compact('entreprise'));
     }
 
-    public function update(EntrepriseUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
 
         $this->entrepriseRepository->update($id, $request->all());
         
-        return redirect('entreprise')->withOk("L'entreprise " . $request->input('name') . " a été modifiée.");
+        //return redirect('entreprise')->withOk("L'entreprise " . $request->input('name') . " a été modifiée.");
+        return redirect()->route('settings.entreprise');
     }
 
     public function destroy($id)
@@ -130,7 +131,7 @@ class EntrepriseController extends Controller
 
             $entreprise = $this->entrepriseOrderRepository->store($inputs);
 
-        return redirect()->route('entreprises.info');
+         return redirect()->route('entreprises.waiting')->withInfo('Entreprise en attente d\'être accepté');
     }
 
     public function getPendingEntreprises(Request $request)
