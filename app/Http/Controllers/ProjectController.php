@@ -20,7 +20,7 @@ class ProjectController extends Controller
     protected $linkRepository;
     protected $categoryRepository;
 
-    protected $nbrPerPage = 9;
+    protected $nbrPerPage = 12;
 
     public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository, CategoryRepository $categoryRepository)
     {
@@ -68,8 +68,9 @@ class ProjectController extends Controller
     {
         $this->linkRepository->checkSeen($request->user(), $id);
         $project = $this->projectRepository->getById($id);
+        $categories = $this->categoryRepository->categories();
 
-        return view('projects.show',  compact('project'));
+        return view('projects.show',  compact('project', 'categories'));
     }
 
     public function edit($id)
@@ -79,12 +80,49 @@ class ProjectController extends Controller
         return view('projects.edit',  compact('project'));
     }
 
-    public function update(ProjectUpdateRequest $request, $id)
+    public function update(Request $request, TagRepository $tagRepository, $id)
     {
 
-        $this->projectRepository->update($id, $request->all());
+        $project = $this->projectRepository->getById($id);
+        $category = $this->categoryRepository->getByName($request->input('category'));
+
+        $inputs = array_merge($request->all(), ['category_id' => $category->id]);
         
-        return redirect('projects')->withOk("Le project " . $request->input('title') . " a été modifié.");
+        $this->projectRepository->update($id, $request->all());
+
+       /* if(isset($inputs['tags']))
+        {
+           $projectTags = $project->tags();
+           $projectTagsArray[] = null;
+
+           foreach ($projectTags as $tag) {
+               $projectTagsArray[] = $tag->tag;
+           }
+
+           $inputTagsArray = explode('+', $inputs['tags']);
+           $timtags[] = null;
+           foreach ($inputTagsArray as $tag) {
+               $tag = trim($tag);
+               $trimTags[] = $tag;
+           }
+
+           $i = 0;
+           foreach ($trimTags as $tag) {
+              if(in_array($tag, $projectTagsArray))
+              {
+                unset($trimTags[$i]);
+              }
+              $i++;
+           }
+           $i=0;
+            
+            //$attachInputs = array_diff($trimTags, $projectTagsArray);
+            $inputProjects = implode('+', $trimTags);
+            $tagRepository->attach($project, $inputProjects);
+        }*/
+
+    
+        return redirect()->back();
     }
 
     public function destroy($id)

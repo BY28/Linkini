@@ -90,8 +90,8 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                             </div>
 
                             <div class="row">
-                             <div class="col-md-7 col-md-offset-4">
-                                <h3 style="color: #fff; text-shadow: 0 0 20px #000">Vous cherchez des informations supplémentaires, propositions ou plainte ? Contactez-nous dès maintenant!</h3>
+                             <div class="col-md-7 col-md-offset-3">
+                                <h3 style="color: #fff; text-shadow: 0 0 20px #000">Vous cherchez des informations supplémentaires, propositions ou commentaire ? Contactez-nous dès maintenant!</h3>
                             </div>
                             </div>
                         </div>
@@ -113,12 +113,8 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                 <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher un secteur d'activité" autocomplete="off">
                 <input type="hidden" name="tags-input" id="hidden-tag">
                    <ul class="list-group search-results">
-             <!--  <li class="list-group-item list-group-item-linkable">Cras justo odio</li>
-             <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li> -->
-            </ul>
+                       <!--  <li class="list-group-item list-group-item-linkable"></li> -->
+                  </ul>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

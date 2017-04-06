@@ -234,7 +234,46 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                           </div>
                     </div>
 
-                    <!-- Service Tabs -->
+                   
+                    <div class="panel panel-primary col-md-6 height-box bhoechie-tab-container" > 
+                      <div class="panel-heading">PROJETS RECENTS</div>
+
+                      <div class=" infinite-scroll scrollbar projects-tab-container" id="scroll-custom">
+                      
+                       <div class="panel-body">
+                       
+                          <div class="col-sm-12"> 
+                              <table class="table">
+                              <tbody> 
+                              @foreach($projects as $project)
+                              
+                                 <tr class="cat-row">
+                                    <td style='color:#ea5817;'>
+                                        {{$project->title}}
+                                    </td>
+                                    <td>
+                                        {{$project->getReadableDateFormat($project->created_at)}}
+                                    </td>
+
+                                    <td><a href="{{route('projects.show', $project->id)}}">Voir le projet</a></td>
+                                  </tr>
+                          
+                                
+                              @endforeach
+                              </tbody>
+                            </table>
+                            
+                          </div>
+                          {!! $links !!}
+                        </div> 
+                       
+                        {!! $links !!}
+                      </div>
+
+                      </div>
+                    
+
+                    <!-- Service Tabs 
         <div class="col-md-6 bhoechie-tab-container height-box">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
               <div class="list-group">
@@ -253,7 +292,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
               </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                <!-- flight section -->
+              
                 <div class="bhoechie-tab-content active">
                     <center>
                       <h1 class="glyphicon glyphicon-link" style="font-size:14em;color:#a9a9a9"></h1>
@@ -261,7 +300,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                       <p style="margin-top: 0;color:#a9a9a9">Linkini vous donne la possibilité de créer des liens avec plusieurs entreprises afin de réaliser vos projets</p>
                     </center>
                 </div>
-                <!-- train section -->
+            
                 <div class="bhoechie-tab-content">
                     <center>
                       <h1 class="glyphicon glyphicon-time" style="font-size:12em;color:#a9a9a9"></h1>
@@ -270,7 +309,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     </center>
                 </div>
     
-                <!-- hotel search -->
+              
                 <div class="bhoechie-tab-content">
                     <center>
                       <h1 class="glyphicon glyphicon-export" style="font-size:12em;color:#a9a9a9"></h1>
@@ -288,6 +327,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                 
             </div>
         </div>
+        -->
 
      </div>
       <!--  <section id="work-shop" class="section-padding">
@@ -814,9 +854,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default">Download Now!</a>
+                <h2>Choisissez votre offre dès maintenant!</h2>
+                <p>Des offres sont à votre disposition pour plus d'options.</p>
+                <a href="{{route('services')}}"" class="btn btn-default">Offres</a>
             </div>
         </div>
     </aside>
@@ -833,30 +873,30 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                        <i class="fa fa-4x fa-handshake-o text-primary sr-icons"></i>
+                        <h3>Tissez des liens</h3>
+                        <p class="text-muted">Nous vous offrons des liens solides et fiables afin de réaliser tous vos projets</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+                        <i class="fa fa-4x fa-clock-o text-primary sr-icons"></i>
+                        <h3>Gagnez du temps</h3>
+                        <p class="text-muted">Retrouvez rapidement, efficacement et en un clic le service ou le projet que vous cherchez</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                        <i class="fa fa-4x fa-eye text-primary sr-icons"></i>
+                        <h3>Soyez visible</h3>
+                        <p class="text-muted">Ayez plus de visibilité en créant votre propre page web</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                        <i class="fa fa-4x fa-money text-primary sr-icons"></i>
+                        <h3>Rentabilité</h3>
+                        <p class="text-muted">Nos services et offres vous permettent de gagner plus à tous les niveaux</p>
                     </div>
                 </div>
             </div>
@@ -867,10 +907,10 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
+                    <h2 class="section-heading">Nous sommes au plus près de nos clients</h2>
                     <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <p class="text-faded">Vous cherchez des informations supplémentaires, propositions ou commentaire ? Contactez-nous dès maintenant!</p>
+                    <a href="{{route('contact')}}" class="page-scroll btn btn-default btn-xl sr-button">Contactez-nous!</a>
                 </div>
             </div>
         </div>
@@ -1005,5 +1045,21 @@ $( document ).ready(function() {
 
     $(".height-box").height(maxHeight);
 });
+</script>
+
+<script type="text/javascript">
+    $('ul.pagination').hide();
+    $(function() {
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            loadingHtml: '<img class="center-block img-responsive" width="20%" src="{{URL::to('images/gifs')}}/loading.gif" alt="Loading..." />',
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.panel-body',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
 </script>
 @endsection

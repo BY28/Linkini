@@ -42,7 +42,7 @@ class TagRepository extends ResourceRepository
 
 	}
 
-	public function attach($table, $tags)
+	public function attach($project, $tags)
 	{
 		$tags = explode('+', $tags);
 
@@ -62,11 +62,11 @@ class TagRepository extends ResourceRepository
 					'tag_url' => $tag_url
 				]);	
 
-				$table->tags()->save($tag_ref);
+				$project->tags()->save($tag_ref);
 
 			} else {
 			
-				$table->tags()->attach($tag_ref->id);
+				$project->tags()->attach($tag_ref->id);
 
 			}
 

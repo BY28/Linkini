@@ -56,6 +56,14 @@
         }
     });
 
+    $('#project_update_form').on('submit',function(){
+        if(mainInput.value != '')
+        {  
+            addTag(mainInput.value);
+            mainInput.value = '';
+        }
+    });
+
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 

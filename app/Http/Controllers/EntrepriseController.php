@@ -24,7 +24,7 @@ class EntrepriseController extends Controller
     protected $linkRepository;
     protected $linkOrderRepository;
 
-    protected $nbrPerPage = 9;
+    protected $nbrPerPage = 12;
 
     public function __construct(EntrepriseRepository $entrepriseRepository, EntrepriseOrderRepository $entrepriseOrderRepository, CategoryRepository $categoryRepository, ActivityRepository $activityRepository, LinkRepository $linkRepository, LinkOrderRepository $linkOrderRepository)
     {

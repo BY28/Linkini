@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('contact', function () {
     return view('contact');
@@ -54,6 +52,7 @@ Route::get('statistics', ['uses' => 'ProfileController@getStatistics', 'as' => '
 		Route::get('/attributions', ['uses' => 'LinkController@getUserAttributionProjects', 'as' => 'projects.attributions']);
 		Route::get('launched', ['uses' => 'LinkController@getUserLaunchedProjects', 'as' => 'projects.launched']);
 		Route::get('create', ['uses' => 'ProjectController@create', 'as' => 'projects.create']);
+		Route::post('update/{id}', ['uses' => 'ProjectController@update', 'as' => 'projects.update']);
 
 		Route::post('launch', ['uses' => 'ProjectController@launch', 'as' => 'projects.launch']);
 	});
@@ -196,7 +195,7 @@ Route::resource('user', 'UserController');
 
 Route::resource('entreprises', 'EntrepriseController');
 
-Route::resource('projects', 'ProjectController', ['except' => ['create']]);
+Route::resource('projects', 'ProjectController', ['except' => ['create', 'update']]);
 
 Route::resource('tags', 'TagController', ['only' => ['create', 'store']]);
 

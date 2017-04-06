@@ -10,7 +10,7 @@
 	  </div>
 	  <div class="btn-group header-btn" role="group">
 	  <a href="{{route('entreprises.info')}}">
-	    <button type="button" class="btn btn-default">Informations</button>
+	    <button type="button" class="btn btn-default">Page</button>
 	  </a>
 	  </div>
 	</div>

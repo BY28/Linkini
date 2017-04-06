@@ -55,7 +55,7 @@
     $(function() {
         $('.infinite-scroll').jscroll({
             autoTrigger: true,
-            loadingHtml: '<img class="center-block" src="{{URL::to('images/gifs')}}/loading.gif" alt="Loading..." />',
+            loadingHtml: '<img class="center-block" width="20%" src="{{URL::to('images/gifs')}}/loading.gif" alt="Loading..." />',
             padding: 0,
             nextSelector: '.pagination li.active + li a',
             contentSelector: 'div.infinite-scroll',

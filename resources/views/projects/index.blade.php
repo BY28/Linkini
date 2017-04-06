@@ -211,7 +211,6 @@ pre-scrollable
     <section class="col-xs-12 col-sm-12 col-md-12">
     
     @foreach($projects as $project)
-
         <article class="search-result row" data-projectid="{{$project->id}}">
                 <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
                     <ul class="meta-search pull-left">
@@ -265,10 +264,10 @@ pre-scrollable
         </article>        
         
     @endforeach
-        
-    </section>
 
-    {!! $links !!}
+    </section>
+      {!! $links !!}
+    
 
     <!-- Modals -->
 

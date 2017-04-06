@@ -96,8 +96,11 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                             </div>
 
                             <div class="row">
-                             <div class="col-md-7 col-md-offset-4">
-                                <h3 style="color: #fff; text-shadow: 0 0 20px #000">Choisissez l'une de nos différentes offres!</h3>
+                            <div class="col-md-7 col-md-offset-3">
+                               <h3 style="color: #fff; text-shadow: 0 0 20px #000">Choisissez l'une de nos différentes offres!</h3>
+                            </div>
+                             <div class="col-md-7 col-md-offset-2">
+                               
                                 <h3 style="color: #fff; text-shadow: 0 0 20px #000">Chaque offre a son avantage, abonnez vous à l'une d'entre elle pour en bénéficier.</h3>
                             </div>
                             </div>
@@ -148,18 +151,18 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="panel panel-pricing">
 <div class="panel-heading">
 <i class="fa fa-paper-plane"></i>
-<h3>Offre 1</h3>
+<h3>Free</h3>
 </div><!--panel-heading close-->
 <div class="panel-body text-center">
-<p class="p-title">Subscription Duration</p><!--p-title close-->
-<p class="p-time">2 days - 30 Mins</p><!--p-time close-->
+<p class="p-title">Durée de l'abonnement</p><!--p-title close-->
+<p class="p-time">Offre constante</p><!--p-time close-->
 </div><!--panel-body text-center close-->
 <div class="panel-body text-center">
-<p class="p-price">₦ 50.00 </p><!--p-price close-->
-<p class="p-tax">All inclusive</p><!--p-tax close-->
+<p class="p-price">Gratuit </p><!--p-price close-->
+<!--<p class="p-tax">Tout compris</p>p-tax close-->
 </div><!--panel-body text-center close-->
 <div class="panel-footer">
-<a class="btn sub-btn" href="#">Subscribe Now</a>
+<a class="btn sub-btn" href="{{ url('/register') }}">Abonnez-vous</a>
 </div>
 </div><!--panel panel-pricing close-->
 </div><!--col-md-4 col-sm-4 col-xs-12 text-center close-->
@@ -169,18 +172,18 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="panel panel-pricing">
 <div class="panel-heading">
 <i class="fa fa-plane"></i>
-<h3>Offre 2</h3>
+<h3>Light</h3>
 </div><!--panel-heading close-->
 <div class="panel-body text-center">
-<p class="p-title">Subscription Duration</p><!--p-title close-->
-<p class="p-time">7 days - 90 Mins</p><!--p-time close-->
+<p class="p-title">Durée de l'abonnement</p><!--p-title close-->
+<p class="p-time">1 mois</p><!--p-time close-->
 </div><!--panel-body text-center close-->
 <div class="panel-body text-center">
-<p class="p-price">₦ 150.00 </p><!--p-price close-->
-<p class="p-tax">All inclusive</p><!--p-tax close-->
+<p class="p-price">Essai gratuit </p><!--p-price close-->
+<!--<p class="p-tax">Tout compris</p>p-tax close-->
 </div><!--panel-body text-center close-->
 <div class="panel-footer">
-<a class="btn sub-btn" href="#">Subscribe Now</a>
+<a class="btn sub-btn" href="{{route('entreprises.getorder')}}">Abonnez-vous</a>
 </div>
 </div><!--panel panel-pricing close-->
 </div><!--col-md-4 col-sm-4 col-xs-12 text-center close-->
@@ -191,18 +194,18 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="panel panel-pricing">
 <div class="panel-heading">
 <i class="fa fa-space-shuttle"></i>
-<h3>Offre 3</h3>
+<h3>Plus</h3>
 </div><!--panel-heading close-->
 <div class="panel-body text-center">
-<p class="p-title">Subscription Duration</p><!--p-title close-->
-<p class="p-time">30 days - 250 Mins</p><!--p-time close-->
+<p class="p-title">Durée de l'abonnement</p><!--p-title close-->
+<p class="p-time">3 mois</p><!--p-time close-->
 </div><!--panel-body text-center close-->
 <div class="panel-body text-center">
-<p class="p-price">₦ 400.00 </p><!--p-price close-->
-<p class="p-tax">All inclusive</p><!--p-tax close-->
+<p class="p-price">Bientot disponible </p><!--p-price close-->
+<!--<p class="p-tax">Tout compris</p>p-tax close-->
 </div><!--panel-body text-center close-->
 <div class="panel-footer">
-<a class="btn sub-btn" href="#">Subscribe Now</a>
+<a class="btn sub-btn" href="{{route('entreprises.getorder')}}">Abonnez-vous</a>
 </div>
 </div><!--panel panel-pricing close-->
 </div><!--col-md-4 col-sm-4 col-xs-12 text-center close-->
@@ -211,18 +214,18 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 <div class="panel panel-pricing">
 <div class="panel-heading">
 <i class="fa fa-rocket"></i>
-<h3>Offre 4</h3>
+<h3>Pro</h3>
 </div><!--panel-heading close-->
 <div class="panel-body text-center">
-<p class="p-title">Subscription Duration</p><!--p-title close-->
-<p class="p-time">30 days - 250 Mins</p><!--p-time close-->
+<p class="p-title">Durée de l'abonnement</p><!--p-title close-->
+<p class="p-time">6 mois</p><!--p-time close-->
 </div><!--panel-body text-center close-->
 <div class="panel-body text-center">
-<p class="p-price">₦ 400.00 </p><!--p-price close-->
-<p class="p-tax">All inclusive</p><!--p-tax close-->
+<p class="p-price">Bientot disponible </p><!--p-price close-->
+<!--<p class="p-tax">Tout compris</p>p-tax close-->
 </div><!--panel-body text-center close-->
 <div class="panel-footer">
-<a class="btn sub-btn" href="#">Subscribe Now</a>
+<a class="btn sub-btn" href="{{route('entreprises.getorder')}}">Abonnez-vous</a>
 </div>
 </div><!--panel panel-pricing close-->
 </div><!--col-md-4 col-sm-4 col-xs-12 text-center close-->
@@ -244,10 +247,10 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             <thead>
               <tr>
                 <th>Comparer les offres</th>
-                <th>Offre 1</th>
-                <th>Offre 2</th>
-                <th>Offre 3</th>
-                <th>Offre 4</th>
+                <th>Free</th>
+                <th>Light</th>
+                <th>Plus</th>
+                <th>Pro</th>
               </tr>
              </thead>
               <tbody>
@@ -304,23 +307,23 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                   <tr>
                   <td></td>
                       <td>
-                          <a class="btn btn-success">
-                              Upgrade
+                          <a class="btn btn-success" href="{{ url('/register') }}">
+                              Sélectionner
                           </a>
                       </td>
                       <td>
-                          <a class="btn btn-success">
-                              Upgrade
+                          <a class="btn btn-success" href="{{route('entreprises.getorder')}}">
+                              Sélectionner
                           </a>
                       </td>
                       <td>
-                          <a class="btn btn-success">
-                              Upgrade
+                          <a class="btn btn-success" href="{{route('entreprises.getorder')}}">
+                              Sélectionner
                           </a>
                       </td>
                       <td>
-                          <a class="btn btn-success">
-                              Upgrade
+                          <a class="btn btn-success" href="{{route('entreprises.getorder')}}">
+                              Sélectionner
                           </a>
                       </td>
                   </tr>
