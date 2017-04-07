@@ -43,33 +43,39 @@ class TagRepository extends ResourceRepository
 	}
 
 	public function attach($project, $tags)
-	{
-		$tags = explode('+', $tags);
+	{	
+		if($tags != null)
+		{	
+			$tag = trim($tags);
+			$tags = str_replace(' ', '+', $tags);
+		
+			$tags = explode('+', $tags);
 
-		foreach ($tags as $tag) {
+			foreach ($tags as $tag) {
 
-			$tag = trim($tag);
+				$tag = trim($tag);
 
-			$tag_url = Str::slug($tag);
+				$tag_url = Str::slug($tag);
 
-			$tag_ref = $this->model->where('tag_url', $tag_url)->first();
+				$tag_ref = $this->model->where('tag_url', $tag_url)->first();
 
-			if(is_null($tag_ref)) 
-			{
-				//continue;
-				$tag_ref = new $this->model([
-					'tag' => $tag,
-					'tag_url' => $tag_url
-				]);	
+				if(is_null($tag_ref)) 
+				{
+					//continue;
+					$tag_ref = new $this->model([
+						'tag' => $tag,
+						'tag_url' => $tag_url
+					]);	
 
-				$project->tags()->save($tag_ref);
+					$project->tags()->save($tag_ref);
 
-			} else {
-			
-				$project->tags()->attach($tag_ref->id);
+				} else {
+				
+					$project->tags()->attach($tag_ref->id);
+
+				}
 
 			}
-
 		}
 	}
 

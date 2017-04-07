@@ -236,7 +236,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
                    
                     <div class="panel panel-primary col-md-6 height-box bhoechie-tab-container" > 
-                      <div class="panel-heading">PROJETS RECENTS</div>
+                      <div class="panel-heading" style="font-weight: bold;">PROJETS RÉCENTS</div>
 
                       <div class=" infinite-scroll scrollbar projects-tab-container" id="scroll-custom">
                       

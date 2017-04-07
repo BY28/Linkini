@@ -44,9 +44,9 @@
         <div class="header-content">
             <div class="header-content-inner">
 
-                <h1 id="homeHeading">{{$header_content[0]->content_title}}</h1>
+                <h1 id="homeHeading" style="text-shadow: 0 0 20px #000;">{{$header_content[0]->content_title}}</h1>
                 <hr>
-                <p>{{$header_content[0]->content_text}}</p>
+                <p id="homeHeading_text" style="text-shadow: 0 0 20px #000;">{{$header_content[0]->content_text}}</p>
                 <a href="#about" class="btn btn-primary btn-md page-scroll">
                     <i class="fa fa-angle-double-down fa-2x"></i>
                 </a>

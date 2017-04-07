@@ -211,6 +211,14 @@ header .header-content .header-content-inner p {
     margin-right: auto;
   }
 }
+#homeHeading
+{
+  text-shadow: 0 0 20px #000;
+}
+#homeHeading_text
+{
+  text-shadow: 0 0 20px #000;
+}
 .section-heading {
   margin-top: 0;
 }

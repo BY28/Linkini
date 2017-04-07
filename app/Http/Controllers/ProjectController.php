@@ -90,36 +90,11 @@ class ProjectController extends Controller
         
         $this->projectRepository->update($id, $request->all());
 
-       /* if(isset($inputs['tags']))
+        if(isset($inputs['tags']))
         {
-           $projectTags = $project->tags();
-           $projectTagsArray[] = null;
-
-           foreach ($projectTags as $tag) {
-               $projectTagsArray[] = $tag->tag;
-           }
-
-           $inputTagsArray = explode('+', $inputs['tags']);
-           $timtags[] = null;
-           foreach ($inputTagsArray as $tag) {
-               $tag = trim($tag);
-               $trimTags[] = $tag;
-           }
-
-           $i = 0;
-           foreach ($trimTags as $tag) {
-              if(in_array($tag, $projectTagsArray))
-              {
-                unset($trimTags[$i]);
-              }
-              $i++;
-           }
-           $i=0;
-            
-            //$attachInputs = array_diff($trimTags, $projectTagsArray);
-            $inputProjects = implode('+', $trimTags);
-            $tagRepository->attach($project, $inputProjects);
-        }*/
+            $project->tags()->detach();
+            $tagRepository->attach($project, $inputs['tags']);
+        }
 
     
         return redirect()->back();

@@ -32,7 +32,7 @@
 
                     @if(Auth::check())
                         @if(@Auth::user()->id == $project->id)
-                            <a href="#" class="btn btn-primary btn-xs edit" data-projectid="{!! $project->id !!}" data-toggle="modal" data-target="#editModal">Editer</a>
+                            <a href="#" class="btn btn-primary btn-xs edit" id="edit-project" data-projectid="{!! $project->id !!}" data-toggle="modal" data-target="#projectEditModal">Editer</a>
                         @endif
                     @endif
                 </h1>
@@ -86,7 +86,7 @@
 
     <!-- Modals -->
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+<div class="modal fade" id="projectEditModal" tabindex="-1" role="dialog" aria-labelledby="projectEditModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -151,6 +151,7 @@ var id = null;
 var clickEvent = null;
 
 $('.edit').click(function(event) {
+  
     title = $('#project_title').html();
     description = $('#project_description').html();
     category = $('#project_category').html();
@@ -164,9 +165,9 @@ $('.edit').click(function(event) {
     $("#edit-text").val(description);
     $("#edit-category").val(category);
 
-    var e = jQuery.Event("keypress");
-    e.which = 8;
-    e.keyCode = 13;
+    /*var e = jQuery.Event("keypress");
+    e.which = 13;
+    e.keyCode = 13;*/
 
     var input = '';
    for(i=0; i<liTags.length; i++)
@@ -175,15 +176,18 @@ $('.edit').click(function(event) {
         $(".main-input").trigger(e);*/
         input += liTags[i] + ' ';
     }
+    liTags = [];
     $('.main-input').val(input);
-    $(".main-input").trigger(e);
+    $('.main-input').focus();
+
     clickEvent = event;
 });
 
 $('.tags-input').on('click', function(){
             var input = $(".main-input");
-            input.focus();
+            input.focus();            
         });
+
 
 
 </script>

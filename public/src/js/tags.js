@@ -4,6 +4,7 @@
         tags = [];
     
     hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('id', 'hidden-tags-input');
     hiddenInput.setAttribute('name', el.getAttribute('data-name'));
 
     mainInput.setAttribute('type', 'text');
@@ -25,7 +26,6 @@
             mainInput.setAttribute('placeholder', ' ');
         }
     });
-
     mainInput.addEventListener('keydown', function (e) {
         let keyCode = e.which || e.keyCode;
         if (keyCode === 8 && mainInput.value.length === 0 && tags.length > 0) {
@@ -57,12 +57,77 @@
     });
 
     $('#project_update_form').on('submit',function(){
-        if(mainInput.value != '')
+        if(mainInput.value.indexOf(' ') < 0 && mainInput.value != '')
+        {
+            addTag(mainInput.value);
+        }
+        let enteredTags = mainInput.value.split(' ');
+
+        if (enteredTags.length > 1) {
+            enteredTags.forEach(function (t) {
+                let filteredTag = filterTag(t);
+                if (filteredTag.length > 0)
+                    addTag(filteredTag);
+            });
+            mainInput.value = '';
+        }
+        if(tags.length >= 5)
+        {
+            mainInput.setAttribute('placeholder', ' ');
+        }
+       /* if(mainInput.value != '')
         {  
             addTag(mainInput.value);
             mainInput.value = '';
-        }
+        }*/
+        mainInput.value = '';
     });
+$('#projectEditModal').on('hidden.bs.modal', function (e) {
+    console.log('Modal Hides!');
+    tags = [];
+    enteredTags = [];
+    $('#hidden-tags-input').val(null);
+    $('#hidden-tags-input').removeAttr('value');
+    $('.main-input').val(null);
+    $('.tag').remove();
+});
+
+$('#projectEditModal').on('show.bs.modal', function (event) {
+    
+    let enteredTags = mainInput.value.split(' ');
+
+        if (enteredTags.length > 1) {
+            enteredTags.forEach(function (t) {
+                let filteredTag = filterTag(t);
+                if (filteredTag.length > 0)
+                    addTag(filteredTag);
+            });
+            mainInput.value = '';
+        }
+        if(tags.length >= 5)
+        {
+            mainInput.setAttribute('placeholder', ' ');
+        }
+ mainInput.value = '';
+
+});
+    mainInput.addEventListener("focus", function() {
+        let enteredTags = mainInput.value.split(' ');
+
+        if (enteredTags.length > 1) {
+            enteredTags.forEach(function (t) {
+                let filteredTag = filterTag(t);
+                if (filteredTag.length > 0)
+                    addTag(filteredTag);
+            });
+            mainInput.value = '';
+        }
+        if(tags.length >= 5)
+        {
+            mainInput.setAttribute('placeholder', ' ');
+        }
+ mainInput.value = '';
+    }, true);
 
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
