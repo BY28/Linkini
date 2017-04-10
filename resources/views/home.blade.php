@@ -219,6 +219,18 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
+                            @foreach($carouselImages as $index => $carouselImage)
+                              @if($index == 0)
+                                <div class="item active">
+                                    <img class="img-responsive height-box" src="{{ URL::to('uploads/homepage')}}/{{$carouselImage->image}}" alt="">
+                                </div>
+                              @else
+                                <div class="item">
+                                    <img class="img-responsive height-box" src="{{ URL::to('uploads/homepage')}}/{{$carouselImage->image}}" alt="">
+                                </div>
+                              @endif
+                            @endforeach
+                            <!--
                                 <div class="item active">
                                     <img class="img-responsive height-box" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
@@ -228,6 +240,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                 <div class="item">
                                     <img class="img-responsive height-box" src="http://lorempixel.com/750/500/" alt="">
                                 </div>
+                            -->
                             </div>
 
                             <!-- Controls -->

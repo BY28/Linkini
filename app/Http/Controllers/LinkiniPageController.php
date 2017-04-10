@@ -28,12 +28,17 @@ class LinkiniPageController extends Controller
      */
     public function index(Request $request)
     {
+       //
+    }
+
+
+    public function getCarousel(Request $request)
+    {
         $user = $request->user();
-        $carouselImages = $this->pageRepository->get();
+        $carouselImages = $this->pageRepository->getAdvertisements();
 
         return view('admins.pages.homepage', compact('user', 'carouselImages'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +57,7 @@ class LinkiniPageController extends Controller
      */
     public function storeCarousel(Request $request)
     {
-        $category = $this->pageRepository->getCategory('home_advertisement');
+        $category = $this->pageCategoryRepository->getByName('home_advertisement');
 
         $inputs = [
             'image' => $request->file('image'),
@@ -224,5 +229,11 @@ class LinkiniPageController extends Controller
 
          $this->pageRepository->destroy($id);
          return redirect()->back();
+    }
+
+    public function deleteCarouselImage($id)
+    {
+        $this->pageRepository->deleteCarouselImage($id);
+        return redirect()->back();
     }
 }

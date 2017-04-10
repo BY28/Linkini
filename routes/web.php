@@ -171,9 +171,9 @@ Route::group(['prefix' => 'admin'], function(){
 	});
 	
 	Route::group(['prefix' => 'pages'], function(){
-			Route::get('home', ['uses' => 'LinkiniPageController@index', 'as' => 'homepage.index']);
+			Route::get('home', ['uses' => 'LinkiniPageController@getCarousel', 'as' => 'homepage.index']);
 			Route::post('home', ['uses' => 'LinkiniPageController@storeCarousel', 'as' => 'homepage.storeCarousel']);
-			Route::delete('destroy/{id}', ['uses' => 'LinkiniPageController@destroy', 'as' => 'homepage.deleteCarousel']);
+			Route::delete('destroy/{id}', ['uses' => 'LinkiniPageController@deleteCarouselImage', 'as' => 'homepage.deleteCarousel']);
 		});
 
 });

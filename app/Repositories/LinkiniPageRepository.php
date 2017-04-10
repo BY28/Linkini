@@ -6,6 +6,9 @@ use App\LinkiniPage;
 use App\PageCategory;
 use App\Advertisement;
 
+use URL;
+use File;
+
 class LinkiniPageRepository extends ResourceRepository
 {
 
@@ -23,6 +26,11 @@ class LinkiniPageRepository extends ResourceRepository
 	public function get()
 	{
 		return $this->model->get();
+	}
+
+	public function getAdvertisements()
+	{
+		return $this->advertisement->get();
 	}
 
 	public function storeAdmin(Array $inputs)
@@ -68,5 +76,17 @@ class LinkiniPageRepository extends ResourceRepository
 		$category = $this->getCategory('page_Contact');
 
 		return $this->model->where('entreprise_id', $entreprise_id)->where('page_category_id', $category->id)->get();
+	}
+
+	public function deleteCarouselImage($id)
+	{
+		$image = $this->advertisement->findOrFail($id);
+
+		if($image)
+		{
+			File::delete("uploads/homepage/" . $image->image);
+			$image->delete();
+		}
+
 	}
 }

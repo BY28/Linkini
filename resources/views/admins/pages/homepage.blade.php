@@ -1,5 +1,31 @@
 @extends('layouts.admin.index')
 
+@section('styles')
+
+<style type="text/css">
+  .thumbnail img{
+    max-width: 100%; /* do not stretch the bootstrap column */
+}
+
+.img-wrapper{
+  width: 100%;
+  padding-bottom: 100%; /* your aspect ratio here! */
+  position: relative;
+}
+
+.img-wrapper img{
+  position: absolute;
+  top: 0; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  min-height: 100%; 
+  max-height: 100%;
+  }
+</style>
+
+@endsection
+
 @section('content')
     <div class="row">
        {!! Form::open(array('route' => 'homepage.storeCarousel', 'class' => 'form', 'files' => true, 'method' => 'post')) !!}
@@ -18,8 +44,12 @@
 
     <div class="row">
       @foreach($carouselImages as $carouselImage)
-        <div class="col-md-3" data-imageid="{!! $carouselImage->id !!}">
-          <img src="{{ URL::to('uploads/homepage')}}/{{$carouselImage->image}}" class="img-responsive">
+        <div class="col-md-4" data-imageid="{!! $carouselImage->id !!}">
+          <div class="thumbnail">
+                <div class="img-wrapper">
+                  <img src="{{ URL::to('uploads/homepage')}}/{{$carouselImage->image}}" class="img-responsive">
+                </div>
+          </div>      
           <!-- <a href="#" class="btn btn-danger btn-xs delete" data-toggle="modal" 
    data-target="#deleteModal">Delete</a> -->
    {!! Form::open(['method' => 'DELETE', 'route' => ['homepage.deleteCarousel', $carouselImage->id]]) !!}
