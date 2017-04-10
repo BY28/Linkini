@@ -346,4 +346,9 @@ class LinkRepository extends ResourceRepository
 		else
 			return false;
 	}
+	public function getPendingProjectLinks($project_id)
+	{
+		return $this->model->where('project_id', $project_id)->where('refused', false)->orderBy('created_at', 'desc')->get();
+	}
+
 }

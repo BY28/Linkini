@@ -261,7 +261,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                               @foreach($projects as $project)
                               
                                  <tr class="cat-row">
-                                    <td style='color:#ea5817;'>
+                                    <td style='color:#ea5817;' class="projects-title">
                                         {{$project->title}}
                                     </td>
                                     <td>
@@ -1058,6 +1058,7 @@ $( document ).ready(function() {
 
     $(".height-box").height(maxHeight);
 });
+
 </script>
 
 <script type="text/javascript">

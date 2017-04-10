@@ -220,7 +220,7 @@ pre-scrollable
                     </ul>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 result">
-                    <h3><a href="#" title="">{{ $project->title }}</a></h3>
+                    <h3><a href="{{route('projects.show', $project->id)}}" title="">{{ $project->title }}</a></h3>
                     <p>{{ $project->content }}</p>                        
 
                     <div class="action">

@@ -8,6 +8,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Repositories\ProjectRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\LinkRepository;
+use App\Repositories\LinkOrderRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ActivityRepository;
 
@@ -19,10 +20,11 @@ class ProjectController extends Controller
     protected $tagRepository;
     protected $linkRepository;
     protected $categoryRepository;
+    protected $linkOrderRepository;
 
     protected $nbrPerPage = 12;
 
-    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository, CategoryRepository $categoryRepository)
+    public function __construct(ProjectRepository $projectRepository, TagRepository $tagRepository, LinkRepository $linkRepository, CategoryRepository $categoryRepository, LinkOrderRepository $linkOrderRepository)
     {
         $this->middleware('auth', ['except' => 'index']);
 
@@ -30,6 +32,7 @@ class ProjectController extends Controller
         $this->tagRepository = $tagRepository;
         $this->linkRepository = $linkRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->linkOrderRepository = $linkOrderRepository;
     }
     public function index(Request $request)
     {
@@ -69,8 +72,9 @@ class ProjectController extends Controller
         $this->linkRepository->checkSeen($request->user(), $id);
         $project = $this->projectRepository->getById($id);
         $categories = $this->categoryRepository->categories();
+        $links = $this->linkRepository->getPendingProjectLinks($id);
 
-        return view('projects.show',  compact('project', 'categories'));
+        return view('projects.show',  compact('project', 'categories', 'links'));
     }
 
     public function edit($id)

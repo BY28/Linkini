@@ -40,4 +40,9 @@ class Project extends Model
     {
         return Carbon::parse($value)->diffForHumans();
     }
+
+    public function getLaunchedLink()
+    {
+        return $this->links->where('accepted', 1)->where('refused', 0)->first();
+    }
 }

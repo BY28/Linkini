@@ -198,7 +198,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                   <a href="#" title="Lorem ipsum" class="thumbnail"><img src="{{ URL::to('uploads/business')}}/{{$entreprise->image}}" alt="Lorem ipsum" /></a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 result">
-                    <h3><a href="#" title="">{{ $entreprise->name }}</a></h3>
+                    <h3><a href="{{route('page.entreprise', $entreprise->entreprise_url)}}" title="">{{ $entreprise->name }}</a></h3>
                     <p>{{ $entreprise->description }}</p>                        
 
                     <div class="action">

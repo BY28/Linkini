@@ -26,6 +26,11 @@ class LinkOrderRepository extends ResourceRepository
 		return $this->model->where('entreprise_id', $entreprise_id)->orderBy('created_at', 'desc')->get();
 	}
 
+	public function getPendingProjectLinks($project_id)
+	{
+		return $this->model->where('project_id', $project_id)->orderBy('created_at', 'desc')->get();
+	}
+
 	public function linkOrder($inputs)
 	{
 		$project = $inputs['project'];
