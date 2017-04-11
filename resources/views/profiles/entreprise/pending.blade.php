@@ -161,8 +161,9 @@ $('.links').click(function(event) {
 /* MODALS */
 $('.ignore').click(function(event) {
   
-   var linkid = $buttonClicked.parentNode.parentNode.dataset['linkorderid'];
-
+   var linkId = event.target.parentNode.parentNode.dataset['linkorderid'];
+   $buttonClicked = event.target;
+});
     $('#save-ignore').click(function(e){
 
     var $this = $(this);
@@ -175,18 +176,19 @@ $('.ignore').click(function(event) {
       $.ajax({
           method: 'POST',
           url: urlUnLink,
-          data: {linkid: linkid, _token: token}
+          data: {linkid: linkId, _token: token}
 
       })
       .done(function(){
         $buttonClicked.parentNode.parentNode.remove();
         $('#ignoreModal').modal('hide');
         $this.button('reset');
+        linkId = null;
         $buttonClicked = null;
       });
   });
 
-});
+
 </script>
 
 <script type="text/javascript">

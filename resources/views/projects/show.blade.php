@@ -27,10 +27,28 @@
             <div class="col-lg-11">
                 <h1 class="page-header" style="color: #ea5817"><span id="project_title" data-projecttitle="{!! $project->title !!}">{{$project->title}}</span>
                     <small>{{$project->getReadableDateFormat($project->created_at)}}</small>
+                      @if($links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', true)->first())
+                        <small>, Confirmé</small>
+                        @endif
                       <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
-
+            
 
                     @if(Auth::check())
+                    @if(Auth::user()->entreprise AND $project->launched)
+                          @if($links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', false)->first())
+                          <a href="#" data-toggle="modal" 
+   data-target="#confirmModal" class="btn btn-primary btn-xs confirm" data-linkid="{!! $links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', false)->first()->id !!}">Confirmer</a></td>
+                        @endif
+                        @if(Auth::user()->entreprise AND !$project->launched)
+                          <a href="#" data-toggle="modal" 
+   data-target="{{Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? '#deleteModal' : '#deleteModal' : '#sendModal'}}" class="btn btn-primary btn-xs links" title="Link" data-projectid="{!! $project->id !!}">
+                                        
+                                             {!! Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? 'Accepted' : 'Linked' : 'Link' !!}
+                                    
+                                    </a>
+                        @endif
+
+                        @endif
                         @if(@Auth::user()->id == $project->id)
                             <a href="#" class="btn btn-primary btn-xs edit" id="edit-project" data-projectid="{!! $project->id !!}" data-toggle="modal" data-target="#projectEditModal">Editer</a>
                         @endif
@@ -123,7 +141,7 @@
                         </td>
                         <td class="view-message  text-right">{{$link->created_at}}</td>
                        <td><a href="#" data-toggle="modal" 
-   data-target="#acceptModal" class="links">Accepter</a></td>
+   data-target="#acceptModal" class="links-accept">Accepter</a></td>
                     </tr>
                    
                    @endforeach
@@ -283,6 +301,97 @@
     </div>
   </div>
 </div>
+
+@if(Auth::user()->entreprise)
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Send Demand</h4>
+      </div>
+      <div class="modal-body form-group">
+        <div class="form-group">
+          <input type="text" name="amount" class="form-control" id="amount" placeholder="Montant du service">
+        </div>
+        <div class="form-group">  
+          <input type="text" name="time" class="form-control" id="time" placeholder="Temps de réalisation (délais)">
+        </div>
+        <div class="form-group">  
+          <textarea type="text" name="informations" class="form-control" id="informations" placeholder="Informations supplémentaires..." rows="10"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Close</button> -->
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Envoi de la demande" id="save-send">
+            Save
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Cancel Demand</h4>
+      </div>
+      <p> Etes vous sur de vouloir annuler votre demande d'attribution<strong id="delete-cat"></strong> ?</p>
+      <div class="modal-footer">
+      <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Annuler</button>
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Annulation de la demande" id="save-delete">
+            Confirmer
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">Confirm Project</h4>
+      </div>
+      <p> Etes-vous sur de vouloir confirmer le projet<strong id="confirm-cat"></strong> ?</p>
+      <div class="modal-footer">
+      <button type="button" 
+           class="btn btn-default" 
+           data-dismiss="modal">Annuler</button>
+        <span class="pull-right">
+          <button type="button" class="btn btn-default" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Confirmation du projet" id="save-confirm">
+            Confirmer
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
 @endif
 @endsection
 
@@ -337,10 +446,10 @@ $('.tags-input').on('click', function(){
 
 /* ACCEPT ATTRIBUTION */
 var linkId = null;
-var $buttonClicked = null;
-$('.links').click(function(event) {
+var $clickEvent = null;
+$('.links-accept').click(function(event) {
    linkId = event.target.parentNode.parentNode.dataset['linkid'];
-   $buttonClicked = event.target;
+   $clickEvent = event.target;
 });
     $('#save-accept').click(function(e){
     var $this = $(this);
@@ -357,18 +466,18 @@ $('.links').click(function(event) {
 
       })
       .done(function(){
-        $buttonClicked.parentNode.parentNode.remove();
+        $clickEvent.parentNode.parentNode.remove();
         $('#acceptModal').modal('hide');
         $this.button('reset');
         linkId = null;
-        $buttonClicked = null;
+        $clickEvent = null;
         location.reload();
       });
   });
 
 $('.cancel-link').click(function(event) {
   linkId = event.target.dataset['linkid'];
-  $buttonClicked = event.target;
+  $clickEvent = event.target;
 });
     $('#save-cancel').click(function(e){
     var $this = $(this);
@@ -385,12 +494,117 @@ $('.cancel-link').click(function(event) {
 
       })
       .done(function(){
-        $buttonClicked.parentNode.parentNode.remove();
+        $clickEvent.parentNode.parentNode.remove();
         $('#cancelModal').modal('hide');
         $this.button('reset');
         linkId = null;
-        $buttonClicked = null;
+        $clickEvent = null;
         location.reload();
+      });
+  });
+
+    $('.links').click(function(event) {
+  projectId = event.target.dataset['projectid'];
+  $clickEvent = event.target;
+});
+    $('#save-send').click(function(e){
+    var $this = $(this);
+    $this.button('loading');
+      var amount = $('#amount').val();
+      var time = $('#time').val();
+      var informations = $('#informations').val();
+
+     var token = '{{Session::token()}}';
+     var urlLink = '{{route('links.projectlink')}}';
+
+
+      $.ajax({
+          method: 'POST',
+          url: urlLink,
+          data: {projectId: projectId, amount: amount, time: time, informations: informations, _token: token}
+
+      })
+      .done(function(){
+        if($clickEvent.innerText == 'Link')
+        {
+          $clickEvent.innerText = 'Linked';
+        }
+        else
+        {
+          $clickEvent.innerText = 'Link';
+        }
+        $($clickEvent).removeAttr('data-target');
+        $($clickEvent).attr('data-target', '#deleteModal');
+        $('#sendModal').modal('hide');
+        $this.button('reset');
+        projectId = null;
+        $clickEvent = null;
+      });
+  });
+
+/* UNLINKPROJECT */
+
+$('.links').click(function(event) {
+  projectId = event.target.dataset['projectid'];
+  $clickEvent = event.target;
+});
+  $('#save-delete').click(function(e){
+    var $this = $(this);
+    $this.button('loading');
+     var token = '{{Session::token()}}';
+     var urlUnLink = '{{route('links.projectunlink')}}';
+
+
+      $.ajax({
+          method: 'POST',
+          url: urlUnLink,
+          data: {projectId: projectId, _token: token}
+
+      })
+      .done(function(){
+        if($clickEvent.innerText == 'Linked')
+        {
+          $clickEvent.innerText = 'Link';
+        }
+        else
+        {
+          $clickEvent.innerText = 'Linked';
+        }
+        $($clickEvent).removeAttr('data-target');
+        $($clickEvent).attr('data-target', '#sendModal');
+        $('#deleteModal').modal('hide');
+        $this.button('reset');
+        projectId = null;
+        $clickEvent = null;
+      });
+  });
+
+
+$('.confirm').click(function(event) {
+   linkId = event.target.dataset['linkid'];
+   $clickEvent = event.target;
+});
+    $('#save-confirm').click(function(e){
+    var $this = $(this);
+    $this.button('loading');
+
+     var token = '{{Session::token()}}';
+     var urlCancel = '{{route('links.attributionConfirm')}}';
+
+
+      $.ajax({
+          method: 'POST',
+          url: urlCancel,
+          data: {linkId: linkId, _token: token}
+
+      })
+      .done(function(){
+        $clickEvent.parentNode.parentNode.remove();
+        $('#confirmModal').modal('hide');
+        $this.button('reset');
+        event.target.remove();
+        linkId = null;
+        $clickEvent = null;
       });
   });
 </script>

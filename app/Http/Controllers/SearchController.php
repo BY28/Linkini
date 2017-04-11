@@ -52,13 +52,11 @@ class SearchController extends Controller
 	                <script>
 	                    $(document).ready(function() {
 	                    $('.list-group-item-linkable').on('click', function() {
-	                        //window.location.href = $(this).data('link');
-	                        // new window:
-	                        //window.open($(this).data('link'));
+                            $('#search').focus();
 	                        $('#search').val($(this).text());
 	                        $('.search-results').empty();
 	                    });
-	                })
+	                });
 	                </script>
 	                "
 	                ;
@@ -84,13 +82,11 @@ class SearchController extends Controller
 	                <script>
 	                    $(document).ready(function() {
 	                    $('.list-group-item-linkable').on('click', function() {
-	                        //window.location.href = $(this).data('link');
-	                        // new window:
-	                        //window.open($(this).data('link'));
-	                        $('.main-input').val($(this).text());
+                            $('.main-input').focus();
+                            $('.main-input').val($(this).text());
 	                        $('.search-results').empty();
 	                    });
-	                })
+	                });
 	                </script>
 	                "
 	                ;

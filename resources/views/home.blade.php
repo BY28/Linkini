@@ -1031,10 +1031,10 @@ $(document).ready(function() {
             input.focus();
         });
 
-        $('.search-results').on('click', function(){
+        /*$('.search-results').on('click', function(){
            var input = $(".main-input");
             input.focus();
-        });
+        });*/
       }
   });
 });
