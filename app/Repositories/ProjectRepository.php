@@ -3,15 +3,20 @@
 namespace App\Repositories;
 
 use App\Project;
+use App\ProjectImage;
+
+use File;
 
 class ProjectRepository extends ResourceRepository
 {
 
     protected $project;
+    protected $projectImage;
 
-    public function __construct(Project $project)
+    public function __construct(Project $project, ProjectImage $projectImage)
 	{
 		$this->model = $project;
+		$this->projectImage = $projectImage;
 	}
 
 	private function queryWithUserAndTags()
@@ -85,6 +90,24 @@ class ProjectRepository extends ResourceRepository
 	{
 		return $this->model->where('user_id', $user_id)->get();
 	}
+
+	public function storeImage($inputs)
+	{
+		$this->projectImage->create($inputs);
+	}
+
+	public function deleteImage($id)
+	{
+		$image = $this->projectImage->findOrFail($id);
+
+		if($image)
+		{
+			File::delete("uploads/project_images/" . $image->image);
+			$image->delete();
+		}
+
+	}
+
 	/*
 		*
 		* PAS DE SURCHARGE POUR LE MOMENT

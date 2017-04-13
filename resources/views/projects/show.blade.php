@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('styles')
+<link rel="stylesheet" href="{{ URL::to('src/css/lightbox.css') }}">
 <style>
 #project-container
 {
@@ -17,19 +18,38 @@
 {
     list-style: none;
 }
+
+  .thumbnail img{
+    max-width: 100%; /* do not stretch the bootstrap column */
+}
+
+.img-wrapper{
+  width: 100%;
+  padding-bottom: 100%; /* your aspect ratio here! */
+  position: relative;
+}
+
+.img-wrapper img{
+  position: absolute;
+  top: 0; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  min-height: 100%; 
+  max-height: 100%;
+  }
 </style>
 @endsection
 
 @section('content')
-<div id="project-container">
-<div class="container" style="min-height: 600px;">
+<div id="project-container" style="min-height: 600px; padding: 2em;margin-bottom: 2em;">
+<div id="unclose">
     <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-12">
                 <h1 class="page-header" style="color: #ea5817"><span id="project_title" data-projecttitle="{!! $project->title !!}">{{$project->title}}</span>
                     <small>{{$project->getReadableDateFormat($project->created_at)}}</small>
-                      @if($links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', true)->first())
-                        <small>, Confirmé</small>
-                        @endif
+                    
+                      
                       <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
             
 
@@ -39,6 +59,8 @@
                           <a href="#" data-toggle="modal" 
    data-target="#confirmModal" class="btn btn-primary btn-xs confirm" data-linkid="{!! $links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', false)->first()->id !!}">Confirmer</a></td>
                         @endif
+                        
+                        @endif
                         @if(Auth::user()->entreprise AND !$project->launched)
                           <a href="#" data-toggle="modal" 
    data-target="{{Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? '#deleteModal' : '#deleteModal' : '#sendModal'}}" class="btn btn-primary btn-xs links" title="Link" data-projectid="{!! $project->id !!}">
@@ -46,8 +68,6 @@
                                              {!! Auth::user()->entreprise->links()->where('project_id', $project->id)->where('refused', false)->first() ? Auth::user()->entreprise->links()->where('project_id', $project->id)->first()->accepted == 1 ? 'Accepted' : 'Linked' : 'Link' !!}
                                     
                                     </a>
-                        @endif
-
                         @endif
                         @if(@Auth::user()->id == $project->id)
                             <a href="#" class="btn btn-primary btn-xs edit" id="edit-project" data-projectid="{!! $project->id !!}" data-toggle="modal" data-target="#projectEditModal">Editer</a>
@@ -87,8 +107,49 @@
 
     </div>
 
+<div class="row">
+  <div class="col-lg-12">
+   <h3 class="title">Images</h3>
+      @if(Auth::check())
+       @if(Auth::user()->id == $project->user->id)
+        {!! Form::open(['route' => ['projects.storeImage', $project->id], 'class' => 'form', 'files' => true, 'method' => 'post']) !!}
+
+        <div class="form-group">
+            {!! Form::label('Ajouter une image') !!}
+            {!! Form::file('image', null) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::submit('Add!', ['class' => 'btn btn-primary']) !!}
+        </div>
+
+        {!! Form::close() !!} 
+        @endif
+   @endif
+   </div>
+
+      @foreach($project->images as $image)
+        <div class="col-md-4" data-imageid="{!! $image->id !!}">
+                <div class="thumbnail">
+                      <div class="img-wrapper">
+                        <a href="{{ URL::to('uploads/project_images')}}/{{$image->image}}" data-title="{{$project->title}}" data-lightbox="{{$project->title}}"><img src="{{ URL::to('uploads/project_images')}}/{{$image->image}}" class="img-responsive"></a> 
+                      </div>
+                </div> 
+                 @if(Auth::check())
+                    @if(Auth::user()->id == $project->user->id)
+                      {!! Form::open(['method' => 'DELETE', 'route' => ['projects.deleteImage', $image->id]]) !!}
+                                          {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cette image ?\')', 'type'=>'submit']) !!}
+                                          {!! Form::close() !!}
+                    @endif  
+                  @endif
+        </div>
+      @endforeach
+
+</div>
+
+
  <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-12">
                 <h1 class="page-header" style="color: #ea5817">Posté par
 
                 </h1>
@@ -109,7 +170,7 @@
         <?php $launchedLink = $project->getLaunchedLink(); ?>
         @if(!$project->launched AND !$launchedLink)
            <div class="row">
-                  <div class="col-lg-11">
+                  <div class="col-lg-12">
                       <h1 style="color: #ea5817">Demandes d'attribution
                       @if($links->count() <= 0)
                         <small>En attente d'une demande...</small>
@@ -119,7 +180,7 @@
           </div>
 
           <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-12">
                          
                 <table class="table table-inbox table-hover">
                   <tbody>
@@ -152,7 +213,7 @@
         @else
         @if($launchedLink)
         <div class="row">
-                  <div class="col-lg-11">
+                  <div class="col-lg-12">
                       <h1 style="color: #ea5817">Projet Lancé
                       @if($launchedLink->confirmed)
                       <small>Confirmé</small>
@@ -396,7 +457,7 @@
 @endsection
 
 @section('scripts')
-
+<script src="{{ URL::to('src/js/lightbox.js') }}"></script>
 <script>
 
 var title = null; 

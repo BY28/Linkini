@@ -124,7 +124,7 @@ class LinkiniPageController extends Controller
 
             $inputs = $request->all();
             
-            if($request->has('image'))
+            if($request->hasFile('image'))
             {
                 $inputs['image'] = $this->pageRepository->moveImage($request->file('image'), config('imagePage.path'));
             }
@@ -142,7 +142,7 @@ class LinkiniPageController extends Controller
         $category = $this->pageCategoryRepository->getByName($category_name);
         $inputs =  array_merge($request->all(), ['entreprise_id' => $request->user()->entreprise->id, 'page_category_id' => $category->id]);
 
-        if($request->has('image'))
+        if($request->hasFile('image'))
         {
             $inputs['image'] = $this->pageRepository->moveImage($request->file('image'), config('imagePage.path'));
         }

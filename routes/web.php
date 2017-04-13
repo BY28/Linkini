@@ -55,6 +55,10 @@ Route::get('statistics', ['uses' => 'ProfileController@getStatistics', 'as' => '
 		Route::post('update/{id}', ['uses' => 'ProjectController@update', 'as' => 'projects.update']);
 
 		Route::post('launch', ['uses' => 'ProjectController@launch', 'as' => 'projects.launch']);
+
+		Route::post('image/store/{id}', ['uses' => 'ProjectController@storeImage', 'as' => 'projects.storeImage']);
+		Route::delete('image/delete/{id}', ['uses' => 'ProjectController@deleteImage', 'as' => 'projects.deleteImage']);
+
 	});
 
 	Route::group(['prefix' => 'entreprise'], function(){

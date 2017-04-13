@@ -16,6 +16,11 @@ class Project extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function images()
+    {
+        return $this->hasMany('App\ProjectImage');
+    }
+
     public function tags()
     {
         return $this->belongsToMany('App\Tag');

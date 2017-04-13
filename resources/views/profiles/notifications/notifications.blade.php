@@ -13,7 +13,7 @@
                 <table class="table table-inbox table-hover">
                   <tbody>
                   
-                  @foreach($notifications as $notification)
+                  @foreach($notifications->reverse() as $notification)
                    
                         <tr class="clickable-row @if(!$notification->seen) unread @endif " data-href="{{route('projects.show', $notification->project_id)}}">   
                             <td class="view-message  dont-show">{{$notification->title}}</td>

@@ -17,7 +17,7 @@
       <span class="icon-bar"></span>
     </button>
      <a class="navbar-brand" href="{{route('home')}}">
-      <img src="http://img11.hostingpics.net/pics/979426logo2.png" alt="">
+      <img src="{{ URL::to('images//logos/linkini_logo.png')}}" alt="">
     </a>
   </div>
   
@@ -316,7 +316,7 @@
               @endif
               <li><a href="{{route('projects.all')}}">Mes Projets</a></li>
               <li><a href="{{route('profile.favorites')}}">Mes Favoris</a></li>
-              <li><a href="#">Mes Statistiques</a></li>
+              <!-- <li><a href="#">Mes Statistiques</a></li> -->
               @if(Auth::user()->admin)
                 <li class="divider"></li>
                   <li><a href="{{route('admins.index')}}">Administration</a></li>

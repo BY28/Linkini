@@ -187,4 +187,30 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects', 'categories', 'links'))
         ->with('info', 'Résultats pour la recherche de la categorie : ' . $categoryObject->name);
     }
+
+    public function storeImage(Request $request, $id)
+    {
+
+        if($request->hasFile('image'))
+        {
+
+            $img = $this->projectRepository->moveImage($request->file('image'), config('projectImagePath.path'));
+
+            $inputs = [
+            'project_id' => $id,
+            'image' => $img
+            ];
+
+            $this->projectRepository->storeImage($inputs);
+        }
+       
+
+        return redirect()->back();
+    }
+
+    public function deleteImage($id)
+    {
+        $this->projectRepository->deleteImage($id);
+        return redirect()->back();
+    }
 }
