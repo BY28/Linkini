@@ -4436,7 +4436,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
     }
     .navbar-nav .open .dropdown-menu>li>a:focus,
     .navbar-nav .open .dropdown-menu>li>a:hover {
-        background-image: none
+        background-image: none;
     }
 }
 @media (min-width: 768px) {
@@ -4714,14 +4714,14 @@ fieldset[disabled] .navbar-default .btn-link:hover {
     background-color: transparent
 }
 .navbar-inverse .navbar-toggle {
-    border-color: #333
+    border-color: #0c2444
 }
-.navbar-inverse .navbar-toggle:focus,
+
 .navbar-inverse .navbar-toggle:hover {
-    background-color: #333
+    background-color: #0c2444
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-    background-color: #fff
+    background-color: #ea5817
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
@@ -4745,7 +4745,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
-        color: #fff;
+        color: #ea5817;
         background-color: transparent
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a,

@@ -28,6 +28,10 @@
 
 @section('content')
     <div class="row">
+    <br>
+    <div class="panel panel-primary"> 
+      <div class="panel-heading">Ajouter une image</div>
+      <div class="panel-body"> 
        {!! Form::open(array('route' => 'homepage.storeCarousel', 'class' => 'form', 'files' => true, 'method' => 'post')) !!}
 
       <div class="form-group">
@@ -39,7 +43,9 @@
           {!! Form::submit('Add!', ['class' => 'btn btn-primary']) !!}
       </div>
 
-      {!! Form::close() !!}    
+      {!! Form::close() !!} 
+      </div>
+      </div>   
     </div>
 
     <div class="row">

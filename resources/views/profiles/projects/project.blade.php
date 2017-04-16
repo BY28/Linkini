@@ -4,7 +4,7 @@
                 
    <div class="row inbox">
 
-	   	<div class="panel panel-default">
+	   	<div class="panel panel-primary">
       
       <div class="panel-body message"> 
           

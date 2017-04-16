@@ -96,6 +96,11 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     max-height: 325px;
     overflow-y:scroll; 
 }
+
+#entreprises-section
+{
+  background: #fff;
+}
 </style>
 
 @endsection
@@ -181,15 +186,15 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     </div>
    </div>
 
- <hgroup>
+    <section class="col-xs-12 col-sm-12 col-md-12" id="entreprises-section">
+
+     <hgroup>
         <h1>Entreprises</h1>
         @if(isset($info))
         <h2 class="lead">{{$info}}</h2>                               
         @endif
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
-
-    <section class="col-xs-12 col-sm-12 col-md-12">
     
     @foreach($entreprises as $entreprise)
 
@@ -204,7 +209,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     <div class="action">
 
                                       @if(Auth::check())
-                                       <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                       <!-- <a href="{{route('entreprises.edit', [$entreprise->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> -->
 
                                          <button type="button" class="btn btn-primary btn-xs favorites" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" title="Approved">
                                              {!! Auth::user()->favorites()->where('entreprise_id', $entreprise->id)->first() ? 'UnFav' : 'Fav' !!}
@@ -215,9 +220,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                                           @endif
                                           <a href="{{route('messages.sendwithreceiver', $entreprise->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
 
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
-                                    {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
+                                       <!--  {!! Form::open(['method' => 'DELETE', 'route' => ['entreprises.destroy', $entreprise->id]]) !!}
+                                        {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!} -->
 
                                       @endif
 
@@ -239,9 +244,9 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
         
     @endforeach
         
+        {!! $links !!}
     </section>
 
-    {!! $links !!}
   </div>
 
     <!-- Modals -->

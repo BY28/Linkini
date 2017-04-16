@@ -98,6 +98,7 @@ Route::get('statistics', ['uses' => 'ProfileController@getStatistics', 'as' => '
 
 	Route::group(['prefix' => 'settings'], function(){
 		Route::get('/', ['uses' => 'ProfileController@getSettingsAccount', 'as' => 'settings.account']);
+		Route::post('/image/{id}', ['uses' => 'UserController@updateImage', 'as' => 'user.updateImage']);
 		Route::get('entreprise', ['uses' => 'ProfileController@getSettingsEntreprise', 'as' => 'settings.entreprise']);
 		//Route::get('notifications', ['uses' => 'ProfileController@getSettingsNotifications', 'as' => 'settings.notifications']);
 	});
@@ -189,7 +190,6 @@ Route::group(['prefix' => 'page'], function(){
 	Route::delete('/delete/{id}', ['uses' => 'LinkiniPageController@deleteContent', 'as' => 'page.delete']);
 	Route::post('contact', ['uses' => 'EmailController@sendPageContactMail', 'as' => 'sendPageContactEmail']);
 });
-
 
 
 Route::get('search', 'SearchController@search')->name('search');

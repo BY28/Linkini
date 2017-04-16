@@ -118,6 +118,11 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     max-height: 325px;
     overflow-y:scroll; 
 }
+
+#projects-section
+{
+  background: #fff;
+}
 </style>
 
 @endsection
@@ -200,16 +205,16 @@ pre-scrollable
     </div>
    </div>
    
- <hgroup>
-        <h1>Projects</h1>
+
+
+    <section class="col-xs-12 col-sm-12 col-md-12" id="projects-section">
+     <hgroup>
+        <h1>Projets</h1>
          @if(isset($info))
         <h2 class="lead">{{$info}}</h2>                               
         @endif
         <!-- <h2 class="lead"><strong>3</strong> results were found for the search for <strong >Lorem</strong></h2> -->
     </hgroup>
-
-    <section class="col-xs-12 col-sm-12 col-md-12">
-    
     @foreach($projects as $project)
         <article class="search-result row" data-projectid="{{$project->id}}">
                 <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
@@ -226,9 +231,9 @@ pre-scrollable
                     <div class="action">
                                    @if(Auth::check())
 
-                                    @if(Auth::user()->id ==  $project->user_id)
+                                    <!-- @if(Auth::user()->id ==  $project->user_id)
                                     <a href="{{route('projects.edit', [$project->id])}}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    @endif
+                                    @endif -->
                                         @if(Auth::user()->entreprise)
                                     <!-- <a href="{{route('links.projectlink')}}" class="btn btn-primary btn-xs links" title="Link">
                                     -->
@@ -241,13 +246,13 @@ pre-scrollable
 
                                     <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
                                         @endif
-                                           @if(Auth::user()->id ==  $project->user_id)
+                                         <!--   @if(Auth::user()->id ==  $project->user_id)
 
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
-                                    {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
+                                            {!! Form::button(' <span class="glyphicon glyphicon-trash"></span>', ['class' => 'btn btn-danger btn-xs pull-right', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')', 'type'=>'submit']) !!}
+                                            {!! Form::close() !!}
 
-                                    @endif
+                                            @endif -->
                                       @endif
                     
                     </div>
@@ -264,10 +269,8 @@ pre-scrollable
         </article>        
         
     @endforeach
-
-    </section>
       {!! $links !!}
-    
+    </section>
 
     <!-- Modals -->
 

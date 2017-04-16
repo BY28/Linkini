@@ -10,7 +10,7 @@ class ProjectImage extends Model
     	'project_id', 'image'
     ];
 
-	public function images()
+	public function project()
 	{
 		return $this->belongsTo('App\Project');
 	}

@@ -3,6 +3,10 @@
 @section('content')
 <div class="row">
    <div class="col-md-offset-3 col-md-6">
+   <br>
+		<div class="panel panel-primary">	
+			<div class="panel-heading">Ajouter une activité</div>
+			<div class="panel-body"> 
    					<h1>{{$category->name}}</h1>
    					{!! Form::open(['route' => 'activities.store', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
@@ -12,6 +16,8 @@
 					{!! Form::hidden('category_id', $category->id) !!}
 					{!! Form::submit('Ajouter', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!} 
+			</div>		
+		</div>
    </div>
 </div>
    <div class="row">

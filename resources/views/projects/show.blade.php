@@ -38,6 +38,18 @@
   min-height: 100%; 
   max-height: 100%;
   }
+
+  #project_description
+  {
+    font-size: 1.3em;
+  }
+
+  #img-project {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+}
 </style>
 @endsection
 
@@ -69,7 +81,7 @@
                                     
                                     </a>
                         @endif
-                        @if(@Auth::user()->id == $project->id)
+                        @if(@Auth::user()->id == $project->user->id)
                             <a href="#" class="btn btn-primary btn-xs edit" id="edit-project" data-projectid="{!! $project->id !!}" data-toggle="modal" data-target="#projectEditModal">Editer</a>
                         @endif
                     @endif
@@ -116,7 +128,7 @@
 
         <div class="form-group">
             {!! Form::label('Ajouter une image') !!}
-            {!! Form::file('image', null) !!}
+            {!! Form::file('images[]', array('multiple' => true)) !!}
         </div>
 
         <div class="form-group">
@@ -129,10 +141,10 @@
    </div>
 
       @foreach($project->images as $image)
-        <div class="col-md-4" data-imageid="{!! $image->id !!}">
+        <div class="col-md-2" data-imageid="{!! $image->id !!}">
                 <div class="thumbnail">
                       <div class="img-wrapper">
-                        <a href="{{ URL::to('uploads/project_images')}}/{{$image->image}}" data-title="{{$project->title}}" data-lightbox="{{$project->title}}"><img src="{{ URL::to('uploads/project_images')}}/{{$image->image}}" class="img-responsive"></a> 
+                        <a href="{{ URL::to('uploads/project_images')}}/{{$image->image}}" data-title="{{$project->title}}" data-lightbox="{{$project->title}}"><img src="{{ URL::to('uploads/project_images')}}/{{$image->image}}" class="img-responsive img-project"></a> 
                       </div>
                 </div> 
                  @if(Auth::check())

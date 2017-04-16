@@ -64,6 +64,8 @@ class ProjectController extends Controller
             $tagRepository->attach($project, $inputs['tags']);
         }
 
+        $this->storeImage($request, $project->id);
+
         return redirect('projects')->withOk("Le project " . $project->title . " a été créé.");
     }
 
@@ -191,10 +193,13 @@ class ProjectController extends Controller
     public function storeImage(Request $request, $id)
     {
 
-        if($request->hasFile('image'))
+        if($request->hasFile('images'))
         {
+            $images = $request->file('images');
 
-            $img = $this->projectRepository->moveImage($request->file('image'), config('projectImagePath.path'));
+            foreach ($images as $image) {
+
+            $img = $this->projectRepository->moveImage($image, config('projectImagePath.path'));
 
             $inputs = [
             'project_id' => $id,
@@ -202,6 +207,8 @@ class ProjectController extends Controller
             ];
 
             $this->projectRepository->storeImage($inputs);
+
+            }
         }
        
 

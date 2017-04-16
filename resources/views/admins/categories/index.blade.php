@@ -3,6 +3,10 @@
 @section('content')
 <div class="row">
    <div class="col-md-offset-3 col-md-6">
+    	<br>
+		<div class="panel panel-primary">	
+			<div class="panel-heading">Ajouter une catégorie</div>
+			<div class="panel-body"> 
    					{!! Form::open(['route' => 'categories.store', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
 						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ajouter une categorie']) !!}
@@ -10,6 +14,8 @@
 					</div>
 					{!! Form::submit('Ajouter', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!} 
+			</div>		
+		</div>
    </div>
 </div>
    <div class="row">
@@ -17,8 +23,8 @@
    	<table class="table table-hover">
 	  <thead>
 	    <tr>
-	      <th>Name</th>
-	      <th>Actions</th>
+	      <th>Nom</th>
+	      <th></th>
 	    </tr>
 	  </thead>
 	  <tbody>

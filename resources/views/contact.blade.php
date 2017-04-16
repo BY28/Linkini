@@ -137,10 +137,10 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
     <div class="col-md-5 mail_right">
       <h3>Contact Info</h3>
       <ul>
-        <li><span><i class="fa fa-home" aria-hidden="true"></i>Address<label>:</label></span> 1234k Avenue, New York City.</li>
-        <li><span><i class="fa fa-phone" aria-hidden="true"></i>Phone<label>:</label></span> (+012) 345 6432</li>
-        <li><span><i class="fa fa-fax" aria-hidden="true"></i>Fax<label>:</label></span> +82-21-1218</li>
-        <li><span><i class="fa fa-envelope" aria-hidden="true"></i>Email<label>:</label></span> <a href="mailto:info@example.com">info@example.com</a></li>
+        <li><span><i class="fa fa-home" aria-hidden="true"></i>Address<label>:</label></span> 00 rue adresse, Alger.</li>
+        <li><span><i class="fa fa-phone" aria-hidden="true"></i>Phone<label>:</label></span> 0123456789</li>
+        <li><span><i class="fa fa-fax" aria-hidden="true"></i>Fax<label>:</label></span> 0123456789</li>
+        <li><span><i class="fa fa-envelope" aria-hidden="true"></i>Email<label>:</label></span> <a href="mailto:contact@linkini.com">contact@linkini.com</a></li>
       
       </ul>
     </div>
@@ -282,7 +282,7 @@ $(document).ready(function() {
 <script type="text/javascript">
     function initMap() {
         // Create a map object and specify the DOM element for display.
-        var myLatLng = {lat:30, lng: 30};
+        var myLatLng = {lat:36.75, lng: 3.04};
 
         var map = new google.maps.Map(document.getElementById('map'), {
           center: myLatLng,
@@ -301,8 +301,8 @@ $(document).ready(function() {
                   var marker = new google.maps.Marker({
                         map: map,
                         position: {
-                            lat:30,
-                            lng:30
+                            lat:36.75,
+                            lng:3.04
                         }
                       });
             

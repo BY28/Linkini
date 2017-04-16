@@ -186,8 +186,8 @@
       
         @if (Auth::guest())
            
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CONNEXION</b> </a>
+        <li class="dropdown" id="connection-section">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="connection-dropdown"><b>CONNEXION</b> </a>
             <ul id="login-dp" class="dropdown-menu">
                 <li>
                      <div class="row">
@@ -394,5 +394,5 @@ window.setInterval(function(){
     });
 
 }, 5000);
-  </script>
+</script>
 @endif

@@ -27,6 +27,10 @@
 						
 						{!! $errors->first('tags', '<small class="help-block">:message</small>') !!}
 					</div>
+					<div class="form-group">
+				        {!! Form::label('Ajouter une image') !!}
+				        {!! Form::file('images[]', array('multiple' => true)) !!}
+				    </div>
 					<!-- PAS D'IMAGE POUR LE MOMENT
 					<div class="form-group {!! $errors->has('image') ? 'has-error' : '' !!}">
 					Image :

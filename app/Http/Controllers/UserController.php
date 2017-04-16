@@ -9,6 +9,8 @@ use App\Repositories\UserRepository;
 
 use Illuminate\Http\Request;
 
+use File;
+
 class UserController extends Controller
 {
 
@@ -20,7 +22,7 @@ class UserController extends Controller
     public function __construct(UserRepository $userRepository)
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('admin', ['except' => ['updateImage', 'update']]);
         
         $this->userRepository = $userRepository;
     }
@@ -67,7 +69,7 @@ class UserController extends Controller
 
         $this->userRepository->update($id, $request->all());
         
-        return redirect('user')->withOk("L'utilisateur " . $request->input('email') . " a été modifié.");
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -83,5 +85,33 @@ class UserController extends Controller
         {
             $request->merge(['admin' => 0]);
         }       
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+
+        if($request->hasFile('image'))
+        {
+            $image = $request->file('image');
+
+            $img = $this->userRepository->moveImage($image, 'uploads/users');
+
+            $inputs = [
+            'image' => $img
+            ];
+
+            $user_image = $request->user()->image;
+
+            if($user_image != 'user.png')
+            {
+                File::delete("uploads/users/" . $user_image);
+            }
+
+            $this->userRepository->update($request->user()->id, $inputs);
+
+        }
+       
+
+        return redirect()->back();
     }
 }

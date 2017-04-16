@@ -119,7 +119,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                             <div class="row">
                                 
                                  <div class="col-md-4 col-md-offset-3">
-                                     {!! link_to_route('entreprises.getorder', 'Commencer!', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                     {!! link_to_route('entreprises.getorder', 'Commencer!', [], ['class' => 'btn btn-success pull-right btn-lg']) !!}
                                 </div>
 
                             </div>
@@ -142,7 +142,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
 
                             <div class="row">
                                  <div class="col-md-4 col-md-offset-3">
-                                     {!! link_to_route('projects.create', 'Réaliser!', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                     {!! link_to_route('projects.create', 'Réaliser!', [], ['class' => 'btn btn-success pull-right btn-lg']) !!}
                                 </div>
                             </div>
                         </div>
@@ -162,7 +162,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                             </div>
                               <div class="row">
                                  <div class="col-md-4 col-md-offset-3">
-                                     {!! link_to_route('entreprises.getorder', 'Services', [], ['class' => 'btn btn-info pull-right btn-lg']) !!}
+                                     {!! link_to_route('entreprises.getorder', 'Services', [], ['class' => 'btn btn-success pull-right btn-lg']) !!}
                                 </div>
                             </div>
                         </div>
@@ -256,19 +256,19 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                        <div class="panel-body">
                        
                           <div class="col-sm-12"> 
-                              <table class="table">
+                              <table class="table table-inbox table-hover">
                               <tbody> 
                               @foreach($projects as $project)
                               
-                                 <tr class="cat-row">
+                                 <tr class="cat-row clickable-row" data-href="{{route('projects.show', $project->id)}}">
                                     <td style='color:#ea5817;' class="projects-title">
                                         {{$project->title}}
                                     </td>
                                     <td>
-                                        {{$project->getReadableDateFormat($project->created_at)}}
+                                       <!--  {{$project->getReadableDateFormat($project->created_at)}} -->
+                                         {{$project->created_at->format('d/m/Y')}} à
+                                          {{$project->created_at->format('H:m')}}
                                     </td>
-
-                                    <td><a href="{{route('projects.show', $project->id)}}">Voir le projet</a></td>
                                   </tr>
                           
                                 
@@ -869,7 +869,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
             <div class="call-to-action">
                 <h2>Choisissez votre offre dès maintenant!</h2>
                 <p>Des offres sont à votre disposition pour plus d'options.</p>
-                <a href="{{route('services')}}"" class="btn btn-default">Offres</a>
+                <a href="{{route('services')}}"" class="btn btn-success">Offres</a>
             </div>
         </div>
     </aside>
@@ -877,7 +877,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">Pourquoi nous choisir ?</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -923,7 +923,7 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                     <h2 class="section-heading">Nous sommes au plus près de nos clients</h2>
                     <hr class="light">
                     <p class="text-faded">Vous cherchez des informations supplémentaires, propositions ou commentaire ? Contactez-nous dès maintenant!</p>
-                    <a href="{{route('contact')}}" class="page-scroll btn btn-default btn-xl sr-button">Contactez-nous!</a>
+                    <a href="{{route('contact')}}" class="page-scroll btn btn-success btn-xl sr-button">Contactez-nous!</a>
                 </div>
             </div>
         </div>
@@ -1075,5 +1075,12 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+  jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+          window.location = $(this).data("href");
+      });
+  });
 </script>
 @endsection

@@ -17,6 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('informations')->default('Utilisateur Linkini.');
+            $table->string('image')->default('user.png');
             $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
