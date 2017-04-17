@@ -15,6 +15,7 @@ class LinkiniPageController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
+        $this->middleware('entreprise', ['only' => 'getEntrepriseInfo']);
 
         $this->pageRepository = $pageRepository;
         $this->entrepriseRepository = $entrepriseRepository;

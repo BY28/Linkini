@@ -16,11 +16,20 @@ class EntrepriseOrder
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->order != null)
+       /* if($request->user()->order != null)
         {
             return $next($request);
         }
             
-        return new RedirectResponse(url('/entreprises/order'));
+        return new RedirectResponse(url('/entreprises/order')); */
+
+        if($request->user()->entreprise != null || $request->user()->order != null)
+        {  
+            return redirect()->route('home');
+        }
+        else
+        {
+            return $next($request);
+        }
     }
 }

@@ -102,7 +102,7 @@ class LinkRepository extends ResourceRepository
 
 		if($link->entreprise->id == $entreprise->id)
 		{
-			if(!$link->accepted && !$link->refused && !$link->confirmed)
+			if(!$link->accepted && !$link->refused && !$link->confirmed && !$project->lauched)
 			{
 				$updateData = [
 		    		'refused' => true
@@ -118,26 +118,28 @@ class LinkRepository extends ResourceRepository
 		    	];
 		    		$this->notification->create($data);
 			}
-			/*else if($link->accepted && $link->refused)
+			else if($link->accepted && $link->refused)
 			{
 				$data = [
-		    		'user_id' => $entreprise->id,
+		    		'user_id' => $entreprise->user->id,
 		    		'project_id' => $project->id,
-		    		'title' => 'Annulation de lien',
-		    		'content' => 'Le projet '. $project->title .' a été annulé.'
+		    		'title' => 'Projet annulé',
+		    		'content' => 'Le projet '. $project->title .' est déjà annulé.'
 		    	];
+		    	$this->notification->create($data);
 			}
 			else if(!$link->accepted && $link->refused)
 			{
 
 				$data = [
-		    		'user_id' => $entreprise->id,
+		    		'user_id' => $entreprise->user->id,
 		    		'project_id' => $project->id,
-		    		'title' => 'Annulation de lien',
+		    		'title' => 'Projet annulé',
 		    		'content' => 'La demande pour le projet '. $project->title .' a déjà été annulé.'
 		    	];
-			}*/
-			else if($link->accepted && !$link->refused && !$link->confirmed)
+		    	$this->notification->create($data);
+			}
+			else if($link->accepted && !$link->refused && !$link->confirmed && !$projetc->launched)
 			{
 				$updateData = [
 		    		'refused' => true
@@ -157,6 +159,16 @@ class LinkRepository extends ResourceRepository
 		    	];
 
 		    		$this->notification->create($data);
+			}
+			else if($project->lauched && !$link->refused)
+			{
+				$data = [
+		    		'user_id' => $entreprise->user->id,
+		    		'project_id' => $project->id,
+		    		'title' => 'Annulation impossible',
+		    		'content' => 'Le projet '. $project->title .' a été lancé.'
+		    	];
+		    	$this->notification->create($data);
 			}
 
 		}
@@ -179,20 +191,20 @@ class LinkRepository extends ResourceRepository
 			$link->save();
 
 			$data = [
-		    		'user_id' => $entreprise->id,
+		    		'user_id' => $entreprise->user->id,
 		    		'project_id' => $project->id,
-		    		'title' => 'Annulation de lien',
+		    		'title' => 'Lien accepté',
 		    		'content' => 'La demande d\'attribution pour le projet '. $project->title .' a été acceptée.'
 		    	];
 
 		   	$this->notification->create($data);
 		}
-		/*else if($link->project->launched)
+		else if($link->project->launched)
 		{
 			$data = [
 		    		'user_id' => $project->user->id,
 		    		'project_id' => $project->id,
-		    		'title' => 'Annulation de lien',
+		    		'title' => 'Projet lancé',
 		    		'content' => 'Le projet '. $project->title .' est déjà lancé.'
 		    	];
 		}
@@ -205,7 +217,7 @@ class LinkRepository extends ResourceRepository
 		    		'content' => 'Le projet '. $project->title .' a été annulé.'
 		    	];
 		}
-		else
+		/*else
 		{
 			$data = [
 		    		'user_id' => $project->user->id,
@@ -240,10 +252,21 @@ class LinkRepository extends ResourceRepository
 		    $this->notification->create($data);
 
 		    $data = [
-		    		'user_id' => $entreprise->id,
+		    		'user_id' => $entreprise->user->id,
 		    		'project_id' => $project->id,
 		    		'title' => 'Annulation de lien',
 		    		'content' => 'Le project en cours '. $project->title .' a été annulé.'
+		    	];
+
+		    $this->notification->create($data);
+		}
+		else if($link->confirmed)
+		{
+			$data = [
+		    		'user_id' => $project->user->id,
+		    		'project_id' => $project->id,
+		    		'title' => 'Annulation impossible',
+		    		'content' => 'Le project en cours '. $project->title .' a été confirmé.'
 		    	];
 
 		    $this->notification->create($data);
@@ -264,7 +287,7 @@ class LinkRepository extends ResourceRepository
 			$data = [
 		    		'user_id' => $project->user->id,
 		    		'project_id' => $project->id,
-		    		'title' => 'Annulation de lien',
+		    		'title' => 'Confirmation de lien',
 		    		'content' => 'Le project en cours '. $project->title .' a été confirmé.'
 		    	];
 

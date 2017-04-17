@@ -37,8 +37,8 @@
 	     		</td>
 	     		<td>
 	     			<a href="#" class="btn btn-danger btn-xs delete" data-toggle="modal" 
-   data-target="#deleteModal">Delete</a>
-	     			<a href="{{route('activities.index', $category->id)}}" class="btn btn-warning btn-xs activities">Activities</a>
+   data-target="#deleteModal">Supprimer</a>
+	     			<a href="{{route('activities.index', $category->id)}}" class="btn btn-warning btn-xs activities">Activités</a>
 	     		</td>
 	    	</tr>
 	    

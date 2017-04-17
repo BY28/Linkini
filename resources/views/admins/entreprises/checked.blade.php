@@ -7,9 +7,12 @@
    	<table class="table table-hover">
 	  <thead>
 	    <tr>
-	      <th>Name</th>
+	      <th>Nom</th>
+	      <th>Email</th>
+	      <th>Tel</th>
+	      <th>Addresse</th>
+	      <th>Activité</th>
 	      <th>Description</th>
-	      <th>Time</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -17,15 +20,13 @@
 	  	
 	  		<tr data-entrepriseid="{!! $entreprise->id !!}">
 	     		<td>
-	     		<a href="#">{{$entreprise->name}}</a>
+	     		<a href="{{route('page.entreprise', $entreprise->entreprise_url)}}">{{$entreprise->name}}</a>
 	     		</td>
-	     		
+	     		<td>{{$entreprise->email}}</td>
+	     		<td>{{$entreprise->phone}}</td>
+	     		<td>{{$entreprise->address}}</td>
+	     		<td>{{$entreprise->activity->name}}</td>
 	     		<td>{{$entreprise->description}}</td>
-	     		<td>{{$entreprise->created_at}}</td>
-	     		<td>
-	     			<a href="#" class="btn btn-primary btn-xs check">Check</a>
-	     			<a href="#" class="btn btn-primary btn-xs refuse">Refuse</a>
-	     		</td>
 	    	</tr>
 	    
 	  	@endforeach

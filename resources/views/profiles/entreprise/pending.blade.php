@@ -161,7 +161,7 @@ $('.links').click(function(event) {
 /* MODALS */
 $('.ignore').click(function(event) {
   
-   var linkId = event.target.parentNode.parentNode.dataset['linkorderid'];
+   linkId = event.target.parentNode.parentNode.dataset['linkorderid'];
    $buttonClicked = event.target;
 });
     $('#save-ignore').click(function(e){

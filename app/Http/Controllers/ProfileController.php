@@ -16,6 +16,8 @@ class ProfileController extends Controller
     public function __construct(ProfileRepository $profileRepository)
     {
         $this->middleware('auth');
+        $this->middleware('entreprise', ['only' => 'getSettingsEntreprise']);
+        
         
         $this->profileRepository = $profileRepository;
     }

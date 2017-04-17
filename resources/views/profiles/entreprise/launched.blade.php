@@ -109,7 +109,8 @@ $('.links').click(function(event) {
 
       })
       .done(function(){
-        $buttonClicked.parentNode.parentNode.remove();
+        $buttonClicked.parentNode.innerText = 'Confirmé';
+        $buttonClicked.remove();
         $('#confirmModal').modal('hide');
         $this.button('reset');
         linkId = null;

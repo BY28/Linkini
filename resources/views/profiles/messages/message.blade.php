@@ -12,11 +12,11 @@
         <h2>{{$message->subject}}</h2>
         <div class="header">
 
-          <img class="avatar" src="http://lorempixel.com/140/140">
+          <img class="avatar" src="{{ URL::to('uploads/users')}}/{{$user->image}}">
 
 
           <div class="from">
-            <span>User Name</span>
+            <span>{{$message->sender->first_name}} {{$message->sender->last_name}}</span>
             <a class="" href="#">{{$message->sender->email}}</a>
           </div>
           <div class="date"><span class="fa fa-paper-clip"></span>{{$message->created_at}}</div>

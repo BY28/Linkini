@@ -7,9 +7,12 @@
    	<table class="table table-hover">
 	  <thead>
 	    <tr>
-	      <th>Name</th>
+	      <th>Nom</th>
+	      <th>Email</th>
+	      <th>Tel</th>
+	      <th>Addresse</th>
+	      <th>Activité</th>
 	      <th>Description</th>
-	      <th>Time</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -19,12 +22,14 @@
 	     		<td>
 	     		<a href="#">{{$entreprise->name}}</a>
 	     		</td>
-	     		
+	     		<td>{{$entreprise->email}}</td>
+	     		<td>{{$entreprise->phone}}</td>
+	     		<td>{{$entreprise->address}}</td>
+	     		<td>{{$entreprise->activity->name}}</td>
 	     		<td>{{$entreprise->description}}</td>
-	     		<td>{{$entreprise->created_at}}</td>
 	     		<td>
-	     			<a href="#" class="btn btn-primary btn-xs accept" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" >Accept</a>
-	     			<a href="#" class="btn btn-primary btn-xs refuse">refuse</a>
+	     			<a href="#" class="btn btn-primary btn-xs accept" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" >Accepter</a>
+	     			<a href="#" class="btn btn-primary btn-xs refuse">Refuser</a>
 	     		</td>
 	    	</tr>
 	    

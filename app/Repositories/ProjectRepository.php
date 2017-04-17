@@ -21,7 +21,7 @@ class ProjectRepository extends ResourceRepository
 
 	private function queryWithUserAndTags()
 	{
-		return $this->model->with('user', 'tags')
+		return $this->model->where('launched', false)->with('user', 'tags')
 		->orderBy('projects.created_at', 'desc');		
 	}
 
@@ -68,7 +68,7 @@ class ProjectRepository extends ResourceRepository
 
 	private function queryWithUserAndCategory()
 	{
-		return $this->model->with('user', 'category')
+		return $this->model->where('launched', false)->with('user', 'category')
 		->orderBy('projects.created_at', 'desc');		
 	}
 
@@ -83,7 +83,7 @@ class ProjectRepository extends ResourceRepository
 
 	public function getProjectsFromTitle($query, $n)
 	{
-		return $this->model->where('title', 'LIKE', '%'.$query.'%')->orWhere('content', 'LIKE', '%'.$query.'%')->paginate($n);
+		return $this->model->where('launched', false)->where('title', 'LIKE', '%'.$query.'%')->orWhere('content', 'LIKE', '%'.$query.'%')->paginate($n);
 	}
 
 	public function getUserProjects($user_id)

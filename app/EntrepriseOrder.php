@@ -14,4 +14,15 @@ class EntrepriseOrder extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function activity()
+    {
+    	return $this->belongsTo('App\Activity');
+    }
+
+        public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }

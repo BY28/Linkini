@@ -1,4 +1,4 @@
-@extends('layouts.panel.entreprise')
+@extends('layouts.panel.index')
 
 @section('content')
                 

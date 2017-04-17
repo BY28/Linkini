@@ -13,10 +13,9 @@
                   <tbody>
                   @foreach($favorites as $favorite)
                
-                    <tr class="clickable-row" data-href="{{route('entreprises.show', $favorite->entreprise_id)}}">   
+                    <tr class="clickable-row" data-href="{{route('page.entreprise', $favorite->entreprise->entreprise_url)}}">   
                         <td class="view-message  dont-show">{{$favorite->entreprise->name}}</td>
                         <td class="view-message ">{{$favorite->entreprise->description}}</td>
-
                     </tr>
                    
                    @endforeach

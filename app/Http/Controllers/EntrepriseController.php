@@ -30,8 +30,9 @@ class EntrepriseController extends Controller
     {
         $this->middleware('auth', ['except' => 'index']);
         $this->middleware('admin', ['only' => ['getPendingEntreprises', 'accept']]);
-        $this->middleware('order', ['only' => ['getEntrepriseInfo']]);
         $this->middleware('entreprise', ['only' => ['edit', 'update', 'getEntrepriseInfo', 'getEntreprisePendingProjects']]);
+        $this->middleware('order', ['only' => ['getEntrepriseOrder']]);
+
         $this->entrepriseRepository = $entrepriseRepository;
         $this->entrepriseOrderRepository = $entrepriseOrderRepository;
         $this->categoryRepository = $categoryRepository;

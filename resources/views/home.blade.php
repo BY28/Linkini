@@ -212,9 +212,13 @@ button.btn.btn-default.dropdown-toggle:hover, button.btn.btn-default:hover{
                         <div id="carousel-example-generic-top" class="carousel slide shadow-box" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic-top" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic-top" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic-top" data-slide-to="2"></li>
+                            @foreach($carouselImages as $index => $carouselImage)
+                                @if($index == 0)
+                                    <li data-target="#carousel-example-generic-top" data-slide-to="{{$index}}" class="active"></li>
+                                @else
+                                    <li data-target="#carousel-example-generic-top" data-slide-to="{{$index}}"></li>
+                                @endif
+                            @endforeach
                             </ol>
 
                             <!-- Wrapper for slides -->

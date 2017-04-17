@@ -6,6 +6,23 @@
 .notification-title{
   color: #ea5817;
 }
+
+#update_notifications::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(51,51,51,0.3);
+  background-color: #fff;
+}
+
+#update_notifications::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #fff;
+}
+
+#update_notifications::-webkit-scrollbar-thumb
+{
+  background-color: #f96625;
+}
 </style>
 
 <nav class="navbar navbar-inverse menu">
@@ -265,7 +282,7 @@
           </span>
             @endif
             </a>
-            <ul class="dropdown-menu multi-level scrollable-menu pre-scrollable" role="menu" aria-labelledby="dropdownMenu" id="update_notifications">
+            <ul class="dropdown-menu multi-level scrollable-menu pre-scrollable scrollbar" role="menu" aria-labelledby="dropdownMenu" id="update_notifications">
 
               @foreach(Auth::user()->notifications->reverse() as $notification)
                 @if(!$notification->seen)

@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{ URL::to('src/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('src/css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('src/css/footer.css') }}">
 
 	@yield('styles')
 </head>
@@ -34,9 +35,18 @@
 	</div>
 </div>
 
+@include('partials.footer')
+
 <script src="{{ URL::to('src/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('src/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::to('src/js/functions.js') }}"></script>
+<script type="text/javascript"> 
+$('.newsletter-send').click(function(event)
+{
+    var $this = $(this);
+    $this.button('loading');
+});
+</script>
 @yield('scripts')
 </body>
 </html>

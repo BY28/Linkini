@@ -332,6 +332,7 @@ hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
 {
   background-color: #f96625;
 }
+
 .projects-tab-container
 {
   height: 23em;
@@ -482,6 +483,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   border-bottom: #ea5817 solid 3px;
 }
 
+.header-btn-active
+{
+   border-bottom: #ea5817 solid 3px;
+}
 /* SERVICES */
 
 #work-shop {

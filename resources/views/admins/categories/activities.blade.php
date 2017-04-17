@@ -173,7 +173,7 @@ $('.delete').click(function(event) {
 	    })
 	    .done(function(){
 
-	        event.target.parentNode.parentNode.remove();
+	        clickEvent.target.parentNode.parentNode.remove();
 	        activityName = null;
 			activityId = null;
 			clickEvent = null;

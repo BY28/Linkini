@@ -14,6 +14,8 @@ use App\Repositories\ActivityRepository;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
 class ProjectController extends Controller
 {
     protected $projectRepository;
@@ -90,11 +92,11 @@ class ProjectController extends Controller
     {
 
         $project = $this->projectRepository->getById($id);
-        $category = $this->categoryRepository->getByName($request->input('category'));
+        $category = $this->categoryRepository->getByUrl(Str::slug($request->input('category')));
 
         $inputs = array_merge($request->all(), ['category_id' => $category->id]);
         
-        $this->projectRepository->update($id, $request->all());
+        $this->projectRepository->update($id, $inputs);
 
         if(isset($inputs['tags']))
         {

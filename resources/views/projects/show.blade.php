@@ -44,6 +44,11 @@
     font-size: 1.3em;
   }
 
+  #attribution-informations
+  {
+    font-size: 1.3em;
+  }
+
   #img-project {
     height: auto; 
     width: auto; 
@@ -60,7 +65,13 @@
             <div class="col-lg-12">
                 <h1 class="page-header" style="color: #ea5817"><span id="project_title" data-projecttitle="{!! $project->title !!}">{{$project->title}}</span>
                     <small>{{$project->getReadableDateFormat($project->created_at)}}</small>
-                    
+                    @if(Auth::check())
+                      @if(Auth::user()->entreprise AND $project->launched)
+                        @if($links->where('entreprise_id', Auth::user()->entreprise->id)->where('accepted', true)->where('refused', false)->where('confirmed', true)->first())
+                          <small>, projet lancé.</small>
+                        @endif  
+                      @endif
+                    @endif
                       
                       <a href="{{route('messages.sendwithreceiver', $project->user->id)}}" class="btn btn-primary btn-xs" title="Message"><span class="glyphicon glyphicon-envelope"></span></a>
             
@@ -169,9 +180,20 @@
     </div>
 
        <div class="row">
-        
-        <div class="col-md-8">
-                <p><span class="title">Email :</span> {{$project->user->email}}</p>      
+        <div class="col-md-3">
+                <div class="thumbnail">
+                      <div class="img-wrapper">
+                        <img src="{{ URL::to('uploads/users')}}/{{$project->user->image}}" class="img-responsive img-project">
+                      </div>
+                </div> 
+          </div>
+        <div class="col-md-9">
+                 <p><span class="title">Nom :</span> {{$project->user->last_name}}</p>
+                  <p><span class="title">Prénom :</span> {{$project->user->first_name}}</p>
+                <p><span class="title">Email :</span> {{$project->user->email}}</p>
+                 <p><span class="title">Tel :</span> {{$project->user->phone}}</p>
+                  <p><span class="title">Adresse :</span> {{$project->user->address}}</p>
+                  <p><span class="title">Informations :</span> {{$project->user->informations}}</p>
         </div>
     </div>
 
@@ -241,7 +263,7 @@
                 <p><span class="title">Temps : </span>{{ $launchedLink->time}}</p>
                 <p><span class="title">Montant : </span>{{$launchedLink->amount}}</p>
                 <h3 class="title">Informations</h3>
-                <p >
+                <p id="attribution-informations">
                   <?php
 
                     $launchedLink->informations = nl2br($launchedLink->informations);
@@ -292,6 +314,7 @@
       <div class="form-group">
                         <label for="select">Secteur d'activité</label>
                         <select id="edit-category" class="selectpicker form-control" id="select" data-size="10" name="category">
+                        <option>{{$project->category->name}}</option>
                             @foreach($categories as $category)
                                      <option>{{$category->name}}</option>
                             @endforeach
@@ -672,7 +695,7 @@ $('.confirm').click(function(event) {
 
       })
       .done(function(){
-        $clickEvent.parentNode.parentNode.remove();
+        $clickEvent.remove();
         $('#confirmModal').modal('hide');
         $this.button('reset');
         event.target.remove();
