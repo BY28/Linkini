@@ -298,13 +298,13 @@ $(document).ready(function() {
 
            
      
-                  var marker = new google.maps.Marker({
+                  /*var marker = new google.maps.Marker({
                         map: map,
                         position: {
                             lat:36.75,
                             lng:3.04
                         }
-                      });
+                      });*/
             
                       
          

@@ -27,7 +27,7 @@ class Entreprise
                 return redirect()->route('entreprises.waiting')->withInfo('Veuillez payer ou renouveler votre abonnement pour pouvoir accéder à toutes les fonctionnalités');
             }
         }
-        else if($request->user()->order != null)
+        else if($request->user()->order != null) // where !accepted && !refused
         {
             return redirect()->route('entreprises.waiting')->withInfo('Entreprise en attente d\'être accepté');
         }

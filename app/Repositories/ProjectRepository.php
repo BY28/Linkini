@@ -24,7 +24,7 @@ class ProjectRepository extends ResourceRepository
 		return $this->model->where('launched', false)->with('user', 'tags')
 		->orderBy('projects.created_at', 'desc');		
 	}
-
+	// Récuperation des projets
 	public function getPaginate($n)
 	{
 		return $this->queryWithUserAndTags()->paginate($n);

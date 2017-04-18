@@ -43,7 +43,7 @@
 					  	{!! Form::textarea('informations', null, ['class' => 'form-control', 'placeholder' => 'Ajoutez des informations supplémentaires (métier, passions, description...)']) !!}
 					  	{!! $errors->first('informations', '<small class="help-block">:message</small>') !!}
 					</div>
-
+					<!--
 					@if(Auth::user()->admin)
 					<div class="form-group">
 						<div class="checkbox">
@@ -53,6 +53,7 @@
 						</div>
 					</div>
 					@endif
+					-->
 						{!! Form::submit('Enregistrer', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				</div>

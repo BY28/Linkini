@@ -1,6 +1,20 @@
 @extends('layouts.panel.entreprise')
 
 @section('content')
+<div class="row">
+
+<div class="col-sm-12">
+    	<br>
+		<div class="panel panel-primary">	
+			<div class="panel-heading">Lien vers votre page</div>
+			<div class="panel-body"> 
+				<div class="col-sm-12">
+					<h2><a href="{{route('page.entreprise', $entreprise->entreprise_url)}}" target="_blank">{{route('page.entreprise', $entreprise->entreprise_url)}}</a></h2>
+				</div>
+			</div>
+		</div>
+
+	</div>
 <div class="col-sm-6">
     	<br>
 		<div class="panel panel-primary">	
@@ -100,8 +114,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
+</div>
 	<!-- Modals -->
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">

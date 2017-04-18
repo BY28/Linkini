@@ -29,7 +29,7 @@
 	     		<td>{{$entreprise->description}}</td>
 	     		<td>
 	     			<a href="#" class="btn btn-primary btn-xs accept" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" >Accepter</a>
-	     			<a href="#" class="btn btn-primary btn-xs refuse">Refuser</a>
+	     			<!-- <a href="#" class="btn btn-primary btn-xs refuse">Refuser</a> -->
 	     		</td>
 	    	</tr>
 	    
